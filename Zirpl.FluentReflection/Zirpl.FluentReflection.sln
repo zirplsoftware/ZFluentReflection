@@ -5,6 +5,12 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.FluentReflection", "Zirpl.FluentReflection\Zirpl.FluentReflection.csproj", "{D1E3A926-CB6C-4DF6-98AC-7A5AA04488E9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.FluentReflection.Tests", "Zirpl.FluentReflection.Tests\Zirpl.FluentReflection.Tests.csproj", "{07866EFC-7853-46EB-80BD-3CCCB9D6E249}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.FluentReflection.Benchmarks", "Zirpl.FluentReflection.Benchmarks\Zirpl.FluentReflection.Benchmarks.csproj", "{E15653A7-5969-4650-8EFD-A3DCC9449865}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zirpl.FluentReflection.Portable", "Zirpl.FluentReflection.Portable\Zirpl.FluentReflection.Portable.csproj", "{CC70EFA9-4970-4CFD-8356-79AE967574E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +21,18 @@ Global
 		{D1E3A926-CB6C-4DF6-98AC-7A5AA04488E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D1E3A926-CB6C-4DF6-98AC-7A5AA04488E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D1E3A926-CB6C-4DF6-98AC-7A5AA04488E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{07866EFC-7853-46EB-80BD-3CCCB9D6E249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{07866EFC-7853-46EB-80BD-3CCCB9D6E249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{07866EFC-7853-46EB-80BD-3CCCB9D6E249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{07866EFC-7853-46EB-80BD-3CCCB9D6E249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E15653A7-5969-4650-8EFD-A3DCC9449865}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E15653A7-5969-4650-8EFD-A3DCC9449865}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E15653A7-5969-4650-8EFD-A3DCC9449865}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E15653A7-5969-4650-8EFD-A3DCC9449865}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC70EFA9-4970-4CFD-8356-79AE967574E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC70EFA9-4970-4CFD-8356-79AE967574E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC70EFA9-4970-4CFD-8356-79AE967574E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC70EFA9-4970-4CFD-8356-79AE967574E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

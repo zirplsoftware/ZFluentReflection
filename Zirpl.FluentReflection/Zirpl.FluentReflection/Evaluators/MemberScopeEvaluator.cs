@@ -78,7 +78,7 @@ namespace Zirpl.FluentReflection
             }
             else
             {
-                throw new Exception("Unexpected MemberInfo type: " + memberInfo.MemberType.ToString());
+                throw new Exception("Unexpected MemberInfo type: " + memberInfo.GetType().ToString());
             }
             return true;
         }

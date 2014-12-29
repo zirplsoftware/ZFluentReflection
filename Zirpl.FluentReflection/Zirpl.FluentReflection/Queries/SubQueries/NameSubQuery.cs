@@ -20,21 +20,21 @@ namespace Zirpl.FluentReflection
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Exactly(string name)
         {
             _nameEvaluator.Name = name;
-            return (TReturnQuery) (Object) this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Any(IEnumerable<string> names)
         {
             _nameEvaluator.Names = names;
             _nameEvaluator.Any = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ExactlyIgnoreCase(string name)
         {
             _nameEvaluator.Name = name;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.AnyIgnoreCase(IEnumerable<string> names)
@@ -49,7 +49,7 @@ namespace Zirpl.FluentReflection
         {
             _nameEvaluator.Name = name;
             _nameEvaluator.StartsWith = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithAny(IEnumerable<string> names)
@@ -57,7 +57,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Names = names;
             _nameEvaluator.StartsWith = true;
             _nameEvaluator.Any = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithIgnoreCase(string name)
@@ -65,7 +65,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Name = name;
             _nameEvaluator.StartsWith = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithAnyIgnoreCase(IEnumerable<string> names)
@@ -74,14 +74,14 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.StartsWith = true;
             _nameEvaluator.Any = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Containing(string name)
         {
             _nameEvaluator.Name = name;
             _nameEvaluator.Contains = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingAny(IEnumerable<string> names)
@@ -89,7 +89,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Names = names;
             _nameEvaluator.Contains = true;
             _nameEvaluator.Any = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingIgnoreCase(string name)
@@ -97,7 +97,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Name = name;
             _nameEvaluator.Contains = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingAnyIgnoreCase(IEnumerable<string> names)
@@ -106,14 +106,14 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Contains = true;
             _nameEvaluator.Any = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWith(string name)
         {
             _nameEvaluator.Name = name;
             _nameEvaluator.EndsWith = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithAny(IEnumerable<string> names)
@@ -121,7 +121,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Names = names;
             _nameEvaluator.EndsWith = true;
             _nameEvaluator.Any = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithIgnoreCase(string name)
@@ -129,7 +129,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Name = name;
             _nameEvaluator.EndsWith = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithAnyIgnoreCase(IEnumerable<string> names)
@@ -138,7 +138,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.EndsWith = true;
             _nameEvaluator.Any = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
     }
 }

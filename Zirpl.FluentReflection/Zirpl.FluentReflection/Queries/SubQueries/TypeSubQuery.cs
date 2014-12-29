@@ -79,7 +79,7 @@ namespace Zirpl.FluentReflection
 
         TReturnQuery ITypeQuery<TResult, TReturnQuery>.And()
         {
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
     }
 }

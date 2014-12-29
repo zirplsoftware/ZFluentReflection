@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <MinimumVisualStudioVersion>10.0</MinimumVisualStudioVersion>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CC70EFA9-4970-4CFD-8356-79AE967574E7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Zirpl.FluentReflection.Portable</RootNamespace>
+    <AssemblyName>Zirpl.FluentReflection.Portable</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile328</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <!-- A reference to the entire .NET Framework is automatically included -->
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\AccessibilityEvaluator.cs">
+      <Link>Evaluators\AccessibilityEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\EventHandlerTypeEvaluator.cs">
+      <Link>Evaluators\EventHandlerTypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\FieldTypeEvaluator.cs">
+      <Link>Evaluators\FieldTypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\IMatchEvaluator.cs">
+      <Link>Evaluators\IMatchEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberScopeEvaluator.cs">
+      <Link>Evaluators\MemberScopeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberTypeEvaluator.cs">
+      <Link>Evaluators\MemberTypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MethodReturnTypeEvaluator.cs">
+      <Link>Evaluators\MethodReturnTypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\NameEvaluator.cs">
+      <Link>Evaluators\NameEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\PropertyReadWriteEvaluator.cs">
+      <Link>Evaluators\PropertyReadWriteEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\PropertyTypeEvaluator.cs">
+      <Link>Evaluators\PropertyTypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\TypeEvaluator.cs">
+      <Link>Evaluators\TypeEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\TypeFullNameEvaluator.cs">
+      <Link>Evaluators\TypeFullNameEvaluator.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\BindingFlagsBuilder.cs">
+      <Link>Helpers\BindingFlagsBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\EnumUtilities.cs">
+      <Link>Helpers\EnumUtilities.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberQueryService.cs">
+      <Link>Helpers\MemberQueryService.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberTypeFlags.cs">
+      <Link>Helpers\MemberTypeFlags.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberTypeFlagsBuilder.cs">
+      <Link>Helpers\MemberTypeFlagsBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IConstructorQuery.cs">
+      <Link>Public\IConstructorQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IEventQuery.cs">
+      <Link>Public\IEventQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IFieldQuery.cs">
+      <Link>Public\IFieldQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberAccessibilityQuery.cs">
+      <Link>Public\IMemberAccessibilityQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberQuery.cs">
+      <Link>Public\IMemberQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberQuery_base.cs">
+      <Link>Public\IMemberQuery_base.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberScopeQuery.cs">
+      <Link>Public\IMemberScopeQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberTypeQuery.cs">
+      <Link>Public\IMemberTypeQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMethodQuery.cs">
+      <Link>Public\IMethodQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\INamedMemberQuery.cs">
+      <Link>Public\INamedMemberQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\INameQuery.cs">
+      <Link>Public\INameQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\INestedTypeQuery.cs">
+      <Link>Public\INestedTypeQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IPropertyQuery.cs">
+      <Link>Public\IPropertyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IQueryResult.cs">
+      <Link>Public\IQueryResult.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ITypeQuerry.cs">
+      <Link>Public\ITypeQuerry.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ITypeQuery_base.cs">
+      <Link>Public\ITypeQuery_base.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\ConstructorQuery.cs">
+      <Link>Queries\ConstructorQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\EventQuery.cs">
+      <Link>Queries\EventQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\FieldQuery.cs">
+      <Link>Queries\FieldQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\MemberQuery.cs">
+      <Link>Queries\MemberQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\MethodQuery.cs">
+      <Link>Queries\MethodQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\NamedTypeMemberQueryBase.cs">
+      <Link>Queries\NamedTypeMemberQueryBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\NestedTypeQuery.cs">
+      <Link>Queries\NestedTypeQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\PropertyQuery.cs">
+      <Link>Queries\PropertyQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\MemberAccessibilitySubQuery.cs">
+      <Link>Queries\SubQueries\MemberAccessibilitySubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\MemberScopeSubQuery.cs">
+      <Link>Queries\SubQueries\MemberScopeSubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\MemberTypeSubQuery.cs">
+      <Link>Queries\SubQueries\MemberTypeSubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\NameSubQuery.cs">
+      <Link>Queries\SubQueries\NameSubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\SubQueryBase.cs">
+      <Link>Queries\SubQueries\SubQueryBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\TypeSubQuery.cs">
+      <Link>Queries\SubQueries\TypeSubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\TypeMemberQueryBase.cs">
+      <Link>Queries\TypeMemberQueryBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\TypeQuery.cs">
+      <Link>Queries\TypeQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\ReflectionUtilities.cs">
+      <Link>ReflectionUtilities.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -52,7 +52,7 @@ namespace Zirpl.FluentReflection
             _accessibilityEvaluator.Protected = true;
             _accessibilityEvaluator.Internal = true;
             _accessibilityEvaluator.ProtectedInternal = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery IMemberAccessibilityQuery<TMemberInfo, TReturnQuery>.NotPublic()
@@ -61,7 +61,7 @@ namespace Zirpl.FluentReflection
             _accessibilityEvaluator.Protected = true;
             _accessibilityEvaluator.Internal = true;
             _accessibilityEvaluator.ProtectedInternal = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery IMemberAccessibilityQuery<TMemberInfo, TReturnQuery>.All()
@@ -71,12 +71,12 @@ namespace Zirpl.FluentReflection
             _accessibilityEvaluator.Protected = true;
             _accessibilityEvaluator.Internal = true;
             _accessibilityEvaluator.ProtectedInternal = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery IMemberAccessibilityQuery<TMemberInfo, TReturnQuery>.And()
         {
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
     }
 }
