@@ -44,24 +44,29 @@ namespace Zirpl.FluentReflection
         }
         internal bool IgnoreCase { get; set; }
 
+        internal bool SkipMatchChecking { get; set; }
+
         public bool IsMatch(MemberInfo memberInfo)
         {
-            var nameToCheck = GetNameToCheck(memberInfo);
-            if (Names != null
-                && Names.Any())
+            if (!SkipMatchChecking)
             {
-                var namesList = IgnoreCase
-                       ? from o in Names select o.ToLowerInvariant()
-                       : Names;
-                return namesList.Contains(IgnoreCase
-                    ? nameToCheck.ToLowerInvariant()
-                    : nameToCheck);
-            }
-            else if (Name != null)
-            {
-                return IgnoreCase
-                    ? nameToCheck.ToLowerInvariant().Equals(Name.ToLowerInvariant())
-                    : nameToCheck.Equals(Name);
+                var nameToCheck = GetNameToCheck(memberInfo);
+                if (Names != null
+                    && Names.Any())
+                {
+                    var namesList = IgnoreCase
+                        ? from o in Names select o.ToLowerInvariant()
+                        : Names;
+                    return namesList.Contains(IgnoreCase
+                        ? nameToCheck.ToLowerInvariant()
+                        : nameToCheck);
+                }
+                else if (Name != null)
+                {
+                    return IgnoreCase
+                        ? nameToCheck.ToLowerInvariant().Equals(Name.ToLowerInvariant())
+                        : nameToCheck.Equals(Name);
+                }
             }
             return true;
         }

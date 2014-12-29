@@ -35,19 +35,42 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_memberTypeEvaluator);
         }
 
+        private bool _executed;
+
         #region IQueryResult implementation
         IEnumerable<TMemberInfo> IQueryResult<TMemberInfo>.Execute()
         {
+            if (_executed) throw new InvalidOperationException("Cannot execute twice. Use a new query.");
+
+            _executed = true;
             var memberQueryService = new MemberQueryService(_type);
-            var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags);
+            var names = new List<String>();
+            if ((_memberNameEvaluator.Name != null
+                    || _memberNameEvaluator.Names != null)
+                && !_memberNameEvaluator.Contains
+                && !_memberNameEvaluator.EndsWith
+                && !_memberNameEvaluator.StartsWith)
+            {
+                if (_memberNameEvaluator.Name != null)
+                {
+                    names.Add(_memberNameEvaluator.Name);
+                }
+                else
+                {
+                    names.AddRange(_memberNameEvaluator.Names);
+                }
+                _memberNameEvaluator.SkipMatchChecking = true;
+            }
+            var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
             if (_memberScopeEvaluator.DeclaredOnBaseTypes && _memberAccessibilityEvaluator.Private)
             {
-                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeEvaluator.LevelsDeep.GetValueOrDefault());
+                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeEvaluator.LevelsDeep.GetValueOrDefault(), names);
                 matches = matches.Union(privateMatches);
             }
-            return from memberInfo in matches
-                    where _matchEvaluators.All(eval => eval.IsMatch(memberInfo))
-                    select  (TMemberInfo)memberInfo;
+            var results = from memberInfo in matches
+                          where _matchEvaluators.All(eval => eval.IsMatch(memberInfo))
+                          select (TMemberInfo)memberInfo;
+            return results;
         }
 
         TMemberInfo IQueryResult<TMemberInfo>.ExecuteSingle()

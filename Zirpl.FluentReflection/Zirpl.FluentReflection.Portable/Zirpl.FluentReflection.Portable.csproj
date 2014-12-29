@@ -76,9 +76,6 @@
     <Compile Include="..\Zirpl.FluentReflection\Helpers\BindingFlagsBuilder.cs">
       <Link>Helpers\BindingFlagsBuilder.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Helpers\EnumUtilities.cs">
-      <Link>Helpers\EnumUtilities.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberQueryService.cs">
       <Link>Helpers\MemberQueryService.cs</Link>
     </Compile>

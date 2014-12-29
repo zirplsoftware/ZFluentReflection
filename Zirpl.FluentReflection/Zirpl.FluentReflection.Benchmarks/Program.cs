@@ -13,20 +13,25 @@ namespace Zirpl.FluentReflection.Benchmarks
     {
         static void Main(string[] args)
         {
-            var iterations = 10000000;
+            var iterations = 1000000;
 
             Console.WriteLine("FluentReflection benchmarks");
 
             Console.WriteLine(String.Format("1) Setting a string property {0:n0} times without reflection", iterations));
             var action = new Action(() => new Mock().TestProperty = Guid.NewGuid().ToString());
-            LogTime(RunTest(iterations, action));
+            //LogTime(RunTest(iterations, action));
 
             Console.WriteLine(String.Format("2) Setting a string property {0:n0} times with standard reflection", iterations));
-            action = new Action(() => typeof(Mock).GetProperty("TestProperty", BindingFlags.Instance | BindingFlags.Public).SetValue(new Mock(), Guid.NewGuid().ToString()));
-            LogTime(RunTest(iterations, action));
+            action = new Action(() => typeof(Mock).GetProperty("TestProperty", BindingFlags.Instance | BindingFlags.Public)
+                                                  .SetValue(new Mock(), Guid.NewGuid().ToString()));
+            //LogTime(RunTest(iterations, action));
 
             Console.WriteLine(String.Format("3) Setting a string property {0:n0} times with fluent reflection", iterations));
-            action = new Action(() => typeof(Mock).QueryProperties().OfAccessibility().Public().And().Named().Exactly("TestProperty").ExecuteSingle().SetValue(new Mock(), Guid.NewGuid().ToString()));
+            action = new Action(() => typeof(Mock).QueryProperties()
+                                                  .OfAccessibility().Public().And()
+                                                  .OfScope().Instance().And()
+                                                  .Named().Exactly("TestProperty")
+                                                  .ExecuteSingle().SetValue(new Mock(), Guid.NewGuid().ToString()));
             LogTime(RunTest(iterations, action));
 
             Console.WriteLine();

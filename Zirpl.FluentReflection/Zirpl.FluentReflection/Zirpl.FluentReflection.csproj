@@ -52,7 +52,6 @@
     <Compile Include="Evaluators\TypeEvaluator.cs" />
     <Compile Include="Evaluators\TypeFullNameEvaluator.cs" />
     <Compile Include="Helpers\BindingFlagsBuilder.cs" />
-    <Compile Include="Helpers\EnumUtilities.cs" />
     <Compile Include="Helpers\MemberQueryService.cs" />
     <Compile Include="Helpers\MemberTypeFlags.cs" />
     <Compile Include="Helpers\MemberTypeFlagsBuilder.cs" />
