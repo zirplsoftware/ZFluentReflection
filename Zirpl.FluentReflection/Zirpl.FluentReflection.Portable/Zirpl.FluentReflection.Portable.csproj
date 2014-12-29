@@ -49,6 +49,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Evaluators\IMatchEvaluator.cs">
       <Link>Evaluators\IMatchEvaluator.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberNameEvaluator.cs">
+      <Link>Evaluators\MemberNameEvaluator.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberScopeEvaluator.cs">
       <Link>Evaluators\MemberScopeEvaluator.cs</Link>
     </Compile>

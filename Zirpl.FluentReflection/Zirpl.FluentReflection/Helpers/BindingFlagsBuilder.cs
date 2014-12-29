@@ -6,9 +6,9 @@ namespace Zirpl.FluentReflection
     {
         private readonly MemberScopeEvaluator _memberScopeEvaluator;
         private readonly AccessibilityEvaluator _memberAccessibilityEvaluator;
-        private readonly NameEvaluator _memberNameEvalulator;
+        private readonly MemberNameEvaluator _memberNameEvalulator;
 
-        internal BindingFlagsBuilder(AccessibilityEvaluator memberAccessibilityEvaluator, MemberScopeEvaluator memberScopeEvaluator, NameEvaluator memberNameEvalulator)
+        internal BindingFlagsBuilder(AccessibilityEvaluator memberAccessibilityEvaluator, MemberScopeEvaluator memberScopeEvaluator, MemberNameEvaluator memberNameEvalulator)
         {
             _memberScopeEvaluator = memberScopeEvaluator;
             _memberAccessibilityEvaluator = memberAccessibilityEvaluator;

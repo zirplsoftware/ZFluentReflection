@@ -17,14 +17,14 @@ namespace Zirpl.FluentReflection
         private readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
         protected readonly MemberTypeEvaluator _memberTypeEvaluator;
         protected readonly IList<IMatchEvaluator> _matchEvaluators;
-        protected readonly NameEvaluator _memberNameEvaluator;
+        protected readonly MemberNameEvaluator _memberNameEvaluator;
 
         internal TypeMemberQueryBase(Type type)
         {
             _type = type;
             _memberScopeEvaluator = new MemberScopeEvaluator(type);
             _memberAccessibilityEvaluator = new AccessibilityEvaluator();
-            _memberNameEvaluator = new NameEvaluator();
+            _memberNameEvaluator = new MemberNameEvaluator();
             _memberTypeEvaluator = new MemberTypeEvaluator();
             _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityEvaluator, _memberScopeEvaluator, _memberNameEvaluator);
             _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder(_memberTypeEvaluator);
@@ -59,7 +59,6 @@ namespace Zirpl.FluentReflection
                 {
                     names.AddRange(_memberNameEvaluator.Names);
                 }
-                _memberNameEvaluator.SkipMatchChecking = true;
             }
             var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
             if (_memberScopeEvaluator.DeclaredOnBaseTypes && _memberAccessibilityEvaluator.Private)
@@ -67,23 +66,31 @@ namespace Zirpl.FluentReflection
                 var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeEvaluator.LevelsDeep.GetValueOrDefault(), names);
                 matches = matches.Union(privateMatches);
             }
-            var results = from memberInfo in matches
-                          where _matchEvaluators.All(eval => eval.IsMatch(memberInfo))
+            var evaluatorsToUse = _matchEvaluators.Where(eval => eval.IsMatchCheckRequired()).ToList();
+            if (evaluatorsToUse.Any())
+            {
+                return from memberInfo in matches.Distinct()
+                          where evaluatorsToUse.All(eval => eval.IsMatch(memberInfo))
                           select (TMemberInfo)memberInfo;
-            return results;
+            }
+            else
+            {
+                return from memberInfo in matches.Distinct()
+                          select (TMemberInfo)memberInfo;
+            }
         }
 
         TMemberInfo IQueryResult<TMemberInfo>.ExecuteSingle()
         {
-            var result = ((IQueryResult<TMemberInfo>)this).Execute();
+            var result = ((IQueryResult<TMemberInfo>)this).Execute().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
-            return result.Single();
+            return result[0];
         }
 
         TMemberInfo IQueryResult<TMemberInfo>.ExecuteSingleOrDefault()
         {
-            var result = ((IQueryResult<TMemberInfo>)this).Execute();
+            var result = ((IQueryResult<TMemberInfo>)this).Execute().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.SingleOrDefault();

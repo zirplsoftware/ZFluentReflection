@@ -17,21 +17,77 @@ namespace Zirpl.FluentReflection.Benchmarks
 
             Console.WriteLine("FluentReflection benchmarks");
 
-            Console.WriteLine(String.Format("1) Setting a string property {0:n0} times without reflection", iterations));
-            var action = new Action(() => new Mock().TestProperty = Guid.NewGuid().ToString());
-            //LogTime(RunTest(iterations, action));
+            Console.WriteLine(String.Format("1) Setting 10 different properties {0:n0} times without reflection", iterations));
+            var action = new Action(() =>
+            {
+                var mock = new Mock();
+                mock.TestProperty1 = Guid.NewGuid().ToString();
+                mock.TestProperty2 = Guid.NewGuid().ToString();
+                mock.TestProperty3 = Guid.NewGuid().ToString();
+                mock.TestProperty4 = Guid.NewGuid().ToString();
+                mock.TestProperty5 = Guid.NewGuid().ToString();
+                mock.TestProperty6 = Guid.NewGuid().ToString();
+                mock.TestProperty7 = Guid.NewGuid().ToString();
+                mock.TestProperty8 = Guid.NewGuid().ToString();
+                mock.TestProperty9 = Guid.NewGuid().ToString();
+                mock.TestProperty10 = Guid.NewGuid().ToString();
+            });
+            LogTime(RunTest(iterations, action));
 
             Console.WriteLine(String.Format("2) Setting a string property {0:n0} times with standard reflection", iterations));
-            action = new Action(() => typeof(Mock).GetProperty("TestProperty", BindingFlags.Instance | BindingFlags.Public)
-                                                  .SetValue(new Mock(), Guid.NewGuid().ToString()));
-            //LogTime(RunTest(iterations, action));
+            action = new Action(() =>
+            {
+                var namesList = new String[]
+                {
+                    "TestProperty1",
+                    "TestProperty2",
+                    "TestProperty3",
+                    "TestProperty4",
+                    "TestProperty5",
+                    "TestProperty6",
+                    "TestProperty7",
+                    "TestProperty8",
+                    "TestProperty9",
+                    "TestProperty10"
+                };
+                var mock = new Mock();
+                var type = typeof (Mock);
+                foreach (var name in namesList)
+                {
+                    type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public)
+                        .SetValue(mock, Guid.NewGuid().ToString());   
+                }
+            });
+            LogTime(RunTest(iterations, action));
 
             Console.WriteLine(String.Format("3) Setting a string property {0:n0} times with fluent reflection", iterations));
-            action = new Action(() => typeof(Mock).QueryProperties()
-                                                  .OfAccessibility().Public().And()
-                                                  .OfScope().Instance().And()
-                                                  .Named().Exactly("TestProperty")
-                                                  .ExecuteSingle().SetValue(new Mock(), Guid.NewGuid().ToString()));
+            action = new Action(() =>
+            {
+                var namesList = new String[]
+                {
+                    "TestProperty1",
+                    "TestProperty2",
+                    "TestProperty3",
+                    "TestProperty4",
+                    "TestProperty5",
+                    "TestProperty6",
+                    "TestProperty7",
+                    "TestProperty8",
+                    "TestProperty9",
+                    "TestProperty10"
+                };
+                var mock = new Mock();
+                var type = typeof(Mock);
+                var properties = type.QueryProperties()
+                    .OfAccessibility().Public().And()
+                    .OfScope().Instance().And()
+                    .Named().AnyIgnoreCase(namesList)
+                    .Execute();
+                foreach (var propertyInfo in properties)
+                {
+                    propertyInfo.SetValue(mock, Guid.NewGuid().ToString());
+                }
+            });
             LogTime(RunTest(iterations, action));
 
             Console.WriteLine();

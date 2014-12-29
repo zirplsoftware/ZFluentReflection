@@ -42,7 +42,7 @@ namespace Zirpl.FluentReflection
             _nameEvaluator.Names = names;
             _nameEvaluator.Any = true;
             _nameEvaluator.IgnoreCase = true;
-            return (TReturnQuery)(Object)this;
+            return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWith(string name)

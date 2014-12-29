@@ -14,5 +14,10 @@ namespace Zirpl.FluentReflection
             if (!property.CanWrite && CanWrite) return false;
             return true;
         }
+
+        public bool IsMatchCheckRequired()
+        {
+            return CanRead || CanWrite;
+        }
     }
 }

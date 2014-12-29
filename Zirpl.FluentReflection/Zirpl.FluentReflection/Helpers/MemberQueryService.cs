@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection
 
         internal IEnumerable<MemberInfo> FindMembers(MemberTypeFlags memberTypeFlags, BindingFlags bindingFlags, IEnumerable<String> names)
         {
-            return GetMembers(_type, memberTypeFlags, bindingFlags, names);
+            return FindMemberOnType(_type, memberTypeFlags, bindingFlags, names);
         }
 
         internal IEnumerable<MemberInfo> FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, int levelsDeep, IEnumerable<String> names)
@@ -31,7 +31,7 @@ namespace Zirpl.FluentReflection
                 while (type != null
                     && levelsDeeper > 0)
                 {
-                    list.AddRange(GetMembers(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
+                    list.AddRange(FindMemberOnType(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
                     type = type.BaseType;
                     levelsDeeper -= 1;
                 }
@@ -41,7 +41,7 @@ namespace Zirpl.FluentReflection
                 var type = _type;
                 while (type != null)
                 {
-                    list.AddRange(GetMembers(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
+                    list.AddRange(FindMemberOnType(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
                     type = type.BaseType;
                 }
             }
@@ -49,11 +49,12 @@ namespace Zirpl.FluentReflection
             return list;
         }
 
-        private IEnumerable<MemberInfo> GetMembers(Type type, MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
+        private IEnumerable<MemberInfo> FindMemberOnType(Type type, MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
         {
             var found = new List<MemberInfo>();
-            if (names != null
-                && names.Any())
+            var theNames = names == null ? null : names.ToList();
+            var namesCount = theNames == null ? 0 : theNames.Count();
+            if (namesCount > 0)
             {
                 memberTypes = memberTypes & ~MemberTypeFlags.Constructor;
             }
@@ -80,19 +81,15 @@ namespace Zirpl.FluentReflection
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Property))
             {
-                if (names != null
-                    && names.Any())
+                if (namesCount > 0)
                 {
-                    if (names.Count() > 1)
+                    if (namesCount > 1)
                     {
-                        foreach (var name in names)
-                        {
-                            found.Add(type.GetProperty(name, bindingFlags));
-                        }
+                        found.AddRange(theNames.Select(name => type.GetProperty(name, bindingFlags)));
                     }
                     else
                     {
-                        found.Add(type.GetProperty(names.Single(), bindingFlags));
+                        found.Add(type.GetProperty(theNames[0], bindingFlags));
                     }
                 }
                 else

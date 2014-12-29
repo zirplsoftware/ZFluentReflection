@@ -45,6 +45,7 @@
     <Compile Include="Evaluators\IMatchEvaluator.cs" />
     <Compile Include="Evaluators\MemberScopeEvaluator.cs" />
     <Compile Include="Evaluators\MemberTypeEvaluator.cs" />
+    <Compile Include="Evaluators\MemberNameEvaluator.cs" />
     <Compile Include="Evaluators\MethodReturnTypeEvaluator.cs" />
     <Compile Include="Evaluators\NameEvaluator.cs" />
     <Compile Include="Evaluators\PropertyReadWriteEvaluator.cs" />

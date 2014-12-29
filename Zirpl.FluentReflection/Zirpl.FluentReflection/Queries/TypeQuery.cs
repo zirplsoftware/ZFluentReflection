@@ -32,7 +32,7 @@ namespace Zirpl.FluentReflection
         IEnumerable<Type> IQueryResult<Type>.Execute()
         {
             var list = new List<Type>();
-            var matches = from assembly in _assemblyList
+            var matches = from assembly in _assemblyList.Distinct()
                 from type in assembly.GetTypes()
                 where _typeEvaluator.IsMatch(type)
                 select type;
@@ -42,7 +42,7 @@ namespace Zirpl.FluentReflection
 
         Type IQueryResult<Type>.ExecuteSingle()
         {
-            var result = ((IQueryResult<Type>)this).Execute();
+            var result = ((IQueryResult<Type>)this).Execute().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.Single();
@@ -50,7 +50,7 @@ namespace Zirpl.FluentReflection
 
         Type IQueryResult<Type>.ExecuteSingleOrDefault()
         {
-            var result = ((IQueryResult<Type>)this).Execute();
+            var result = ((IQueryResult<Type>)this).Execute().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.SingleOrDefault();

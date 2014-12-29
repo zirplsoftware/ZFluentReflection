@@ -30,12 +30,23 @@ namespace Zirpl.FluentReflection
             _reflectedType = type;
         }
 
+
+        public bool IsMatchCheckRequired()
+        {
+            // we can skip checks if 
+            // 1) neither Type scope was chosen (in which case the default will be used)
+            // 2) BOTH were chosen, but no depth
+            // - STATIC vs INSTANCE is completely handled by the binding flags
+            var canSkip = (!DeclaredOnThisType && !DeclaredOnBaseTypes)
+                        || (DeclaredOnThisType && DeclaredOnBaseTypes && LevelsDeep == null);
+            return !canSkip;
+        }
+
         public bool IsMatch(MemberInfo memberInfo)
         {
             if (memberInfo is MethodBase)
             {
                 var method = (MethodBase)memberInfo;
-                if (!IsMethodStaticScopeMatch(method)) return false;
                 if (!IsDeclaredTypeMatch(method)) return false;
             }
             else if (memberInfo is EventInfo)
@@ -43,23 +54,11 @@ namespace Zirpl.FluentReflection
                 var eventInfo = (EventInfo)memberInfo;
                 var addMethod = eventInfo.GetAddMethod(true);
                 var removeMethod = eventInfo.GetRemoveMethod(true);
-                if (!IsMethodStaticScopeMatch(addMethod) && !IsMethodStaticScopeMatch(removeMethod)) return false;
                 if (!IsDeclaredTypeMatch(addMethod) && !IsDeclaredTypeMatch(removeMethod)) return false;
             }
             else if (memberInfo is FieldInfo)
             {
                 var field = (FieldInfo)memberInfo;
-                if (Static
-                    || Instance)
-                {
-                    if (!Instance && !field.IsStatic) return false;
-                    if (!Static && field.IsStatic) return false;
-                }
-                else
-                {
-                    // by default use instance
-                    if (field.IsStatic) return false;
-                }
                 if (!IsDeclaredTypeMatch(field)) return false;
             }
             else if (memberInfo is PropertyInfo)
@@ -67,7 +66,6 @@ namespace Zirpl.FluentReflection
                 var propertyinfo = (PropertyInfo)memberInfo;
                 var getMethod = propertyinfo.GetGetMethod(true);
                 var setMethod = propertyinfo.GetSetMethod(true);
-                if (!IsMethodStaticScopeMatch(getMethod) && !IsMethodStaticScopeMatch(setMethod)) return false;
                 if (!IsDeclaredTypeMatch(getMethod) && !IsDeclaredTypeMatch(setMethod)) return false;
             }
             else if (memberInfo is Type)
@@ -83,51 +81,31 @@ namespace Zirpl.FluentReflection
             return true;
         }
 
-        private bool IsMethodStaticScopeMatch(MethodBase method)
-        {
-            if (method == null) return false;
-            if (Static
-                || Instance)
-            {
-                if (method.IsStatic && !Static && Instance) return false;
-                if (!method.IsStatic && !Instance && Static) return false;
-            }
-            else
-            {
-                // by default, just use Instance
-                if (method.IsStatic) return false;
-            }
-            return true;
-        }
-
         private bool IsDeclaredTypeMatch(MemberInfo memberInfo)
         {
-            if (DeclaredOnBaseTypes
-                || DeclaredOnThisType)
+            // no need for this check, since getting here means we need to check
+            if (memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnThisType) return false;
+            if (!memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnBaseTypes) return false;
+            if (LevelsDeep.HasValue
+                && !memberInfo.DeclaringType.Equals(_reflectedType))
             {
-                if (memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnThisType) return false;
-                if (!memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnBaseTypes) return false;
-                if (LevelsDeep.HasValue
-                    && !memberInfo.DeclaringType.Equals(_reflectedType))
+                var found = false;
+                var type = _reflectedType.BaseType;
+                int levelsDeeper = LevelsDeep.Value - 1;
+                while (type != null)
                 {
-                    var found = false;
-                    var type = _reflectedType.BaseType;
-                    int levelsDeeper = LevelsDeep.Value - 1;
-                    while (type != null)
+                    if (memberInfo.DeclaringType.Equals(type))
                     {
-                        if (memberInfo.DeclaringType.Equals(type))
-                        {
-                            found = true;
-                            type = null;
-                        }
-                        else
-                        {
-                            type = levelsDeeper == 0 ? null : type.BaseType;
-                            levelsDeeper -= 1;
-                        }
+                        found = true;
+                        type = null;
                     }
-                    return found;
+                    else
+                    {
+                        type = levelsDeeper == 0 ? null : type.BaseType;
+                        levelsDeeper -= 1;
+                    }
                 }
+                return found;
             }
             // if neither was chosen, then evaluate to true
             return true;
