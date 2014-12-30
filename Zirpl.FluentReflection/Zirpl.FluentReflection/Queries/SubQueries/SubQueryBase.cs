@@ -12,19 +12,19 @@ namespace Zirpl.FluentReflection
             _returnQuery = returnQuery;
         }
 
-        IEnumerable<TResult> IQueryResult<TResult>.Execute()
+        IEnumerable<TResult> IQueryResult<TResult>.Result()
         {
-            return _returnQuery.Execute();
+            return _returnQuery.Result();
         }
 
-        TResult IQueryResult<TResult>.ExecuteSingle()
+        TResult IQueryResult<TResult>.ResultSingle()
         {
-            return _returnQuery.ExecuteSingle();
+            return _returnQuery.ResultSingle();
         }
 
-        TResult IQueryResult<TResult>.ExecuteSingleOrDefault()
+        TResult IQueryResult<TResult>.ResultSingleOrDefault()
         {
-            return _returnQuery.ExecuteSingleOrDefault();
+            return _returnQuery.ResultSingleOrDefault();
         }
     }
 }

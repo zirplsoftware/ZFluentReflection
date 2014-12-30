@@ -3,7 +3,7 @@
 namespace Zirpl.FluentReflection
 {
     internal sealed class MemberScopeSubQuery<TMemberInfo, TReturnQuery> : SubQueryBase<TMemberInfo, TReturnQuery>,
-        IMemberScopeQuery<TMemberInfo, TReturnQuery>
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery>
         where TMemberInfo : MemberInfo
         where TReturnQuery : IQueryResult<TMemberInfo>
     {
@@ -15,45 +15,45 @@ namespace Zirpl.FluentReflection
             _memberScopeCriteria = memberScopeCriteria;
         }
 
-        IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.Instance()
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.Instance()
         {
             _memberScopeCriteria.Instance = true;
             return this;
         }
 
-        IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.Static()
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.Static()
         {
             _memberScopeCriteria.Static = true;
             return this;
         }
 
-        IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnThisType()
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.DeclaredOnThisType()
         {
             _memberScopeCriteria.DeclaredOnThisType = true;
             return this;
         }
 
-        IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes()
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes()
         {
             _memberScopeCriteria.DeclaredOnBaseTypes = true;
             return this;
         }
 
-        IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes(int levelsDeep)
+        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes(int levelsDeep)
         {
             _memberScopeCriteria.DeclaredOnBaseTypes = true;
             _memberScopeCriteria.LevelsDeep = levelsDeep;
             return this;
         }
 
-        TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.All()
+        TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.All()
         {
             _memberScopeCriteria.DeclaredOnThisType = true;
             _memberScopeCriteria.DeclaredOnBaseTypes = true;
             return _returnQuery;
         }
 
-        TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.All(int levelsDeep)
+        TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.All(int levelsDeep)
         {
             _memberScopeCriteria.DeclaredOnThisType = true;
             _memberScopeCriteria.DeclaredOnBaseTypes = true;
@@ -61,12 +61,12 @@ namespace Zirpl.FluentReflection
             return _returnQuery;
         }
 
-        TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.Default()
+        TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.Default()
         {
             return _returnQuery;
         }
 
-        TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.And()
+        TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.And()
         {
             return _returnQuery;
         }

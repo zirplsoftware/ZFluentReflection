@@ -4,7 +4,7 @@ namespace Zirpl.FluentReflection
 {
     public interface IPropertyQuery : INamedMemberQuery<PropertyInfo, IPropertyQuery>
     {
-        ITypeQuery<PropertyInfo, IPropertyQuery> OfPropertyType();
+        ITypeSubQuery<PropertyInfo, IPropertyQuery> OfPropertyType();
         IPropertyQuery WithGetter();
         IPropertyQuery WithSetter();
         IPropertyQuery WithGetterAndSetter();

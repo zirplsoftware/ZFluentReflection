@@ -59,7 +59,7 @@ namespace Zirpl.FluentReflection
                     var propertyInfo = _type.QueryProperties()
                         .Named()
                         .Exactly(name)
-                        .ExecuteSingleOrDefault();
+                        .ResultSingleOrDefault();
                     if (propertyInfo == null)
                     {
                         propertyInfo = _type.QueryProperties()
@@ -67,7 +67,7 @@ namespace Zirpl.FluentReflection
                            .NotPublic()
                            .Named()
                            .Exactly(name)
-                           .ExecuteSingleOrDefault();
+                           .ResultSingleOrDefault();
                     }
                     if (propertyInfo == null)
                     {
@@ -79,7 +79,7 @@ namespace Zirpl.FluentReflection
                                .Private().And()
                                .Named()
                                .Exactly(name)
-                               .ExecuteSingleOrDefault();   
+                               .ResultSingleOrDefault();   
                         }
                     }
                     _propertyAccessorMap.Add(name, new PropertyAccessor(propertyInfo));
@@ -97,7 +97,7 @@ namespace Zirpl.FluentReflection
                     var fieldInfo = _type.QueryFields()
                         .Named()
                         .Exactly(name)
-                        .ExecuteSingleOrDefault();
+                        .ResultSingleOrDefault();
                     if (fieldInfo == null)
                     {
                         fieldInfo = _type.QueryFields()
@@ -105,7 +105,7 @@ namespace Zirpl.FluentReflection
                            .NotPublic()
                            .Named()
                            .Exactly(name)
-                           .ExecuteSingleOrDefault();
+                           .ResultSingleOrDefault();
                     }
                     if (fieldInfo == null)
                     {
@@ -117,7 +117,7 @@ namespace Zirpl.FluentReflection
                                .Private().And()
                                .Named()
                                .Exactly(name)
-                               .ExecuteSingleOrDefault();
+                               .ResultSingleOrDefault();
                         }
                     }
                     _fieldAccessorMap.Add(name, new FieldAccessor(fieldInfo));

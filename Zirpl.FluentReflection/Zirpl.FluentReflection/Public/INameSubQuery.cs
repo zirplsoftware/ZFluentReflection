@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zirpl.FluentReflection
 {
-    public interface INameQuery<out TResult, out TReturnQuery> : IQueryResult<TResult>
+    public interface INameSubQuery<out TResult, out TReturnQuery> : IQueryResult<TResult>
     {
         TReturnQuery Exactly(String name);
         TReturnQuery Any(IEnumerable<String> names);

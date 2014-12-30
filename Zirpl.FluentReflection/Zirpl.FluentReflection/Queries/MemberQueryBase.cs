@@ -38,7 +38,7 @@ namespace Zirpl.FluentReflection
         private bool _executed;
 
         #region IQueryResult implementation
-        IEnumerable<TMemberInfo> IQueryResult<TMemberInfo>.Execute()
+        IEnumerable<TMemberInfo> IQueryResult<TMemberInfo>.Result()
         {
             if (_executed) throw new InvalidOperationException("Cannot execute twice. Use a new query.");
 
@@ -77,17 +77,17 @@ namespace Zirpl.FluentReflection
             }
         }
 
-        TMemberInfo IQueryResult<TMemberInfo>.ExecuteSingle()
+        TMemberInfo IQueryResult<TMemberInfo>.ResultSingle()
         {
-            var result = ((IQueryResult<TMemberInfo>)this).Execute().ToList();
+            var result = ((IQueryResult<TMemberInfo>)this).Result().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result[0];
         }
 
-        TMemberInfo IQueryResult<TMemberInfo>.ExecuteSingleOrDefault()
+        TMemberInfo IQueryResult<TMemberInfo>.ResultSingleOrDefault()
         {
-            var result = ((IQueryResult<TMemberInfo>)this).Execute().ToList();
+            var result = ((IQueryResult<TMemberInfo>)this).Result().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.SingleOrDefault();
@@ -95,12 +95,12 @@ namespace Zirpl.FluentReflection
         #endregion
 
 
-        IMemberAccessibilityQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibility()
+        IMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibility()
         {
             return new MemberAccessibilitySubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberAccessibilityCriteria);
         }
 
-        IMemberScopeQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfScope()
+        IMemberScopeSubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfScope()
         {
             return new MemberScopeSubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberScopeCriteria);
         }

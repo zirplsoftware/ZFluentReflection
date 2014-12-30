@@ -90,7 +90,7 @@ namespace Zirpl.FluentReflection.Benchmarks
                     .OfAccessibility().Public().And()
                     .OfScope().Instance().And()
                     .Named().AnyIgnoreCase(namesList)
-                    .Execute();
+                    .Result();
                 foreach (var propertyInfo in properties)
                 {
                     propertyInfo.SetValue(mock, Guid.NewGuid().ToString());

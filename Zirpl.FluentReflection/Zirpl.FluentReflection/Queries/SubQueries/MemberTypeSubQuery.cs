@@ -3,7 +3,7 @@
 namespace Zirpl.FluentReflection
 {
     internal class MemberTypeSubQuery : SubQueryBase<MemberInfo, IMemberQuery>,
-        IMemberTypeQuery
+        IMemberTypeSubQuery
     {
         private readonly MemberTypeCriteria _memberTypeCriteria;
 
@@ -13,43 +13,43 @@ namespace Zirpl.FluentReflection
             _memberTypeCriteria = memberTypeCriteria;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.Constructor()
+        IMemberTypeSubQuery IMemberTypeSubQuery.Constructor()
         {
             _memberTypeCriteria.Constructor = true;
             return this;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.Event()
+        IMemberTypeSubQuery IMemberTypeSubQuery.Event()
         {
             _memberTypeCriteria.Event = true;
             return this;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.Field()
+        IMemberTypeSubQuery IMemberTypeSubQuery.Field()
         {
             _memberTypeCriteria.Field = true;
             return this;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.Method()
+        IMemberTypeSubQuery IMemberTypeSubQuery.Method()
         {
             _memberTypeCriteria.Method = true;
             return this;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.NestedType()
+        IMemberTypeSubQuery IMemberTypeSubQuery.NestedType()
         {
             _memberTypeCriteria.NestedType = true;
             return this;
         }
 
-        IMemberTypeQuery IMemberTypeQuery.Property()
+        IMemberTypeSubQuery IMemberTypeSubQuery.Property()
         {
             _memberTypeCriteria.Property = true;
             return this;
         }
 
-        IMemberQuery IMemberTypeQuery.All()
+        IMemberQuery IMemberTypeSubQuery.All()
         {
             _memberTypeCriteria.Constructor = true;
             _memberTypeCriteria.Event = true;
@@ -60,7 +60,7 @@ namespace Zirpl.FluentReflection
             return _returnQuery;
         }
 
-        IMemberQuery IMemberTypeQuery.And()
+        IMemberQuery IMemberTypeSubQuery.And()
         {
             return _returnQuery;
         }

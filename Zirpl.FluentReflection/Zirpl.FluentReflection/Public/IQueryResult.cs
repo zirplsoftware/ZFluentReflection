@@ -4,8 +4,8 @@ namespace Zirpl.FluentReflection
 {
     public interface IQueryResult<out TResult>
     {
-        IEnumerable<TResult> Execute();
-        TResult ExecuteSingle();
-        TResult ExecuteSingleOrDefault();
+        IEnumerable<TResult> Result();
+        TResult ResultSingle();
+        TResult ResultSingleOrDefault();
     }
 }

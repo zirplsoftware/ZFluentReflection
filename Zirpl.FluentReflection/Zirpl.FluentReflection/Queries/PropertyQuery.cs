@@ -19,7 +19,7 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_propertyTypeCriteria);
         }
 
-        ITypeQuery<PropertyInfo, IPropertyQuery> IPropertyQuery.OfPropertyType()
+        ITypeSubQuery<PropertyInfo, IPropertyQuery> IPropertyQuery.OfPropertyType()
         {
             return new TypeSubQuery<PropertyInfo, IPropertyQuery>(this, _propertyTypeCriteria);
         }

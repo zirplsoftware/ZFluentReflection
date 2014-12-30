@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_eventHandlerTypeCriteria);
         }
 
-        ITypeQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()
+        ITypeSubQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()
         {
             return new TypeSubQuery<EventInfo, IEventQuery>(this, _eventHandlerTypeCriteria);
         }

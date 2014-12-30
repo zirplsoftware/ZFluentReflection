@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_fieldTypeCriteria);
         }
 
-        ITypeQuery<FieldInfo, IFieldQuery> IFieldQuery.OfFieldType()
+        ITypeSubQuery<FieldInfo, IFieldQuery> IFieldQuery.OfFieldType()
         {
             return new TypeSubQuery<FieldInfo, IFieldQuery>(this, _fieldTypeCriteria);
         }

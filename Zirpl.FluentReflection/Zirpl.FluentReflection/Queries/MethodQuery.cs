@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_returnTypeCriteria);
         }
 
-        ITypeQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()
+        ITypeSubQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()
         {
             return new TypeSubQuery<MethodInfo, IMethodQuery>(this, _returnTypeCriteria);
         }

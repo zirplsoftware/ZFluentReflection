@@ -29,7 +29,7 @@ namespace Zirpl.FluentReflection
 
         #region IQueryResult implementation
         
-        IEnumerable<Type> IQueryResult<Type>.Execute()
+        IEnumerable<Type> IQueryResult<Type>.Result()
         {
             var list = new List<Type>();
             var matches = from assembly in _assemblyList.Distinct()
@@ -40,17 +40,17 @@ namespace Zirpl.FluentReflection
             return list;
         }
 
-        Type IQueryResult<Type>.ExecuteSingle()
+        Type IQueryResult<Type>.ResultSingle()
         {
-            var result = ((IQueryResult<Type>)this).Execute().ToList();
+            var result = ((IQueryResult<Type>)this).Result().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.Single();
         }
 
-        Type IQueryResult<Type>.ExecuteSingleOrDefault()
+        Type IQueryResult<Type>.ResultSingleOrDefault()
         {
-            var result = ((IQueryResult<Type>)this).Execute().ToList();
+            var result = ((IQueryResult<Type>)this).Result().ToList();
             if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.SingleOrDefault();
@@ -108,12 +108,12 @@ namespace Zirpl.FluentReflection
             return this;
         }
 
-        INameQuery<Type, ITypeQuery> ITypeQuery.Named()
+        INameSubQuery<Type, ITypeQuery> ITypeQuery.Named()
         {
             return new NameSubQuery<Type, ITypeQuery>(this, _typeCriteria.NameCriteria);
         }
 
-        INameQuery<Type, ITypeQuery> ITypeQuery.FullNamed()
+        INameSubQuery<Type, ITypeQuery> ITypeQuery.FullNamed()
         {
             return new NameSubQuery<Type, ITypeQuery>(this, _typeCriteria.FullNameCriteria);
         }

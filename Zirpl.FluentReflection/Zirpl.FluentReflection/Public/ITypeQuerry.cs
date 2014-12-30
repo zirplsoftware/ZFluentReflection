@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection
         ITypeQuery AssignableTo<T>();
         ITypeQuery AssignableToAll(IEnumerable<Type> types);
         ITypeQuery AssignableToAny(IEnumerable<Type> types);
-        INameQuery<Type, ITypeQuery> Named();
-        INameQuery<Type, ITypeQuery> FullNamed();
+        INameSubQuery<Type, ITypeQuery> Named();
+        INameSubQuery<Type, ITypeQuery> FullNamed();
     }
 }

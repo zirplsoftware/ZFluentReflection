@@ -14,7 +14,7 @@ namespace Zirpl.FluentReflection
             _matchEvaluators.Add(_typeCriteria);
         }
 
-        ITypeQuery<Type, INestedTypeQuery> INestedTypeQuery.OfType()
+        ITypeSubQuery<Type, INestedTypeQuery> INestedTypeQuery.OfType()
         {
             return new TypeSubQuery<Type, INestedTypeQuery>(this, _typeCriteria);
         }

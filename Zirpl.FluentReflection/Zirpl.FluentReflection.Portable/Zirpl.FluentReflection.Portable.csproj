@@ -106,8 +106,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Public\IFieldQuery.cs">
       <Link>Public\IFieldQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberAccessibilityQuery.cs">
-      <Link>Public\IMemberAccessibilityQuery.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberAccessibilitySubQuery.cs">
+      <Link>Public\IMemberAccessibilitySubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\IMemberQuery.cs">
       <Link>Public\IMemberQuery.cs</Link>
@@ -115,11 +115,11 @@
     <Compile Include="..\Zirpl.FluentReflection\Public\IMemberQuery_base.cs">
       <Link>Public\IMemberQuery_base.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberScopeQuery.cs">
-      <Link>Public\IMemberScopeQuery.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberScopeSubQuery.cs">
+      <Link>Public\IMemberScopeSubQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberTypeQuery.cs">
-      <Link>Public\IMemberTypeQuery.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Public\IMemberTypeSubQuery.cs">
+      <Link>Public\IMemberTypeSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\IMethodQuery.cs">
       <Link>Public\IMethodQuery.cs</Link>
@@ -127,8 +127,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Public\INamedMemberQuery.cs">
       <Link>Public\INamedMemberQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Public\INameQuery.cs">
-      <Link>Public\INameQuery.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Public\INameSubQuery.cs">
+      <Link>Public\INameSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\INestedTypeQuery.cs">
       <Link>Public\INestedTypeQuery.cs</Link>
@@ -142,8 +142,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Public\ITypeQuerry.cs">
       <Link>Public\ITypeQuerry.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Public\ITypeQuery_base.cs">
-      <Link>Public\ITypeQuery_base.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ITypeSubQuery.cs">
+      <Link>Public\ITypeSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\ConstructorQuery.cs">
       <Link>Queries\ConstructorQuery.cs</Link>
@@ -163,8 +163,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\MethodQuery.cs">
       <Link>Queries\MethodQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\NamedTypeMemberQueryBase.cs">
-      <Link>Queries\NamedTypeMemberQueryBase.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\NamedMemberQueryBase.cs">
+      <Link>Queries\NamedMemberQueryBase.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\NestedTypeQuery.cs">
       <Link>Queries\NestedTypeQuery.cs</Link>
