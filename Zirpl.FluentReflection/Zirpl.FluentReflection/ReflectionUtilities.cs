@@ -9,13 +9,13 @@ namespace Zirpl.FluentReflection
         public static ITypeQuery QueryTypes(this Assembly assembly)
         {
             if (assembly == null) throw new ArgumentNullException("assembly");
-            return new AssemblyTypeQuery(assembly);
+            return new TypeQuery(assembly);
         }
 #if !PORTABLE
         public static ITypeQuery QueryTypes(this AppDomain appDomain)
         {
             if (appDomain == null) throw new ArgumentNullException("appDomain");
-            return new AssemblyTypeQuery(appDomain);
+            return new TypeQuery(appDomain);
         }
 #endif
 

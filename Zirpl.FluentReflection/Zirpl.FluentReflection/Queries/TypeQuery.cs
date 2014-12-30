@@ -5,19 +5,19 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class AssemblyTypeQuery : ITypeQuery
+    internal sealed class TypeQuery : ITypeQuery
     {
         private readonly IList<Assembly> _assemblyList;
         private readonly TypeCriteria _typeCriteria;
 
-        internal AssemblyTypeQuery(Assembly assembly)
+        internal TypeQuery(Assembly assembly)
         {
             _assemblyList = new List<Assembly>();
             _assemblyList.Add(assembly);
             _typeCriteria = new TypeCriteria();
         }
 #if !PORTABLE
-        internal AssemblyTypeQuery(AppDomain appDomain)
+        internal TypeQuery(AppDomain appDomain)
         {
             foreach (var assembly in appDomain.GetAssemblies())
             {
