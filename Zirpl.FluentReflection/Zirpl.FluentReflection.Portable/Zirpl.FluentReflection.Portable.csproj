@@ -37,6 +37,15 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\FieldAccessor.cs">
+      <Link>Accessors\FieldAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\PropertyAccessor.cs">
+      <Link>Accessors\PropertyAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\TypeAccessor.cs">
+      <Link>Accessors\TypeAccessor.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Evaluators\AccessibilityEvaluator.cs">
       <Link>Evaluators\AccessibilityEvaluator.cs</Link>
     </Compile>

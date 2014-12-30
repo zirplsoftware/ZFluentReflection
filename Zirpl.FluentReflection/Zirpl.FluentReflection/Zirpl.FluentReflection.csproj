@@ -39,6 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accessors\FieldAccessor.cs" />
+    <Compile Include="Accessors\PropertyAccessor.cs" />
+    <Compile Include="Accessors\TypeAccessor.cs" />
     <Compile Include="Evaluators\AccessibilityEvaluator.cs" />
     <Compile Include="Evaluators\EventHandlerTypeEvaluator.cs" />
     <Compile Include="Evaluators\FieldTypeEvaluator.cs" />

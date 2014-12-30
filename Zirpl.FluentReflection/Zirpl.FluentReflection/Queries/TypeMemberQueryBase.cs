@@ -45,17 +45,14 @@ namespace Zirpl.FluentReflection
             _executed = true;
             var memberQueryService = new MemberQueryService(_type);
             var names = new List<String>();
-            if ((_memberNameEvaluator.Name != null
-                    || _memberNameEvaluator.Names != null)
-                && !_memberNameEvaluator.Contains
-                && !_memberNameEvaluator.EndsWith
-                && !_memberNameEvaluator.StartsWith)
+            if (!_memberNameEvaluator.IsMatchCheckRequired())
             {
+                // if the name check is not required, it implicitly means we should use any names here
                 if (_memberNameEvaluator.Name != null)
                 {
                     names.Add(_memberNameEvaluator.Name);
                 }
-                else
+                else if (_memberNameEvaluator.Names != null)
                 {
                     names.AddRange(_memberNameEvaluator.Names);
                 }
