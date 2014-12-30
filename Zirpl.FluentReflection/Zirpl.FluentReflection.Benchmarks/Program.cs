@@ -102,6 +102,34 @@ namespace Zirpl.FluentReflection.Benchmarks
             LogTime(4, 5, RunTest(iterations, action));
             LogTime(5, 5, RunTest(iterations, action));
 
+            Console.WriteLine(String.Format("4) Setting a string property {0:n0} times with fluent reflection using the Property extension method", iterations));
+            action = new Action(() =>
+            {
+                var namesList = new String[]
+                {
+                    "TestProperty1",
+                    "TestProperty2",
+                    "TestProperty3",
+                    "TestProperty4",
+                    "TestProperty5",
+                    "TestProperty6",
+                    "TestProperty7",
+                    "TestProperty8",
+                    "TestProperty9",
+                    "TestProperty10"
+                };
+                var mock = new Mock();
+                foreach (var name in namesList)
+                {
+                    mock.Property<String>(name).Value = Guid.NewGuid().ToString();
+                }
+            });
+            LogTime(1, 5, RunTest(iterations, action));
+            LogTime(2, 5, RunTest(iterations, action));
+            LogTime(3, 5, RunTest(iterations, action));
+            LogTime(4, 5, RunTest(iterations, action));
+            LogTime(5, 5, RunTest(iterations, action));
+
             Console.WriteLine();
             Console.WriteLine("Complete. Hit any key to quit");
             Console.ReadKey();
