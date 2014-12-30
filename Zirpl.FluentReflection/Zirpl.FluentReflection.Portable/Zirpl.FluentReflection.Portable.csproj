@@ -40,11 +40,11 @@
     <Compile Include="..\Zirpl.FluentReflection\Accessors\FieldAccessor.cs">
       <Link>Accessors\FieldAccessor.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\InstanceTypeAccessor.cs">
+      <Link>Accessors\InstanceTypeAccessor.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\PropertyAccessor.cs">
       <Link>Accessors\PropertyAccessor.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Accessors\TypeAccessor.cs">
-      <Link>Accessors\TypeAccessor.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\EventHandlerTypeCriteria.cs">
       <Link>Criteria\EventHandlerTypeCriteria.cs</Link>

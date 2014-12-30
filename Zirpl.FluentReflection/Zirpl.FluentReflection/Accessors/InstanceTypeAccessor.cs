@@ -8,23 +8,23 @@ using System.Threading.Tasks;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class TypeAccessor
+    internal sealed class InstanceTypeAccessor
     {
-        private static IDictionary<Type, TypeAccessor> _map;
+        private static IDictionary<Type, InstanceTypeAccessor> _map;
 
-        private static IDictionary<Type, TypeAccessor> Map
+        private static IDictionary<Type, InstanceTypeAccessor> Map
         {
             get
             {
                 if (_map == null)
                 {
-                    System.Threading.Interlocked.CompareExchange(ref _map, new Dictionary<Type, TypeAccessor>(), null);
+                    System.Threading.Interlocked.CompareExchange(ref _map, new Dictionary<Type, InstanceTypeAccessor>(), null);
                 }
                 return _map;
             }
         }
 
-        internal static TypeAccessor Get(Type type)
+        internal static InstanceTypeAccessor Get(Type type)
         {
             if (!Map.ContainsKey(type))
             {
@@ -32,7 +32,7 @@ namespace Zirpl.FluentReflection
                 {
                     if (!Map.ContainsKey(type))
                     {
-                        Map.Add(type, new TypeAccessor(type));
+                        Map.Add(type, new InstanceTypeAccessor(type));
                     }
                 }
             }
@@ -40,17 +40,17 @@ namespace Zirpl.FluentReflection
         }
 
         private readonly Type _type;
-        private readonly IDictionary<String, PropertyAccessor> _propertyAccessorMap;
-        private readonly IDictionary<String, FieldAccessor> _fieldAccessorMap;
+        private readonly IDictionary<String, PropertyInfo> _propertyAccessorMap;
+        private readonly IDictionary<String, FieldInfo> _fieldAccessorMap;
 
-        private TypeAccessor(Type type)
+        private InstanceTypeAccessor(Type type)
         {
             _type = type;
-            _propertyAccessorMap = new Dictionary<string, PropertyAccessor>();
-            _fieldAccessorMap = new Dictionary<string, FieldAccessor>();
+            _propertyAccessorMap = new Dictionary<string, PropertyInfo>();
+            _fieldAccessorMap = new Dictionary<string, FieldInfo>();
         }
 
-        public PropertyAccessor Property(String name)
+        internal PropertyInfo Property(String name)
         {
             if (!_propertyAccessorMap.ContainsKey(name))
             {
@@ -82,13 +82,13 @@ namespace Zirpl.FluentReflection
                                .ResultSingleOrDefault();   
                         }
                     }
-                    _propertyAccessorMap.Add(name, new PropertyAccessor(propertyInfo));
+                    _propertyAccessorMap.Add(name, propertyInfo);
                 }
             }
             return _propertyAccessorMap[name];
         }
 
-        public FieldAccessor Field(String name)
+        internal FieldInfo Field(String name)
         {
             if (!_fieldAccessorMap.ContainsKey(name))
             {
@@ -120,7 +120,7 @@ namespace Zirpl.FluentReflection
                                .ResultSingleOrDefault();
                         }
                     }
-                    _fieldAccessorMap.Add(name, new FieldAccessor(fieldInfo));
+                    _fieldAccessorMap.Add(name, fieldInfo);
                 }
             }
             return _fieldAccessorMap[name];

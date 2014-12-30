@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="Accessors\FieldAccessor.cs" />
     <Compile Include="Accessors\PropertyAccessor.cs" />
-    <Compile Include="Accessors\TypeAccessor.cs" />
+    <Compile Include="Accessors\InstanceTypeAccessor.cs" />
     <Compile Include="Criteria\MemberAccessibilityCriteria.cs" />
     <Compile Include="Criteria\EventHandlerTypeCriteria.cs" />
     <Compile Include="Criteria\FieldTypeCriteria.cs" />
