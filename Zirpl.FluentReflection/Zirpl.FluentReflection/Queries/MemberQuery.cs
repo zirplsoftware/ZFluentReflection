@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MemberQuery : NamedTypeMemberQueryBase<MemberInfo, IMemberQuery>,
+    internal sealed class MemberQuery : NamedMemberQueryBase<MemberInfo, IMemberQuery>,
         IMemberQuery
     {
         internal MemberQuery(Type type)

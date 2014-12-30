@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class FieldQuery : NamedTypeMemberQueryBase<FieldInfo, IFieldQuery>, 
+    internal sealed class FieldQuery : NamedMemberQueryBase<FieldInfo, IFieldQuery>, 
         IFieldQuery
     {
         private readonly FieldTypeCriteria _fieldTypeCriteria;

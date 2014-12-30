@@ -2,7 +2,7 @@
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class NestedTypeQuery : NamedTypeMemberQueryBase<Type, INestedTypeQuery>, 
+    internal sealed class NestedTypeQuery : NamedMemberQueryBase<Type, INestedTypeQuery>, 
         INestedTypeQuery
     {
         private readonly TypeCriteria _typeCriteria;

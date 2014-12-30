@@ -3,12 +3,12 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal abstract class NamedTypeMemberQueryBase<TMemberInfo, TMemberQuery> : TypeMemberQueryBase<TMemberInfo, TMemberQuery>,
+    internal abstract class NamedMemberQueryBase<TMemberInfo, TMemberQuery> : MemberQueryBase<TMemberInfo, TMemberQuery>,
         INamedMemberQuery<TMemberInfo, TMemberQuery>
         where TMemberInfo : MemberInfo 
         where TMemberQuery : INamedMemberQuery<TMemberInfo, TMemberQuery>
     {
-        internal NamedTypeMemberQueryBase(Type type)
+        internal NamedMemberQueryBase(Type type)
             :base(type)
         {
             

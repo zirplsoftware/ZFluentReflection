@@ -89,7 +89,7 @@
     <Compile Include="Queries\SubQueries\NameSubQuery.cs" />
     <Compile Include="Queries\SubQueries\SubQueryBase.cs" />
     <Compile Include="Queries\SubQueries\TypeSubQuery.cs" />
-    <Compile Include="Queries\TypeMemberQueryBase.cs" />
+    <Compile Include="Queries\MemberQueryBase.cs" />
     <Compile Include="Queries\TypeQuery.cs" />
     <Compile Include="ReflectionUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

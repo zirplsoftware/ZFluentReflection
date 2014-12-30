@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal abstract class TypeMemberQueryBase<TMemberInfo, TMemberQuery> : 
+    internal abstract class MemberQueryBase<TMemberInfo, TMemberQuery> : 
         IMemberQuery<TMemberInfo, TMemberQuery>
         where TMemberInfo : MemberInfo 
         where TMemberQuery : IMemberQuery<TMemberInfo, TMemberQuery>
@@ -19,7 +19,7 @@ namespace Zirpl.FluentReflection
         protected readonly IList<IMatchEvaluator> _matchEvaluators;
         protected readonly MemberNameCriteria _memberNameCriteria;
 
-        internal TypeMemberQueryBase(Type type)
+        internal MemberQueryBase(Type type)
         {
             _type = type;
             _memberScopeCriteria = new MemberScopeCriteria(type);

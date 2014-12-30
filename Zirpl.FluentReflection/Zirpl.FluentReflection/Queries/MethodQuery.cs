@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MethodQuery : NamedTypeMemberQueryBase<MethodInfo, IMethodQuery>,
+    internal sealed class MethodQuery : NamedMemberQueryBase<MethodInfo, IMethodQuery>,
         IMethodQuery
     {
         private readonly MethodReturnTypeCriteria _returnTypeCriteria;

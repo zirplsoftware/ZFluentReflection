@@ -157,6 +157,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\MemberQuery.cs">
       <Link>Queries\MemberQuery.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\MemberQueryBase.cs">
+      <Link>Queries\MemberQueryBase.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\MethodQuery.cs">
       <Link>Queries\MethodQuery.cs</Link>
     </Compile>
@@ -186,9 +189,6 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\TypeSubQuery.cs">
       <Link>Queries\SubQueries\TypeSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\TypeMemberQueryBase.cs">
-      <Link>Queries\TypeMemberQueryBase.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\TypeQuery.cs">
       <Link>Queries\TypeQuery.cs</Link>

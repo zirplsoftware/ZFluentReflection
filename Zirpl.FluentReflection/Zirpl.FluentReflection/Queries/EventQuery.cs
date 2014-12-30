@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class EventQuery : NamedTypeMemberQueryBase<EventInfo, IEventQuery>, 
+    internal sealed class EventQuery : NamedMemberQueryBase<EventInfo, IEventQuery>, 
         IEventQuery
     {
         private readonly EventHandlerTypeCriteria _eventHandlerTypeCriteria;

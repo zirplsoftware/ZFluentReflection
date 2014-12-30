@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class ConstructorQuery : TypeMemberQueryBase<ConstructorInfo, IConstructorQuery>, 
+    internal sealed class ConstructorQuery : MemberQueryBase<ConstructorInfo, IConstructorQuery>, 
         IConstructorQuery
     {
         internal ConstructorQuery(Type type)

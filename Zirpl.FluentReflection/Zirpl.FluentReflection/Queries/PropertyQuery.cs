@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class PropertyQuery : NamedTypeMemberQueryBase<PropertyInfo, IPropertyQuery>,
+    internal sealed class PropertyQuery : NamedMemberQueryBase<PropertyInfo, IPropertyQuery>,
         IPropertyQuery
     {
         private readonly PropertyReadWriteCriteria _readWriteCriteria;
