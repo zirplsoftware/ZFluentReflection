@@ -8,11 +8,26 @@ namespace Zirpl.FluentReflection
 {
     internal sealed class MemberNameCriteria : NameCriteria	
     {
-        public override bool IsMatchCheckRequired()
+        protected override bool ShouldRunFilter
         {
-            // at the moment, member names are ALWAYS handled by the service, so we can ignore things here
-            // UNLESS it is one of these nifty guys
-            return StartsWith || EndsWith || Contains;
+            get
+            { // at the moment, member names are ALWAYS handled by the service, so we can ignore things here
+                // UNLESS it is one of these nifty guys
+                return StartsWith || EndsWith || Contains;
+            }
+        }
+
+        internal IEnumerable<String> GetNamesForDirectLookup()
+        {
+            if ((Name != null
+                 || Names != null)
+                && !StartsWith
+                && !EndsWith
+                && !Contains)
+            {
+                return Names ?? new[] {Name};
+            }
+            return null;
         }
     }
 }

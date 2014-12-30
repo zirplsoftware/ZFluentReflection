@@ -11,7 +11,7 @@ namespace Zirpl.FluentReflection
         {
             _memberTypeCriteria.NestedType = true;
             _typeCriteria = new TypeCriteria();
-            _matchEvaluators.Add(_typeCriteria);
+            _queryCriteriaList.Add(_typeCriteria);
         }
 
         ITypeSubQuery<Type, INestedTypeQuery> INestedTypeQuery.OfType()

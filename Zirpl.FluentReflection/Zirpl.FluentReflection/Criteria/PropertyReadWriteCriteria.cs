@@ -1,13 +1,14 @@
-﻿using System.Reflection;
+﻿using System.Linq;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class PropertyReadWriteCriteria : IMatchEvaluator
+    internal sealed class PropertyReadWriteCriteria : MemberInfoQueryCriteriaBase
     {
         internal bool CanRead { get; set; }
         internal bool CanWrite { get; set; }
 
-        public bool IsMatch(MemberInfo memberInfo)
+        private bool IsMatch(MemberInfo memberInfo)
         {
             var property = (PropertyInfo) memberInfo;
             if (!property.CanRead && CanRead) return false;
@@ -15,9 +16,17 @@ namespace Zirpl.FluentReflection
             return true;
         }
 
-        public bool IsMatchCheckRequired()
+        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
         {
-            return CanRead || CanWrite;
+            return memberInfos.Where(IsMatch).ToArray();
+        }
+
+        protected override bool ShouldRunFilter
+        {
+            get
+            {
+                return CanRead || CanWrite;
+            }
         }
     }
 }

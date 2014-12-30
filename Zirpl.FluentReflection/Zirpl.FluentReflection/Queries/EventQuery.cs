@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection
         {
             _memberTypeCriteria.Event = true;
             _eventHandlerTypeCriteria = new EventHandlerTypeCriteria();
-            _matchEvaluators.Add(_eventHandlerTypeCriteria);
+            _queryCriteriaList.Add(_eventHandlerTypeCriteria);
         }
 
         ITypeSubQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()

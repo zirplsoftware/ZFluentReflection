@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
 using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MemberScopeCriteria : IMatchEvaluator
+    internal sealed class MemberScopeCriteria : MemberInfoQueryCriteriaBase
     {
         private readonly Type _reflectedType;
         private int? _levelsDeep;
@@ -31,18 +32,26 @@ namespace Zirpl.FluentReflection
         }
 
 
-        public bool IsMatchCheckRequired()
+        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
         {
-            // we can skip checks if 
-            // 1) neither Type scope was chosen (in which case the default will be used)
-            // 2) BOTH were chosen, but no depth
-            // - STATIC vs INSTANCE is completely handled by the binding flags
-            var canSkip = (!DeclaredOnThisType && !DeclaredOnBaseTypes)
-                        || (DeclaredOnThisType && DeclaredOnBaseTypes && LevelsDeep == null);
-            return !canSkip;
+            return memberInfos.Where(IsMatch).ToArray();
         }
 
-        public bool IsMatch(MemberInfo memberInfo)
+        protected override bool ShouldRunFilter
+        {
+            get
+            {
+                // we can skip checks if 
+                // 1) neither Type scope was chosen (in which case the default will be used)
+                // 2) BOTH were chosen, but no depth
+                // - STATIC vs INSTANCE is completely handled by the binding flags
+                var canSkip = (!DeclaredOnThisType && !DeclaredOnBaseTypes)
+                            || (DeclaredOnThisType && DeclaredOnBaseTypes && LevelsDeep == null);
+                return !canSkip;
+            }
+        }
+
+        private bool IsMatch(MemberInfo memberInfo)
         {
             if (memberInfo is MethodBase)
             {

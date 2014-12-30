@@ -32,12 +32,10 @@ namespace Zirpl.FluentReflection
         IEnumerable<Type> IQueryResult<Type>.Result()
         {
             var list = new List<Type>();
-            var matches = from assembly in _assemblyList.Distinct()
+            var matches = (from assembly in _assemblyList.Distinct()
                 from type in assembly.GetTypes()
-                where _typeCriteria.IsMatch(type)
-                select type;
-            list.AddRange(matches);
-            return list;
+                select (MemberInfo)type).ToArray();
+            return _typeCriteria.FilterMatches(matches).Select(o =>(Type)o);
         }
 
         Type IQueryResult<Type>.ResultSingle()

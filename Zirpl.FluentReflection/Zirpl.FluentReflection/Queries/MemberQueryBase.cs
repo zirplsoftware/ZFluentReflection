@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection
         private readonly MemberScopeCriteria _memberScopeCriteria;
         private readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
         protected readonly MemberTypeCriteria _memberTypeCriteria;
-        protected readonly IList<IMatchEvaluator> _matchEvaluators;
+        protected readonly IList<IMemberInfoQueryCriteria> _queryCriteriaList;
         protected readonly MemberNameCriteria _memberNameCriteria;
 
         internal MemberQueryBase(Type type)
@@ -28,11 +28,11 @@ namespace Zirpl.FluentReflection
             _memberTypeCriteria = new MemberTypeCriteria();
             _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, _memberNameCriteria);
             _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder(_memberTypeCriteria);
-            _matchEvaluators = new List<IMatchEvaluator>();
-            _matchEvaluators.Add(_memberNameCriteria);
-            _matchEvaluators.Add(_memberAccessibilityCriteria);
-            _matchEvaluators.Add(_memberScopeCriteria);
-            _matchEvaluators.Add(_memberTypeCriteria);
+            _queryCriteriaList = new List<IMemberInfoQueryCriteria>();
+            _queryCriteriaList.Add(_memberNameCriteria);
+            _queryCriteriaList.Add(_memberAccessibilityCriteria);
+            _queryCriteriaList.Add(_memberScopeCriteria);
+            _queryCriteriaList.Add(_memberTypeCriteria);
         }
 
         private bool _executed;
@@ -44,37 +44,18 @@ namespace Zirpl.FluentReflection
 
             _executed = true;
             var memberQueryService = new MemberQueryService(_type);
-            var names = new List<String>();
-            if (!_memberNameCriteria.IsMatchCheckRequired())
-            {
-                // if the name check is not required, it implicitly means we should use any names here
-                if (_memberNameCriteria.Name != null)
-                {
-                    names.Add(_memberNameCriteria.Name);
-                }
-                else if (_memberNameCriteria.Names != null)
-                {
-                    names.AddRange(_memberNameCriteria.Names);
-                }
-            }
+            var names = _memberNameCriteria.GetNamesForDirectLookup();
             var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
             if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
             {
                 var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
-                matches = matches.Union(privateMatches);
+                matches = matches.Union(privateMatches).ToArray();
             }
-            var evaluatorsToUse = _matchEvaluators.Where(eval => eval.IsMatchCheckRequired()).ToList();
-            if (evaluatorsToUse.Any())
+            foreach (var memberInfoQueryCriteria in _queryCriteriaList)
             {
-                return from memberInfo in matches.Distinct()
-                          where evaluatorsToUse.All(eval => eval.IsMatch(memberInfo))
-                          select (TMemberInfo)memberInfo;
+                matches = memberInfoQueryCriteria.FilterMatches(matches);
             }
-            else
-            {
-                return from memberInfo in matches.Distinct()
-                          select (TMemberInfo)memberInfo;
-            }
+            return matches.Select(o => (TMemberInfo)o);
         }
 
         TMemberInfo IQueryResult<TMemberInfo>.ResultSingle()

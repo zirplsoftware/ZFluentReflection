@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection
         {
             _returnTypeCriteria = new MethodReturnTypeCriteria();
             _memberTypeCriteria.Method = true;
-            _matchEvaluators.Add(_returnTypeCriteria);
+            _queryCriteriaList.Add(_returnTypeCriteria);
         }
 
         ITypeSubQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()

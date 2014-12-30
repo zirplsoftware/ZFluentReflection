@@ -14,12 +14,12 @@ namespace Zirpl.FluentReflection
             _type = type;
         }
 
-        internal IEnumerable<MemberInfo> FindMembers(MemberTypeFlags memberTypeFlags, BindingFlags bindingFlags, IEnumerable<String> names)
+        internal MemberInfo[] FindMembers(MemberTypeFlags memberTypeFlags, BindingFlags bindingFlags, IEnumerable<String> names)
         {
             return FindMemberOnType(_type, memberTypeFlags, bindingFlags, names);
         }
 
-        internal IEnumerable<MemberInfo> FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, int levelsDeep, IEnumerable<String> names)
+        internal MemberInfo[] FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, int levelsDeep, IEnumerable<String> names)
         {
             var list = new List<MemberInfo>();
             var accessibilityEvaluator = new MemberAccessibilityCriteria();
@@ -31,7 +31,7 @@ namespace Zirpl.FluentReflection
                 while (type != null
                     && levelsDeeper > 0)
                 {
-                    list.AddRange(FindMemberOnType(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
+                    list.AddRange(accessibilityEvaluator.FilterMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
                     type = type.BaseType;
                     levelsDeeper -= 1;
                 }
@@ -41,15 +41,15 @@ namespace Zirpl.FluentReflection
                 var type = _type;
                 while (type != null)
                 {
-                    list.AddRange(FindMemberOnType(type, memberTypes, bindingFlags, names).Where(o => !list.Contains(o) && accessibilityEvaluator.IsMatch(o)));
+                    list.AddRange(accessibilityEvaluator.FilterMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
                     type = type.BaseType;
                 }
             }
             // TODO: check for hidden by signature
-            return list;
+            return list.ToArray();
         }
 
-        private IEnumerable<MemberInfo> FindMemberOnType(Type type, MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
+        private MemberInfo[] FindMemberOnType(Type type, MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
         {
             var found = new List<MemberInfo>();
             var theNames = names == null ? null : names.ToList();
@@ -99,7 +99,7 @@ namespace Zirpl.FluentReflection
             }
 
             //found.AddRange(type.FindMembers(memberTypes, bindingFlags, FindMemberMatch, null));
-            return found;
+            return found.ToArray();
         }
     }
 }

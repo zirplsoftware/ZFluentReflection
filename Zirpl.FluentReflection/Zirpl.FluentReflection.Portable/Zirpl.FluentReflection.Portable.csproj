@@ -52,11 +52,14 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\FieldTypeCriteria.cs">
       <Link>Criteria\FieldTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\IMatchEvaluator.cs">
-      <Link>Criteria\IMatchEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\IMemberInfoQueryCriteria.cs">
+      <Link>Criteria\IMemberInfoQueryCriteria.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberAccessibilityCriteria.cs">
       <Link>Criteria\MemberAccessibilityCriteria.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberInfoQueryCriteriaBase.cs">
+      <Link>Criteria\MemberInfoQueryCriteriaBase.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberNameCriteria.cs">
       <Link>Criteria\MemberNameCriteria.cs</Link>

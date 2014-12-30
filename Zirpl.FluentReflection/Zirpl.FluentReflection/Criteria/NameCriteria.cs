@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal class NameCriteria : IMatchEvaluator
+    internal class NameCriteria : MemberInfoQueryCriteriaBase
     {
         private String _name;
         private IEnumerable<String> _names;
@@ -13,36 +13,8 @@ namespace Zirpl.FluentReflection
         internal bool StartsWith { get; set; }
         internal bool EndsWith { get; set; }
         internal bool Contains { get; set; }
-        internal bool All { get; set; }
         internal bool Any { get; set; }
-
-
-        public virtual bool IsMatchCheckRequired()
-        {
-            // unfortunately we CANNOT assume that names were handled by the service
-            // because sometimes this class will be used for type names, not member names
-            // so any criteria requires a check
-            //
-            var requiresCheck = _name != null || _names != null;
-            if (requiresCheck)
-            {
-                if (_name != null)
-                {
-                    // prep it, so that we can just use the IEnumerable
-                    _names = new String[] {IgnoreCase ? _name.ToLowerInvariant() : _name};
-                    _name = null;
-                }
-                else // we know that names is present
-                {
-                    _names = IgnoreCase
-                            ? from o in _names select o.ToLowerInvariant()
-                            : _names;
-                }
-            }
-            
-            return requiresCheck;
-        }
-
+        internal bool IgnoreCase { get; set; }
         internal String Name
         {
             get { return _name; }
@@ -69,20 +41,54 @@ namespace Zirpl.FluentReflection
                 _names = value;
             }
         }
-        internal bool IgnoreCase { get; set; }
-
-        public bool IsMatch(MemberInfo memberInfo)
-        {
-            // we CAN assume that IF we got here, the _names property has been FULLY set up for use here, so just go
-            var nameToCheck = GetNameToCheck(memberInfo);
-            return _names.Contains(IgnoreCase
-                    ? nameToCheck.ToLowerInvariant()
-                    : nameToCheck);
-        }
 
         protected virtual String GetNameToCheck(MemberInfo memberInfo)
         {
-            return memberInfo.Name;
+            return IgnoreCase ? memberInfo.Name.ToLowerInvariant() : memberInfo.Name;
+        }
+
+        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
+        {
+            // prep it, so that we can just use the IEnumerable
+            var namesList = new List<string>();
+            if (Name != null)
+            {
+                namesList.Add(IgnoreCase ? Name.ToLowerInvariant() : Name);
+            }
+            else // we know that names is present
+            {
+                namesList.AddRange(IgnoreCase
+                        ? from o in Names select o.ToLowerInvariant()
+                        : Names);
+            }
+
+            if (StartsWith)
+            {
+                return memberInfos.Where(o => namesList.Any(name => name.StartsWith(GetNameToCheck(o)))).ToArray();
+            }
+            else if (EndsWith)
+            {
+                return memberInfos.Where(o => namesList.Any(name => name.EndsWith(GetNameToCheck(o)))).ToArray();
+            }
+            else if (Contains)
+            {
+                return memberInfos.Where(o => namesList.Any(name => name.Contains(GetNameToCheck(o)))).ToArray();
+            }
+            else
+            {
+                return memberInfos.Where(o => namesList.Contains(GetNameToCheck(o))).ToArray();
+            }
+        }
+
+        protected override bool ShouldRunFilter
+        {
+            get
+            {
+                // unfortunately we CANNOT assume that names were handled by the service
+                // because sometimes this class will be used for type names, not member names
+                // so any criteria requires a check
+                return Name != null || Names != null;
+            }
         }
     }
 }

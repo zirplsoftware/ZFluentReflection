@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal class TypeCriteria : IMatchEvaluator
+    internal class TypeCriteria : MemberInfoQueryCriteriaBase
     {
         // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
 
@@ -21,24 +21,9 @@ namespace Zirpl.FluentReflection
         {
             NameCriteria = new NameCriteria();
             FullNameCriteria = new TypeFullNameCriteria();
+            SubFilters.Add(NameCriteria);
+            SubFilters.Add(FullNameCriteria);
         }
-
-        public bool IsMatchCheckRequired()
-        {
-            _checkLocal = AssignableFrom != null
-                          || AssignableFroms != null
-                          || AssignableTo != null
-                          || AssignableTos != null;
-            _checkNameEvaluator = NameCriteria.IsMatchCheckRequired();
-            _checkFullNameEvaluator = FullNameCriteria.IsMatchCheckRequired();
-            return _checkLocal
-                   || _checkNameEvaluator
-                   || _checkFullNameEvaluator;
-        }
-
-        private bool _checkNameEvaluator;
-        private bool _checkFullNameEvaluator;
-        private bool _checkLocal;
 
         // TODO: implement all these
         //private bool _isValueType;
@@ -57,29 +42,38 @@ namespace Zirpl.FluentReflection
         //private Type _exact;
         //private IEnumerable<Type> _exactAny;
 
-        public virtual bool IsMatch(MemberInfo memberInfo)
+
+        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
         {
-            var type = (Type) memberInfo;
-            if (_checkLocal)
-            {
-                if (type == null) return false;
-                if (AssignableFrom != null && !type.IsAssignableFrom(AssignableFrom)) return false;
-                if (AssignableTo != null && !AssignableTo.IsAssignableFrom(type)) return false;
-                if (AssignableFroms != null && !Any && !AssignableFroms.All(type.IsAssignableFrom)) return false;
-                if (AssignableTos != null && !Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
-                if (AssignableFroms != null && Any && !AssignableFroms.Any(type.IsAssignableFrom)) return false;
-                if (AssignableTos != null && Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
-            }
-            if (_checkFullNameEvaluator)
-            {
-                if (!FullNameCriteria.IsMatch(type)) return false;
-            }
-            if (_checkNameEvaluator)
-            {
-                if (!NameCriteria.IsMatch(type)) return false;
-            }
+            return memberInfos.Where(o => IsMatch(GetTypeToCheck(o))).ToArray();
+        }
+
+        protected virtual Type GetTypeToCheck(MemberInfo memberInfo)
+        {
+            return (Type) memberInfo;
+        }
+
+        protected virtual bool IsMatch(Type type)
+        {
+            if (type == null) return false;
+            if (AssignableFrom != null && !type.IsAssignableFrom(AssignableFrom)) return false;
+            if (AssignableTo != null && !AssignableTo.IsAssignableFrom(type)) return false;
+            if (AssignableFroms != null && !Any && !AssignableFroms.All(type.IsAssignableFrom)) return false;
+            if (AssignableTos != null && !Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
+            if (AssignableFroms != null && Any && !AssignableFroms.Any(type.IsAssignableFrom)) return false;
+            if (AssignableTos != null && Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
             return true;
         }
 
+        protected override bool ShouldRunFilter
+        {
+            get
+            {
+                return AssignableFrom != null
+                       || AssignableFroms != null
+                       || AssignableTo != null
+                       || AssignableTos != null;
+            }
+        }
     }
 }

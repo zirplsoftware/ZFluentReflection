@@ -1,12 +1,13 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
     internal sealed class FieldTypeCriteria :TypeCriteria
     {
-        public override bool IsMatch(MemberInfo memberInfo)
+        protected override Type GetTypeToCheck(MemberInfo memberInfo)
         {
-            return base.IsMatch(((FieldInfo)memberInfo).FieldType);
+            return ((FieldInfo)memberInfo).FieldType;
         }
     }
 }

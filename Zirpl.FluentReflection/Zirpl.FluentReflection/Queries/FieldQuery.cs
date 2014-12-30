@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection
         {
             _memberTypeCriteria.Field = true;
             _fieldTypeCriteria = new FieldTypeCriteria();
-            _matchEvaluators.Add(_fieldTypeCriteria);
+            _queryCriteriaList.Add(_fieldTypeCriteria);
         }
 
         ITypeSubQuery<FieldInfo, IFieldQuery> IFieldQuery.OfFieldType()

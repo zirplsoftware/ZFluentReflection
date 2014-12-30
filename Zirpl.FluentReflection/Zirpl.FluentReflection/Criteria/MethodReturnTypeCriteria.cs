@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
@@ -6,11 +7,27 @@ namespace Zirpl.FluentReflection
     {
         internal bool Void { get; set; }
         internal bool NotVoid { get; set; }
-
-        public override bool IsMatch(MemberInfo memberInfo)
+        
+        protected override Type GetTypeToCheck(MemberInfo memberInfo)
         {
-            // TODO: do the null checks
-            return base.IsMatch(((MethodInfo)memberInfo).ReturnType);
+            return ((MethodInfo)memberInfo).ReturnType;
+        }
+
+        protected override bool IsMatch(Type type)
+        {
+            if (type == null && NotVoid) return false;
+            if (type != null && Void) return false;
+            return base.IsMatch(type);
+        }
+
+        protected override bool ShouldRunFilter
+        {
+            get
+            {
+                return Void
+                       || NotVoid
+                       || base.ShouldRunFilter;
+            }
         }
     }
 }

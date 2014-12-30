@@ -45,7 +45,8 @@
     <Compile Include="Criteria\MemberAccessibilityCriteria.cs" />
     <Compile Include="Criteria\EventHandlerTypeCriteria.cs" />
     <Compile Include="Criteria\FieldTypeCriteria.cs" />
-    <Compile Include="Criteria\IMatchEvaluator.cs" />
+    <Compile Include="Criteria\IMemberInfoQueryCriteria.cs" />
+    <Compile Include="Criteria\MemberInfoQueryCriteriaBase.cs" />
     <Compile Include="Criteria\MemberScopeCriteria.cs" />
     <Compile Include="Criteria\MemberTypeCriteria.cs" />
     <Compile Include="Criteria\MemberNameCriteria.cs" />
