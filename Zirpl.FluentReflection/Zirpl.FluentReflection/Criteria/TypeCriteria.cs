@@ -5,22 +5,22 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal class TypeEvaluator : IMatchEvaluator
+    internal class TypeCriteria : IMatchEvaluator
     {
         // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
 
-        internal NameEvaluator NameEvaluator { get; private set; }
-        internal TypeFullNameEvaluator FullNameEvaluator { get; private set; }
+        internal NameCriteria NameCriteria { get; private set; }
+        internal TypeFullNameCriteria FullNameCriteria { get; private set; }
         internal Type AssignableFrom { get; set; }
         internal IEnumerable<Type> AssignableFroms { get; set; }
         internal Type AssignableTo { get; set; }
         internal IEnumerable<Type> AssignableTos { get; set; }
         internal bool Any { get; set; }
 
-        internal TypeEvaluator()
+        internal TypeCriteria()
         {
-            NameEvaluator = new NameEvaluator();
-            FullNameEvaluator = new TypeFullNameEvaluator();
+            NameCriteria = new NameCriteria();
+            FullNameCriteria = new TypeFullNameCriteria();
         }
 
         public bool IsMatchCheckRequired()
@@ -29,8 +29,8 @@ namespace Zirpl.FluentReflection
                           || AssignableFroms != null
                           || AssignableTo != null
                           || AssignableTos != null;
-            _checkNameEvaluator = NameEvaluator.IsMatchCheckRequired();
-            _checkFullNameEvaluator = FullNameEvaluator.IsMatchCheckRequired();
+            _checkNameEvaluator = NameCriteria.IsMatchCheckRequired();
+            _checkFullNameEvaluator = FullNameCriteria.IsMatchCheckRequired();
             return _checkLocal
                    || _checkNameEvaluator
                    || _checkFullNameEvaluator;
@@ -72,11 +72,11 @@ namespace Zirpl.FluentReflection
             }
             if (_checkFullNameEvaluator)
             {
-                if (!FullNameEvaluator.IsMatch(type)) return false;
+                if (!FullNameCriteria.IsMatch(type)) return false;
             }
             if (_checkNameEvaluator)
             {
-                if (!NameEvaluator.IsMatch(type)) return false;
+                if (!NameCriteria.IsMatch(type)) return false;
             }
             return true;
         }

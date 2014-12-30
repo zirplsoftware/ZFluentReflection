@@ -4,14 +4,14 @@ namespace Zirpl.FluentReflection
 {
     internal sealed class BindingFlagsBuilder
     {
-        private readonly MemberScopeEvaluator _memberScopeEvaluator;
-        private readonly AccessibilityEvaluator _memberAccessibilityEvaluator;
-        private readonly MemberNameEvaluator _memberNameEvalulator;
+        private readonly MemberScopeCriteria _memberScopeCriteria;
+        private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
+        private readonly MemberNameCriteria _memberNameEvalulator;
 
-        internal BindingFlagsBuilder(AccessibilityEvaluator memberAccessibilityEvaluator, MemberScopeEvaluator memberScopeEvaluator, MemberNameEvaluator memberNameEvalulator)
+        internal BindingFlagsBuilder(MemberAccessibilityCriteria memberAccessibilityCriteria, MemberScopeCriteria memberScopeCriteria, MemberNameCriteria memberNameEvalulator)
         {
-            _memberScopeEvaluator = memberScopeEvaluator;
-            _memberAccessibilityEvaluator = memberAccessibilityEvaluator;
+            _memberScopeCriteria = memberScopeCriteria;
+            _memberAccessibilityCriteria = memberAccessibilityCriteria;
             _memberNameEvalulator = memberNameEvalulator;
         }
 
@@ -20,14 +20,14 @@ namespace Zirpl.FluentReflection
             get
             {
                 var bindings = default(BindingFlags);
-                bindings = _memberAccessibilityEvaluator.Public ? bindings | BindingFlags.Public : bindings;
-                bindings = _memberAccessibilityEvaluator.Private || _memberAccessibilityEvaluator.Protected || _memberAccessibilityEvaluator.ProtectedInternal || _memberAccessibilityEvaluator.Internal
+                bindings = _memberAccessibilityCriteria.Public ? bindings | BindingFlags.Public : bindings;
+                bindings = _memberAccessibilityCriteria.Private || _memberAccessibilityCriteria.Protected || _memberAccessibilityCriteria.ProtectedInternal || _memberAccessibilityCriteria.Internal
                             ? bindings | BindingFlags.NonPublic : bindings;
-                bindings = _memberScopeEvaluator.Instance ? bindings | BindingFlags.Instance : bindings;
-                bindings = _memberScopeEvaluator.Static ? bindings | BindingFlags.Static : bindings;
-                bindings = _memberScopeEvaluator.Static && _memberScopeEvaluator.DeclaredOnBaseTypes ? bindings | BindingFlags.FlattenHierarchy : bindings;
+                bindings = _memberScopeCriteria.Instance ? bindings | BindingFlags.Instance : bindings;
+                bindings = _memberScopeCriteria.Static ? bindings | BindingFlags.Static : bindings;
+                bindings = _memberScopeCriteria.Static && _memberScopeCriteria.DeclaredOnBaseTypes ? bindings | BindingFlags.FlattenHierarchy : bindings;
                 bindings = _memberNameEvalulator.IgnoreCase ? bindings | BindingFlags.IgnoreCase : bindings;
-                bindings = _memberScopeEvaluator.DeclaredOnThisType && !_memberScopeEvaluator.DeclaredOnBaseTypes ? bindings | BindingFlags.DeclaredOnly : bindings;
+                bindings = _memberScopeCriteria.DeclaredOnThisType && !_memberScopeCriteria.DeclaredOnBaseTypes ? bindings | BindingFlags.DeclaredOnly : bindings;
                 if (!bindings.HasFlag(BindingFlags.Instance)
                     && !bindings.HasFlag(BindingFlags.Static))
                 {

@@ -46,44 +46,44 @@
     <Compile Include="..\Zirpl.FluentReflection\Accessors\TypeAccessor.cs">
       <Link>Accessors\TypeAccessor.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\AccessibilityEvaluator.cs">
-      <Link>Evaluators\AccessibilityEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\EventHandlerTypeCriteria.cs">
+      <Link>Criteria\EventHandlerTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\EventHandlerTypeEvaluator.cs">
-      <Link>Evaluators\EventHandlerTypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\FieldTypeCriteria.cs">
+      <Link>Criteria\FieldTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\FieldTypeEvaluator.cs">
-      <Link>Evaluators\FieldTypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\IMatchEvaluator.cs">
+      <Link>Criteria\IMatchEvaluator.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\IMatchEvaluator.cs">
-      <Link>Evaluators\IMatchEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberAccessibilityCriteria.cs">
+      <Link>Criteria\MemberAccessibilityCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberNameEvaluator.cs">
-      <Link>Evaluators\MemberNameEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberNameCriteria.cs">
+      <Link>Criteria\MemberNameCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberScopeEvaluator.cs">
-      <Link>Evaluators\MemberScopeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberScopeCriteria.cs">
+      <Link>Criteria\MemberScopeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MemberTypeEvaluator.cs">
-      <Link>Evaluators\MemberTypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberTypeCriteria.cs">
+      <Link>Criteria\MemberTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\MethodReturnTypeEvaluator.cs">
-      <Link>Evaluators\MethodReturnTypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MethodReturnTypeCriteria.cs">
+      <Link>Criteria\MethodReturnTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\NameEvaluator.cs">
-      <Link>Evaluators\NameEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\NameCriteria.cs">
+      <Link>Criteria\NameCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\PropertyReadWriteEvaluator.cs">
-      <Link>Evaluators\PropertyReadWriteEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyReadWriteCriteria.cs">
+      <Link>Criteria\PropertyReadWriteCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\PropertyTypeEvaluator.cs">
-      <Link>Evaluators\PropertyTypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyTypeCriteria.cs">
+      <Link>Criteria\PropertyTypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\TypeEvaluator.cs">
-      <Link>Evaluators\TypeEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeCriteria.cs">
+      <Link>Criteria\TypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Evaluators\TypeFullNameEvaluator.cs">
-      <Link>Evaluators\TypeFullNameEvaluator.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeFullNameCriteria.cs">
+      <Link>Criteria\TypeFullNameCriteria.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Helpers\BindingFlagsBuilder.cs">
       <Link>Helpers\BindingFlagsBuilder.cs</Link>

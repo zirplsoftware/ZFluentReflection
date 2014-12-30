@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MemberScopeEvaluator : IMatchEvaluator
+    internal sealed class MemberScopeCriteria : IMatchEvaluator
     {
         private readonly Type _reflectedType;
         private int? _levelsDeep;
@@ -25,7 +25,7 @@ namespace Zirpl.FluentReflection
             }
         }
 
-        internal MemberScopeEvaluator(Type type)
+        internal MemberScopeCriteria(Type type)
         {
             _reflectedType = type;
         }

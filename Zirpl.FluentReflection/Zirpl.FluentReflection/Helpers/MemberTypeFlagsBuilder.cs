@@ -2,29 +2,29 @@
 {
     internal sealed class MemberTypeFlagsBuilder
     {
-        private readonly MemberTypeEvaluator _memberTypeEvaluator;
-        internal MemberTypeFlagsBuilder(MemberTypeEvaluator memberTypeEvaluator)
+        private readonly MemberTypeCriteria _memberTypeCriteria;
+        internal MemberTypeFlagsBuilder(MemberTypeCriteria memberTypeCriteria)
         {
-            _memberTypeEvaluator = memberTypeEvaluator;
+            _memberTypeCriteria = memberTypeCriteria;
         }
         internal MemberTypeFlags MemberTypeFlags
         {
             get
             {
                 var memberTypes = default(MemberTypeFlags);
-                if (_memberTypeEvaluator.Constructor
-                    || _memberTypeEvaluator.Event
-                    || _memberTypeEvaluator.Field
-                    || _memberTypeEvaluator.Method
-                    || _memberTypeEvaluator.NestedType
-                    || _memberTypeEvaluator.Property)
+                if (_memberTypeCriteria.Constructor
+                    || _memberTypeCriteria.Event
+                    || _memberTypeCriteria.Field
+                    || _memberTypeCriteria.Method
+                    || _memberTypeCriteria.NestedType
+                    || _memberTypeCriteria.Property)
                 {
-                    if (_memberTypeEvaluator.Constructor) memberTypes = memberTypes | MemberTypeFlags.Constructor;
-                    if (_memberTypeEvaluator.Event) memberTypes = memberTypes | MemberTypeFlags.Event;
-                    if (_memberTypeEvaluator.Field) memberTypes = memberTypes | MemberTypeFlags.Field;
-                    if (_memberTypeEvaluator.Method) memberTypes = memberTypes | MemberTypeFlags.Method;
-                    if (_memberTypeEvaluator.NestedType) memberTypes = memberTypes | MemberTypeFlags.NestedType;
-                    if (_memberTypeEvaluator.Property) memberTypes = memberTypes | MemberTypeFlags.Property;
+                    if (_memberTypeCriteria.Constructor) memberTypes = memberTypes | MemberTypeFlags.Constructor;
+                    if (_memberTypeCriteria.Event) memberTypes = memberTypes | MemberTypeFlags.Event;
+                    if (_memberTypeCriteria.Field) memberTypes = memberTypes | MemberTypeFlags.Field;
+                    if (_memberTypeCriteria.Method) memberTypes = memberTypes | MemberTypeFlags.Method;
+                    if (_memberTypeCriteria.NestedType) memberTypes = memberTypes | MemberTypeFlags.NestedType;
+                    if (_memberTypeCriteria.Property) memberTypes = memberTypes | MemberTypeFlags.Property;
                 }
                 else
                 {

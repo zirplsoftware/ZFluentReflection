@@ -2,7 +2,7 @@
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class PropertyTypeEvaluator :TypeEvaluator
+    internal sealed class PropertyTypeCriteria :TypeCriteria
     {
         public override bool IsMatch(MemberInfo memberInfo)
         {

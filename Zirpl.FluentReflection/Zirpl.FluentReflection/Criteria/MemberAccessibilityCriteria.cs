@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class AccessibilityEvaluator : IMatchEvaluator
+    internal sealed class MemberAccessibilityCriteria : IMatchEvaluator
     {
         internal bool Public { get; set; }
         internal bool Private { get; set; }

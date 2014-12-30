@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class TypeFullNameEvaluator : NameEvaluator
+    internal sealed class TypeFullNameCriteria : NameCriteria
     {
         protected override string GetNameToCheck(MemberInfo memberInfo)
         {

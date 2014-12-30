@@ -2,7 +2,7 @@
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class PropertyReadWriteEvaluator : IMatchEvaluator
+    internal sealed class PropertyReadWriteCriteria : IMatchEvaluator
     {
         internal bool CanRead { get; set; }
         internal bool CanWrite { get; set; }

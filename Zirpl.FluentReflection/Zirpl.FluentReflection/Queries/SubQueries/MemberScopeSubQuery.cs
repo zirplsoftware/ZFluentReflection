@@ -7,57 +7,57 @@ namespace Zirpl.FluentReflection
         where TMemberInfo : MemberInfo
         where TReturnQuery : IQueryResult<TMemberInfo>
     {
-        private readonly MemberScopeEvaluator _scopeEvaluator;
+        private readonly MemberScopeCriteria _memberScopeCriteria;
 
-        internal MemberScopeSubQuery(TReturnQuery returnQuery, MemberScopeEvaluator scopeEvaluator)
+        internal MemberScopeSubQuery(TReturnQuery returnQuery, MemberScopeCriteria memberScopeCriteria)
             :base(returnQuery)
         {
-            _scopeEvaluator = scopeEvaluator;
+            _memberScopeCriteria = memberScopeCriteria;
         }
 
         IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.Instance()
         {
-            _scopeEvaluator.Instance = true;
+            _memberScopeCriteria.Instance = true;
             return this;
         }
 
         IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.Static()
         {
-            _scopeEvaluator.Static = true;
+            _memberScopeCriteria.Static = true;
             return this;
         }
 
         IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnThisType()
         {
-            _scopeEvaluator.DeclaredOnThisType = true;
+            _memberScopeCriteria.DeclaredOnThisType = true;
             return this;
         }
 
         IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes()
         {
-            _scopeEvaluator.DeclaredOnBaseTypes = true;
+            _memberScopeCriteria.DeclaredOnBaseTypes = true;
             return this;
         }
 
         IMemberScopeQuery<TMemberInfo, TReturnQuery> IMemberScopeQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes(int levelsDeep)
         {
-            _scopeEvaluator.DeclaredOnBaseTypes = true;
-            _scopeEvaluator.LevelsDeep = levelsDeep;
+            _memberScopeCriteria.DeclaredOnBaseTypes = true;
+            _memberScopeCriteria.LevelsDeep = levelsDeep;
             return this;
         }
 
         TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.All()
         {
-            _scopeEvaluator.DeclaredOnThisType = true;
-            _scopeEvaluator.DeclaredOnBaseTypes = true;
+            _memberScopeCriteria.DeclaredOnThisType = true;
+            _memberScopeCriteria.DeclaredOnBaseTypes = true;
             return _returnQuery;
         }
 
         TReturnQuery IMemberScopeQuery<TMemberInfo, TReturnQuery>.All(int levelsDeep)
         {
-            _scopeEvaluator.DeclaredOnThisType = true;
-            _scopeEvaluator.DeclaredOnBaseTypes = true;
-            _scopeEvaluator.LevelsDeep = levelsDeep;
+            _memberScopeCriteria.DeclaredOnThisType = true;
+            _memberScopeCriteria.DeclaredOnBaseTypes = true;
+            _memberScopeCriteria.LevelsDeep = levelsDeep;
             return _returnQuery;
         }
 

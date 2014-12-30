@@ -2,7 +2,7 @@
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MethodReturnTypeEvaluator :TypeEvaluator
+    internal sealed class MethodReturnTypeCriteria :TypeCriteria
     {
         internal bool Void { get; set; }
         internal bool NotVoid { get; set; }

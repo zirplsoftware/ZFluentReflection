@@ -6,19 +6,19 @@ namespace Zirpl.FluentReflection
     internal sealed class FieldQuery : NamedTypeMemberQueryBase<FieldInfo, IFieldQuery>, 
         IFieldQuery
     {
-        private readonly FieldTypeEvaluator _fieldTypeEvaluator;
+        private readonly FieldTypeCriteria _fieldTypeCriteria;
 
         internal FieldQuery(Type type)
             :base(type)
         {
-            _memberTypeEvaluator.Field = true;
-            _fieldTypeEvaluator = new FieldTypeEvaluator();
-            _matchEvaluators.Add(_fieldTypeEvaluator);
+            _memberTypeCriteria.Field = true;
+            _fieldTypeCriteria = new FieldTypeCriteria();
+            _matchEvaluators.Add(_fieldTypeCriteria);
         }
 
         ITypeQuery<FieldInfo, IFieldQuery> IFieldQuery.OfFieldType()
         {
-            return new TypeSubQuery<FieldInfo, IFieldQuery>(this, _fieldTypeEvaluator);
+            return new TypeSubQuery<FieldInfo, IFieldQuery>(this, _fieldTypeCriteria);
         }
     }
 }

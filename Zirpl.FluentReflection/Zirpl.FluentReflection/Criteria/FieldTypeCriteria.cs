@@ -2,11 +2,11 @@
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class EventHandlerTypeEvaluator :TypeEvaluator
+    internal sealed class FieldTypeCriteria :TypeCriteria
     {
         public override bool IsMatch(MemberInfo memberInfo)
         {
-            return base.IsMatch(((EventInfo)memberInfo).EventHandlerType);
+            return base.IsMatch(((FieldInfo)memberInfo).FieldType);
         }
     }
 }

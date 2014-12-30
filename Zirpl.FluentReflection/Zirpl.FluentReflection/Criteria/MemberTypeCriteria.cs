@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MemberTypeEvaluator : IMatchEvaluator
+    internal sealed class MemberTypeCriteria : IMatchEvaluator
     {
         internal bool Constructor { get; set; }
         internal bool Event { get; set; }

@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal class NameEvaluator : IMatchEvaluator
+    internal class NameCriteria : IMatchEvaluator
     {
         private String _name;
         private IEnumerable<String> _names;

@@ -9,135 +9,135 @@ namespace Zirpl.FluentReflection
         where TMemberInfo : MemberInfo
         where TReturnQuery : IQueryResult<TMemberInfo>
     {
-        private readonly NameEvaluator _nameEvaluator;
+        private readonly NameCriteria _nameCriteria;
 
-        internal NameSubQuery(TReturnQuery returnQuery, NameEvaluator nameEvaluator)
+        internal NameSubQuery(TReturnQuery returnQuery, NameCriteria nameCriteria)
             :base(returnQuery)
         {
-            _nameEvaluator = nameEvaluator;
+            _nameCriteria = nameCriteria;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Exactly(string name)
         {
-            _nameEvaluator.Name = name;
+            _nameCriteria.Name = name;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Any(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.Any = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.Any = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ExactlyIgnoreCase(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.AnyIgnoreCase(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.Any = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.Any = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWith(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.StartsWith = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.StartsWith = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithAny(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.StartsWith = true;
-            _nameEvaluator.Any = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.StartsWith = true;
+            _nameCriteria.Any = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithIgnoreCase(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.StartsWith = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.StartsWith = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.StartingWithAnyIgnoreCase(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.StartsWith = true;
-            _nameEvaluator.Any = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.StartsWith = true;
+            _nameCriteria.Any = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.Containing(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.Contains = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.Contains = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingAny(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.Contains = true;
-            _nameEvaluator.Any = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.Contains = true;
+            _nameCriteria.Any = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingIgnoreCase(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.Contains = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.Contains = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.ContainingAnyIgnoreCase(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.Contains = true;
-            _nameEvaluator.Any = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.Contains = true;
+            _nameCriteria.Any = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWith(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.EndsWith = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.EndsWith = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithAny(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.EndsWith = true;
-            _nameEvaluator.Any = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.EndsWith = true;
+            _nameCriteria.Any = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithIgnoreCase(string name)
         {
-            _nameEvaluator.Name = name;
-            _nameEvaluator.EndsWith = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Name = name;
+            _nameCriteria.EndsWith = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
 
         TReturnQuery INameQuery<TMemberInfo, TReturnQuery>.EndingWithAnyIgnoreCase(IEnumerable<string> names)
         {
-            _nameEvaluator.Names = names;
-            _nameEvaluator.EndsWith = true;
-            _nameEvaluator.Any = true;
-            _nameEvaluator.IgnoreCase = true;
+            _nameCriteria.Names = names;
+            _nameCriteria.EndsWith = true;
+            _nameCriteria.Any = true;
+            _nameCriteria.IgnoreCase = true;
             return _returnQuery;
         }
     }

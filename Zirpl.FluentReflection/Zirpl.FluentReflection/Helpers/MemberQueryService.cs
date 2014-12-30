@@ -22,7 +22,7 @@ namespace Zirpl.FluentReflection
         internal IEnumerable<MemberInfo> FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, int levelsDeep, IEnumerable<String> names)
         {
             var list = new List<MemberInfo>();
-            var accessibilityEvaluator = new AccessibilityEvaluator();
+            var accessibilityEvaluator = new MemberAccessibilityCriteria();
             accessibilityEvaluator.Private = true;
             if (levelsDeep > 0)
             {

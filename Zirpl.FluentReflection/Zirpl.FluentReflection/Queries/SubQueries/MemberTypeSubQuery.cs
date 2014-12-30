@@ -5,58 +5,58 @@ namespace Zirpl.FluentReflection
     internal class MemberTypeSubQuery : SubQueryBase<MemberInfo, IMemberQuery>,
         IMemberTypeQuery
     {
-        private readonly MemberTypeEvaluator _memberTypeEvaluator;
+        private readonly MemberTypeCriteria _memberTypeCriteria;
 
-        internal MemberTypeSubQuery(IMemberQuery returnQuery, MemberTypeEvaluator memberTypeEvaluator)
+        internal MemberTypeSubQuery(IMemberQuery returnQuery, MemberTypeCriteria memberTypeCriteria)
             :base(returnQuery)
         {
-            _memberTypeEvaluator = memberTypeEvaluator;
+            _memberTypeCriteria = memberTypeCriteria;
         }
 
         IMemberTypeQuery IMemberTypeQuery.Constructor()
         {
-            _memberTypeEvaluator.Constructor = true;
+            _memberTypeCriteria.Constructor = true;
             return this;
         }
 
         IMemberTypeQuery IMemberTypeQuery.Event()
         {
-            _memberTypeEvaluator.Event = true;
+            _memberTypeCriteria.Event = true;
             return this;
         }
 
         IMemberTypeQuery IMemberTypeQuery.Field()
         {
-            _memberTypeEvaluator.Field = true;
+            _memberTypeCriteria.Field = true;
             return this;
         }
 
         IMemberTypeQuery IMemberTypeQuery.Method()
         {
-            _memberTypeEvaluator.Method = true;
+            _memberTypeCriteria.Method = true;
             return this;
         }
 
         IMemberTypeQuery IMemberTypeQuery.NestedType()
         {
-            _memberTypeEvaluator.NestedType = true;
+            _memberTypeCriteria.NestedType = true;
             return this;
         }
 
         IMemberTypeQuery IMemberTypeQuery.Property()
         {
-            _memberTypeEvaluator.Property = true;
+            _memberTypeCriteria.Property = true;
             return this;
         }
 
         IMemberQuery IMemberTypeQuery.All()
         {
-            _memberTypeEvaluator.Constructor = true;
-            _memberTypeEvaluator.Event = true;
-            _memberTypeEvaluator.Field = true;
-            _memberTypeEvaluator.Method = true;
-            _memberTypeEvaluator.NestedType = true;
-            _memberTypeEvaluator.Property = true;
+            _memberTypeCriteria.Constructor = true;
+            _memberTypeCriteria.Event = true;
+            _memberTypeCriteria.Field = true;
+            _memberTypeCriteria.Method = true;
+            _memberTypeCriteria.NestedType = true;
+            _memberTypeCriteria.Property = true;
             return _returnQuery;
         }
 

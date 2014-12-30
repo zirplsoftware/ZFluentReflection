@@ -6,19 +6,19 @@ namespace Zirpl.FluentReflection
     internal sealed class EventQuery : NamedTypeMemberQueryBase<EventInfo, IEventQuery>, 
         IEventQuery
     {
-        private readonly EventHandlerTypeEvaluator _eventTypeEvaluator;
+        private readonly EventHandlerTypeCriteria _eventHandlerTypeCriteria;
 
         internal EventQuery(Type type)
             :base(type)
         {
-            _memberTypeEvaluator.Event = true;
-            _eventTypeEvaluator = new EventHandlerTypeEvaluator();
-            _matchEvaluators.Add(_eventTypeEvaluator);
+            _memberTypeCriteria.Event = true;
+            _eventHandlerTypeCriteria = new EventHandlerTypeCriteria();
+            _matchEvaluators.Add(_eventHandlerTypeCriteria);
         }
 
         ITypeQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()
         {
-            return new TypeSubQuery<EventInfo, IEventQuery>(this, _eventTypeEvaluator);
+            return new TypeSubQuery<EventInfo, IEventQuery>(this, _eventHandlerTypeCriteria);
         }
     }
 }

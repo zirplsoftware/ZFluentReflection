@@ -5,18 +5,18 @@ namespace Zirpl.FluentReflection
     internal sealed class NestedTypeQuery : NamedTypeMemberQueryBase<Type, INestedTypeQuery>, 
         INestedTypeQuery
     {
-        private readonly TypeEvaluator _typeEvaluator;
+        private readonly TypeCriteria _typeCriteria;
         internal NestedTypeQuery(Type type)
             :base(type)
         {
-            _memberTypeEvaluator.NestedType = true;
-            _typeEvaluator = new TypeEvaluator();
-            _matchEvaluators.Add(_typeEvaluator);
+            _memberTypeCriteria.NestedType = true;
+            _typeCriteria = new TypeCriteria();
+            _matchEvaluators.Add(_typeCriteria);
         }
 
         ITypeQuery<Type, INestedTypeQuery> INestedTypeQuery.OfType()
         {
-            return new TypeSubQuery<Type, INestedTypeQuery>(this, _typeEvaluator);
+            return new TypeSubQuery<Type, INestedTypeQuery>(this, _typeCriteria);
         }
     }
 }

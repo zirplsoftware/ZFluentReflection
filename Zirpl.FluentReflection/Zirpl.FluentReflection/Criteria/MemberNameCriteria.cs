@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class MemberNameEvaluator : NameEvaluator	
+    internal sealed class MemberNameCriteria : NameCriteria	
     {
         public override bool IsMatchCheckRequired()
         {

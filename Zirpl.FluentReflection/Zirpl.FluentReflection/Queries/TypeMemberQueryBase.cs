@@ -12,27 +12,27 @@ namespace Zirpl.FluentReflection
     {
         private readonly Type _type;
         private readonly BindingFlagsBuilder _bindingFlagsBuilder;
-        private readonly AccessibilityEvaluator _memberAccessibilityEvaluator;
-        private readonly MemberScopeEvaluator _memberScopeEvaluator;
+        private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
+        private readonly MemberScopeCriteria _memberScopeCriteria;
         private readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
-        protected readonly MemberTypeEvaluator _memberTypeEvaluator;
+        protected readonly MemberTypeCriteria _memberTypeCriteria;
         protected readonly IList<IMatchEvaluator> _matchEvaluators;
-        protected readonly MemberNameEvaluator _memberNameEvaluator;
+        protected readonly MemberNameCriteria _memberNameCriteria;
 
         internal TypeMemberQueryBase(Type type)
         {
             _type = type;
-            _memberScopeEvaluator = new MemberScopeEvaluator(type);
-            _memberAccessibilityEvaluator = new AccessibilityEvaluator();
-            _memberNameEvaluator = new MemberNameEvaluator();
-            _memberTypeEvaluator = new MemberTypeEvaluator();
-            _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityEvaluator, _memberScopeEvaluator, _memberNameEvaluator);
-            _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder(_memberTypeEvaluator);
+            _memberScopeCriteria = new MemberScopeCriteria(type);
+            _memberAccessibilityCriteria = new MemberAccessibilityCriteria();
+            _memberNameCriteria = new MemberNameCriteria();
+            _memberTypeCriteria = new MemberTypeCriteria();
+            _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, _memberNameCriteria);
+            _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder(_memberTypeCriteria);
             _matchEvaluators = new List<IMatchEvaluator>();
-            _matchEvaluators.Add(_memberNameEvaluator);
-            _matchEvaluators.Add(_memberAccessibilityEvaluator);
-            _matchEvaluators.Add(_memberScopeEvaluator);
-            _matchEvaluators.Add(_memberTypeEvaluator);
+            _matchEvaluators.Add(_memberNameCriteria);
+            _matchEvaluators.Add(_memberAccessibilityCriteria);
+            _matchEvaluators.Add(_memberScopeCriteria);
+            _matchEvaluators.Add(_memberTypeCriteria);
         }
 
         private bool _executed;
@@ -45,22 +45,22 @@ namespace Zirpl.FluentReflection
             _executed = true;
             var memberQueryService = new MemberQueryService(_type);
             var names = new List<String>();
-            if (!_memberNameEvaluator.IsMatchCheckRequired())
+            if (!_memberNameCriteria.IsMatchCheckRequired())
             {
                 // if the name check is not required, it implicitly means we should use any names here
-                if (_memberNameEvaluator.Name != null)
+                if (_memberNameCriteria.Name != null)
                 {
-                    names.Add(_memberNameEvaluator.Name);
+                    names.Add(_memberNameCriteria.Name);
                 }
-                else if (_memberNameEvaluator.Names != null)
+                else if (_memberNameCriteria.Names != null)
                 {
-                    names.AddRange(_memberNameEvaluator.Names);
+                    names.AddRange(_memberNameCriteria.Names);
                 }
             }
             var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
-            if (_memberScopeEvaluator.DeclaredOnBaseTypes && _memberAccessibilityEvaluator.Private)
+            if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
             {
-                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeEvaluator.LevelsDeep.GetValueOrDefault(), names);
+                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
                 matches = matches.Union(privateMatches);
             }
             var evaluatorsToUse = _matchEvaluators.Where(eval => eval.IsMatchCheckRequired()).ToList();
@@ -97,12 +97,12 @@ namespace Zirpl.FluentReflection
 
         IMemberAccessibilityQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibility()
         {
-            return new MemberAccessibilitySubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberAccessibilityEvaluator);
+            return new MemberAccessibilitySubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberAccessibilityCriteria);
         }
 
         IMemberScopeQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfScope()
         {
-            return new MemberScopeSubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberScopeEvaluator);
+            return new MemberScopeSubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberScopeCriteria);
         }
     }
 }
