@@ -18,6 +18,7 @@ namespace Zirpl.FluentReflection
         protected readonly MemberTypeCriteria _memberTypeCriteria;
         protected readonly IList<IMemberInfoQueryCriteria> _queryCriteriaList;
         protected readonly MemberNameCriteria _memberNameCriteria;
+        private String _fromCacheKey;
 
         internal MemberQueryBase(Type type)
         {
@@ -43,25 +44,36 @@ namespace Zirpl.FluentReflection
             if (_executed) throw new InvalidOperationException("Cannot execute twice. Use a new query.");
 
             _executed = true;
-            var memberQueryService = new MemberQueryService(_type);
-            var names = _memberNameCriteria.GetNamesForDirectLookup();
-            var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
-            if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
+            if (!String.IsNullOrEmpty(_fromCacheKey))
             {
-                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
-                matches = matches.Union(privateMatches).ToArray();
+                return (IEnumerable<TMemberInfo>)new CacheService().Get(_type.FullName + _fromCacheKey);
             }
-            foreach (var memberInfoQueryCriteria in _queryCriteriaList)
+            else
             {
-                matches = memberInfoQueryCriteria.FilterMatches(matches);
+                var memberQueryService = new MemberQueryService(_type);
+                var names = _memberNameCriteria.GetNamesForDirectLookup();
+                var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
+                if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
+                {
+                    var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
+                    matches = matches.Union(privateMatches).ToArray();
+                }
+                foreach (var memberInfoQueryCriteria in _queryCriteriaList)
+                {
+                    matches = memberInfoQueryCriteria.FilterMatches(matches);
+                }
+                var final = matches.Select(o => (TMemberInfo)o);
+                return final;
             }
-            return matches.Select(o => (TMemberInfo)o);
         }
 
         TMemberInfo IQueryResult<TMemberInfo>.ResultSingle()
         {
+            if (_executed) throw new InvalidOperationException("Cannot execute twice. Use a new query.");
+
             var result = ((IQueryResult<TMemberInfo>)this).Result().ToList();
-            if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
+            if (result.Count() > 1)
+                throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result[0];
         }
@@ -69,7 +81,8 @@ namespace Zirpl.FluentReflection
         TMemberInfo IQueryResult<TMemberInfo>.ResultSingleOrDefault()
         {
             var result = ((IQueryResult<TMemberInfo>)this).Result().ToList();
-            if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
+            if (result.Count() > 1)
+                throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
 
             return result.SingleOrDefault();
         }
@@ -84,6 +97,19 @@ namespace Zirpl.FluentReflection
         IMemberScopeSubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfScope()
         {
             return new MemberScopeSubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberScopeCriteria);
+        }
+        
+        void IMemberQuery<TMemberInfo, TMemberQuery>.CacheResultTo(string cacheKey)
+        {
+            if (String.IsNullOrEmpty(cacheKey)) throw new ArgumentNullException("cacheKey");
+            new CacheService().Set(_type.FullName + cacheKey, ((IQueryResult<TMemberInfo>)this).Result());
+        }
+
+        IQueryResult<TMemberInfo> IMemberQuery<TMemberInfo, TMemberQuery>.FromCache(string cacheKey)
+        {
+            if (String.IsNullOrEmpty(cacheKey)) throw new ArgumentNullException("cacheKey");
+            _fromCacheKey = cacheKey;
+            return this;
         }
     }
 }

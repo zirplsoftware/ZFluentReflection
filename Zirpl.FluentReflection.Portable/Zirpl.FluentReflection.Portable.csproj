@@ -91,6 +91,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Helpers\BindingFlagsBuilder.cs">
       <Link>Helpers\BindingFlagsBuilder.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\CacheService.cs">
+      <Link>Helpers\CacheService.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberQueryService.cs">
       <Link>Helpers\MemberQueryService.cs</Link>
     </Compile>
@@ -204,7 +207,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

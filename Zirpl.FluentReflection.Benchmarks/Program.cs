@@ -32,11 +32,7 @@ namespace Zirpl.FluentReflection.Benchmarks
                 mock.TestProperty9 = Guid.NewGuid().ToString();
                 mock.TestProperty10 = Guid.NewGuid().ToString();
             });
-            LogTime(1, 5, RunTest(iterations, action));
-            LogTime(2, 5, RunTest(iterations, action));
-            LogTime(3, 5, RunTest(iterations, action));
-            LogTime(4, 5, RunTest(iterations, action));
-            LogTime(5, 5, RunTest(iterations, action));
+            RunTest(5, iterations, action);
 
             Console.WriteLine(String.Format("2) Setting a string property {0:n0} times with standard reflection", iterations));
             action = new Action(() =>
@@ -62,11 +58,7 @@ namespace Zirpl.FluentReflection.Benchmarks
                         .SetValue(mock, Guid.NewGuid().ToString());   
                 }
             });
-            LogTime(1, 5, RunTest(iterations, action));
-            LogTime(2, 5, RunTest(iterations, action));
-            LogTime(3, 5, RunTest(iterations, action));
-            LogTime(4, 5, RunTest(iterations, action));
-            LogTime(5, 5, RunTest(iterations, action));
+            RunTest(5, iterations, action);
 
             Console.WriteLine(String.Format("3) Setting a string property {0:n0} times with fluent reflection", iterations));
             action = new Action(() =>
@@ -96,13 +88,41 @@ namespace Zirpl.FluentReflection.Benchmarks
                     propertyInfo.SetValue(mock, Guid.NewGuid().ToString());
                 }
             });
-            LogTime(1, 5, RunTest(iterations, action));
-            LogTime(2, 5, RunTest(iterations, action));
-            LogTime(3, 5, RunTest(iterations, action));
-            LogTime(4, 5, RunTest(iterations, action));
-            LogTime(5, 5, RunTest(iterations, action));
+            RunTest(5, iterations, action);
 
-            Console.WriteLine(String.Format("4) Setting a string property {0:n0} times with fluent reflection using the Property extension method", iterations));
+
+
+            Console.WriteLine(String.Format("4) Setting a string property {0:n0} times with fluent reflection using caching", iterations));
+            typeof (Mock).QueryProperties()
+                .OfAccessibility().Public().And()
+                .OfScope().Instance().And()
+                .Named().AnyIgnoreCase(new String[]
+                {
+                    "TestProperty1",
+                    "TestProperty2",
+                    "TestProperty3",
+                    "TestProperty4",
+                    "TestProperty5",
+                    "TestProperty6",
+                    "TestProperty7",
+                    "TestProperty8",
+                    "TestProperty9",
+                    "TestProperty10"
+                })
+                .CacheResultTo("test123");
+            action = new Action(() =>
+            {
+                
+                var mock = new Mock();
+                var type = typeof(Mock);
+                foreach (var propertyInfo in type.QueryProperties().FromCache("test123").Result())
+                {
+                    propertyInfo.SetValue(mock, Guid.NewGuid().ToString());
+                }
+            });
+            RunTest(5, iterations, action);
+
+            Console.WriteLine(String.Format("5) Setting a string property {0:n0} times with fluent reflection using the Property extension method", iterations));
             action = new Action(() =>
             {
                 var namesList = new String[]
@@ -124,39 +144,33 @@ namespace Zirpl.FluentReflection.Benchmarks
                     mock.Property<String>(name).Value = Guid.NewGuid().ToString();
                 }
             });
-            LogTime(1, 5, RunTest(iterations, action));
-            LogTime(2, 5, RunTest(iterations, action));
-            LogTime(3, 5, RunTest(iterations, action));
-            LogTime(4, 5, RunTest(iterations, action));
-            LogTime(5, 5, RunTest(iterations, action));
+            RunTest(5, iterations, action);
 
             Console.WriteLine();
             Console.WriteLine("Complete. Hit any key to quit");
             Console.ReadKey();
         }
-
-        private static void LogTime(int runNumber, int of, TimeSpan ts)
+        private static void RunTest(int runs, int iterations, Action action)
         {
-            // Format and display the TimeSpan value. 
-            Console.WriteLine(String.Format("Run # {3} of {4}: {0:00}:{1:00}.{2:000}",
+            for (var runIndex = 0; runIndex < runs; runIndex++)
+            {
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
+                for (int i = 0; i < iterations; i++)
+                {
+                    action();
+                }
+
+                stopWatch.Stop();
+                // Get the elapsed time as a TimeSpan value.
+                TimeSpan ts = stopWatch.Elapsed;
+
+                Console.WriteLine(String.Format("Run # {3} of {4}: {0:00}:{1:00}.{2:000}",
                 ts.Minutes, ts.Seconds,
                 ts.Milliseconds,
-                runNumber,
-                of));
-        }
-
-        private static TimeSpan RunTest(int iterations, Action action)
-        {
-            Stopwatch stopWatch = new Stopwatch();
-            stopWatch.Start();
-            for (int i = 0; i < iterations; i++)
-            {
-                action();
+                runIndex + 1,
+                runs));
             }
-
-            stopWatch.Stop();
-            // Get the elapsed time as a TimeSpan value.
-            return stopWatch.Elapsed;
         }
     }
 }

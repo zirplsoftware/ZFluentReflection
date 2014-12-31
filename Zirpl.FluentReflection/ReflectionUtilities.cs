@@ -6,6 +6,11 @@ namespace Zirpl.FluentReflection
 {
     public static class ReflectionUtilities
     {
+        public static void ClearCache()
+        {
+            new CacheService().Clear();
+        }
+
         public static PropertyAccessor<T> Property<T>(this Object obj, String name)
         {
             if (obj == null) throw new ArgumentNullException("obj");

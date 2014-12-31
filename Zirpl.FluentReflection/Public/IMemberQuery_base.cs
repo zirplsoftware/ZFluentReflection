@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
@@ -8,5 +9,7 @@ namespace Zirpl.FluentReflection
     {
         IMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> OfAccessibility();
         IMemberScopeSubQuery<TMemberInfo, TMemberQuery> OfScope();
+        void CacheResultTo(String cacheKey);
+        IQueryResult<TMemberInfo> FromCache(String cacheKey);
     }
 }
