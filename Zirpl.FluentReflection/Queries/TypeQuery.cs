@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class TypeQuery : ITypeQuery
+    internal sealed class TypeQuery : CacheableQueryBase<Type>, ITypeQuery
     {
         private readonly IList<Assembly> _assemblyList;
         private readonly TypeCriteria _typeCriteria;
@@ -26,35 +27,6 @@ namespace Zirpl.FluentReflection
             _typeCriteria = new TypeCriteria();
         }
 #endif
-
-        #region IQueryResult implementation
-        
-        IEnumerable<Type> IQueryResult<Type>.Result()
-        {
-            var list = new List<Type>();
-            var matches = (from assembly in _assemblyList.Distinct()
-                from type in assembly.GetTypes()
-                select (MemberInfo)type).ToArray();
-            return _typeCriteria.FilterMatches(matches).Select(o =>(Type)o);
-        }
-
-        Type IQueryResult<Type>.ResultSingle()
-        {
-            var result = ((IQueryResult<Type>)this).Result().ToList();
-            if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
-
-            return result.Single();
-        }
-
-        Type IQueryResult<Type>.ResultSingleOrDefault()
-        {
-            var result = ((IQueryResult<Type>)this).Result().ToList();
-            if (result.Count() > 1) throw new AmbiguousMatchException("Found more than 1 member matching the criteria");
-
-            return result.SingleOrDefault();
-        }
-
-        #endregion
 
         ITypeQuery ITypeQuery.AssignableFrom(Type type)
         {
@@ -114,6 +86,19 @@ namespace Zirpl.FluentReflection
         INameSubQuery<Type, ITypeQuery> ITypeQuery.FullNamed()
         {
             return new NameSubQuery<Type, ITypeQuery>(this, _typeCriteria.FullNameCriteria);
+        }
+
+        protected override string CacheKeyPrefix
+        {
+            get { return _assemblyList.Count > 1 ? "appdomain" : _assemblyList[0].FullName; }
+        }
+
+        protected override IEnumerable<Type> ExecuteQuery()
+        {
+            var matches = (from assembly in _assemblyList.Distinct()
+                           from type in assembly.GetTypes()
+                           select (MemberInfo)type).ToArray();
+            return _typeCriteria.FilterMatches(matches).Select(o => (Type)o);
         }
     }
 }

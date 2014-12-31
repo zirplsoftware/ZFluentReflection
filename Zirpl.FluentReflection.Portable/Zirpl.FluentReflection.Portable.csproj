@@ -103,6 +103,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberTypeFlagsBuilder.cs">
       <Link>Helpers\MemberTypeFlagsBuilder.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ICacheableQuery.cs">
+      <Link>Public\ICacheableQuery.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\IConstructorQuery.cs">
       <Link>Public\IConstructorQuery.cs</Link>
     </Compile>
@@ -150,6 +153,9 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\ITypeSubQuery.cs">
       <Link>Public\ITypeSubQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\CacheableQueryBase.cs">
+      <Link>Queries\CacheableQueryBase.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\ConstructorQuery.cs">
       <Link>Queries\ConstructorQuery.cs</Link>

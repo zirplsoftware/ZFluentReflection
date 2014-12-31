@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Zirpl.FluentReflection
 {
-    public interface ITypeQuery : IQueryResult<Type>
+    public interface ITypeQuery : IQueryResult<Type>, ICacheableQuery<Type>
     {
         ITypeQuery AssignableFrom(Type type);
         ITypeQuery AssignableFrom<T>();

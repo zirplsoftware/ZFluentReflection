@@ -61,6 +61,7 @@
     <Compile Include="Helpers\MemberQueryService.cs" />
     <Compile Include="Helpers\MemberTypeFlags.cs" />
     <Compile Include="Helpers\MemberTypeFlagsBuilder.cs" />
+    <Compile Include="Public\ICacheableQuery.cs" />
     <Compile Include="Public\IConstructorQuery.cs" />
     <Compile Include="Public\IEventQuery.cs" />
     <Compile Include="Public\IFieldQuery.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="Queries\EventQuery.cs" />
     <Compile Include="Queries\FieldQuery.cs" />
     <Compile Include="Queries\MemberQuery.cs" />
+    <Compile Include="Queries\CacheableQueryBase.cs" />
     <Compile Include="Queries\MethodQuery.cs" />
     <Compile Include="Queries\NamedMemberQueryBase.cs" />
     <Compile Include="Queries\NestedTypeQuery.cs" />
