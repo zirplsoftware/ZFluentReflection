@@ -36,6 +36,6 @@ namespace Zirpl.FluentReflection
 
         protected abstract MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos);
 
-        protected abstract bool ShouldRunFilter { get; }
+        protected internal abstract bool ShouldRunFilter { get; }
     }
 }

@@ -21,7 +21,7 @@ namespace Zirpl.FluentReflection
             return memberInfos.Where(IsMatch).ToArray();
         }
 
-        protected override bool ShouldRunFilter
+        protected internal override bool ShouldRunFilter
         {
             get
             {

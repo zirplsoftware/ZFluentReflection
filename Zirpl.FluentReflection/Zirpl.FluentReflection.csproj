@@ -55,6 +55,7 @@
     <Compile Include="Criteria\PropertyReadWriteCriteria.cs" />
     <Compile Include="Criteria\PropertyTypeCriteria.cs" />
     <Compile Include="Criteria\TypeCriteria.cs" />
+    <Compile Include="Criteria\TypeNameCriteria.cs" />
     <Compile Include="Criteria\TypeFullNameCriteria.cs" />
     <Compile Include="Helpers\BindingFlagsBuilder.cs" />
     <Compile Include="Helpers\CacheService.cs" />

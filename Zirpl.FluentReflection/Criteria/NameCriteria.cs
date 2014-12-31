@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal class NameCriteria : MemberInfoQueryCriteriaBase
+    internal abstract class NameCriteria : MemberInfoQueryCriteriaBase
     {
         private String _name;
         private IEnumerable<String> _names;
@@ -77,17 +77,6 @@ namespace Zirpl.FluentReflection
             else
             {
                 return memberInfos.Where(o => namesList.Contains(GetNameToCheck(o))).ToArray();
-            }
-        }
-
-        protected override bool ShouldRunFilter
-        {
-            get
-            {
-                // unfortunately we CANNOT assume that names were handled by the service
-                // because sometimes this class will be used for type names, not member names
-                // so any criteria requires a check
-                return Name != null || Names != null;
             }
         }
     }

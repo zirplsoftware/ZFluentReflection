@@ -20,7 +20,7 @@ namespace Zirpl.FluentReflection
             return base.IsMatch(type);
         }
 
-        protected override bool ShouldRunFilter
+        protected internal override bool ShouldRunFilter
         {
             get
             {

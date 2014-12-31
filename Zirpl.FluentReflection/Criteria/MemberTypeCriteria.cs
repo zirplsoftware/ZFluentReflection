@@ -17,7 +17,7 @@ namespace Zirpl.FluentReflection
             throw new NotImplementedException();
         }
 
-        protected override bool ShouldRunFilter
+        protected internal override bool ShouldRunFilter
         {
             get
             {
