@@ -460,6 +460,318 @@ namespace Zirpl.FluentReflection.Tests
                 yield return new TestCaseData(true, true, NameHandlingTypeMock.StartsWith, criteriaFull2EndsWith, expectedNone).SetName("Handling:StartsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith");
                 yield return new TestCaseData(true, true, NameHandlingTypeMock.StartsWith, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:StartsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith-ignorecase");
                 #endregion
+
+                #region Handling: Contains
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaNone, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:0");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1Whole, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1Contains, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort1EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaShort2EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1Whole, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1StartsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1Contains, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1EndsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2Whole, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2StartsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2Contains, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2EndsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.Contains, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:false, Names:2-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaNone, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:0");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1Whole, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1WholeWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1StartsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1Contains, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1ContainsWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort1EndsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2WholeWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2StartsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2ContainsWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaShort2EndsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1Whole, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1StartsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1Contains, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1EndsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2Whole, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2StartsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2Contains, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2EndsWith, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.Contains, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:false, IgnoreCase:true, Names:2-matches-full-endswith-ignorecase");
+
+
+                // start checking full names
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaNone, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:0");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1Whole, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1Contains, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort1EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaShort2EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1Whole, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1Contains, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.Contains, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:Contains, UseFullName:true, IgnoreCase:false, Names:2-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaNone, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:0");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1Whole, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1WholeWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1StartsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1Contains, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1ContainsWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort1EndsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2WholeWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2StartsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2ContainsWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaShort2EndsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1Whole, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1WholeWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1StartsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1StartsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1Contains, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1ContainsWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1EndsWith, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull1EndsWithWrongCase, expectedBar).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2Whole, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2WholeWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2StartsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2StartsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2Contains, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2ContainsWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2EndsWith, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.Contains, criteriaFull2EndsWithWrongCase, expectedBoth).SetName("Handling:Contains, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith-ignorecase");
+                #endregion
+
+                #region Handling: EndsWith
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaNone, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:0");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2Contains, expectedFoo).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1Whole, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2Whole, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-whole");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-startswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-contains");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-endswith");
+                yield return new TestCaseData(false, false, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:false, Names:2-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaNone, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:0");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1WholeWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWithWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2WholeWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2Contains, expectedFoo).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2ContainsWrongCase, expectedFoo).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWithWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1Whole, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2Whole, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-whole");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-startswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-contains");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-endswith");
+                yield return new TestCaseData(true, false, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:false, IgnoreCase:true, Names:2-matches-full-endswith-ignorecase");
+
+
+                // start checking full names
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaNone, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:0");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2Contains, expectedFoo).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-whole");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2WholeWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-startswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-contains");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-endswith");
+                yield return new TestCaseData(false, true, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:false, Names:2-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaNone, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:0");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1WholeWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort1EndsWithWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2WholeWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2Contains, expectedFoo).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2ContainsWrongCase, expectedFoo).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaShort2EndsWithWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-short-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1Whole, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1WholeWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWith, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull1EndsWithWrongCase, expectedBar).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:1-matches-full-endswith-ignorecase");
+
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2Whole, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-whole");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2WholeWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-whole-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWith, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-startswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2StartsWithWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-startswith-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2Contains, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-contains");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2ContainsWrongCase, expectedNone).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-contains-ignorecase");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWith, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith");
+                yield return new TestCaseData(true, true, NameHandlingTypeMock.EndsWith, criteriaFull2EndsWithWrongCase, expectedBoth).SetName("Handling:EndsWith, UseFullName:true, IgnoreCase:true, Names:2-matches-full-endswith-ignorecase");
+                #endregion
             }
         }
     }
