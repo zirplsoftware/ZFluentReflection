@@ -40,19 +40,19 @@ namespace Zirpl.FluentReflection
 
             if (NameHandling == NameHandlingType.Whole)
             {
-                return memberInfos.Where(o => namesList.Contains(GetNameToCheck(o))).ToArray();
+                return memberInfos.Where(memberInfo => namesList.Contains(GetNameToCheck(memberInfo))).ToArray();
             }
             else if (NameHandling == NameHandlingType.StartsWith)
             {
-                return memberInfos.Where(o => namesList.Any(name => name.StartsWith(GetNameToCheck(o)))).ToArray();
+                return memberInfos.Where(memberInfo => namesList.Any(name => GetNameToCheck(memberInfo).StartsWith(name))).ToArray();
             }
             else if (NameHandling == NameHandlingType.EndsWith)
             {
-                return memberInfos.Where(o => namesList.Any(name => name.EndsWith(GetNameToCheck(o)))).ToArray();
+                return memberInfos.Where(memberInfo => namesList.Any(name => GetNameToCheck(memberInfo).EndsWith(name))).ToArray();
             }
             else // if (NameEvaluationHandling == NameEvaluationHandlingType.Contains)
             {
-                return memberInfos.Where(o => namesList.Any(name => name.Contains(GetNameToCheck(o)))).ToArray();
+                return memberInfos.Where(memberInfo => namesList.Any(name => GetNameToCheck(memberInfo).Contains(name))).ToArray();
             }
         }
     }

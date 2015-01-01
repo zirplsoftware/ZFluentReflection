@@ -103,7 +103,7 @@ namespace Zirpl.FluentReflection.Tests
                 criteria.Names = criteria.Names;
             }).ShouldThrow<InvalidOperationException>();
         }
-        
+
         [Test]
         public void TestFilterMatches_EdgeCases()
         {
@@ -111,27 +111,14 @@ namespace Zirpl.FluentReflection.Tests
             new MemberNameCriteria().FilterMatches(new MemberInfo[0]).Should().BeEmpty();
             new MemberNameCriteria().FilterMatches(null).Should().BeNull();
         }
-
-        // all of these cases will SKIP the FilterMatch logic because ShouldRunFilter returns false
-        [TestCase(false, NameHandlingTypeMock.Whole, null, Result = 2, TestName = "NoFlags_NoNames")]
-        [TestCase(false, NameHandlingTypeMock.Whole, new[] { "AnotherField" }, Result = 2, TestName = "NoFlags_1Names_0Matches")]
-        [TestCase(false, NameHandlingTypeMock.Whole, new[] { "PublicField" }, Result = 2, TestName = "NoFlags_1Names_1Matches")]
-        [TestCase(false, NameHandlingTypeMock.Whole, new[] { "AnotherField1", "AnotherField2" }, Result = 2, TestName = "NoFlags_2Names_0Matches")]
-        [TestCase(false, NameHandlingTypeMock.Whole, new[] { "PublicField", "AnotherField1" }, Result = 2, TestName = "NoFlags_2Names_1Matches")]
-        [TestCase(false, NameHandlingTypeMock.Whole, new[] { "PublicField", "PrivateField" }, Result = 2, TestName = "NoFlags_2Names_2Matches")]
-        // all of these cases will SKIP the FilterMatch logic because ShouldRunFilter returns false
-        [TestCase(true, NameHandlingTypeMock.Whole, null, Result = 2, TestName = "IgnoreCase_NoNames")]
-        [TestCase(true, NameHandlingTypeMock.Whole, new[] { "AnotherField" }, Result = 2, TestName = "IgnoreCase_1Names_0Matches")]
-        [TestCase(true, NameHandlingTypeMock.Whole, new[] { "PublicField" }, Result = 2, TestName = "IgnoreCase_1Names_1Matches")]
-        [TestCase(true, NameHandlingTypeMock.Whole, new[] { "AnotherField1", "AnotherField2" }, Result = 2, TestName = "IgnoreCase_2Names_0Matches")]
-        [TestCase(true, NameHandlingTypeMock.Whole, new[] { "PublicField", "AnotherField1" }, Result = 2, TestName = "IgnoreCase_2Names_1Matches")]
-        [TestCase(true, NameHandlingTypeMock.Whole, new[] { "PublicField", "PrivateField" }, Result = 2, TestName = "IgnoreCase_2Names_2Matches")]
-        public int TestFilterMatches(bool ignoreCase, NameHandlingTypeMock nameHandling, String[] names)
+        
+        [TestCaseSource("TestFilterMatches_TestCases")]
+        public void TestFilterMatches(bool ignoreCase, NameHandlingTypeMock nameHandling, String[] names, String[] expectedResultNames)
         {
             var fields = new MemberInfo[]
             {
-                typeof (Mock).GetField("PublicField"),
-                typeof (Mock).GetField("PrivateField", BindingFlags.Instance | BindingFlags.NonPublic)
+                typeof (Mock).GetField("Foo"),
+                typeof (Mock).GetField("Bar")
             };
             var criteria = new MemberNameCriteria()
             {
@@ -145,56 +132,70 @@ namespace Zirpl.FluentReflection.Tests
             }
             var result = criteria.FilterMatches(fields);
             result.Should().NotBeNull();
-            // TODO: need to test that the RIGHT fields are returned- input of the expected fields
-            return result.Count();
+            var resultNames = result.Select(o => o.Name);
+            resultNames.Count().Should().Be(expectedResultNames.Count());
+            if (expectedResultNames.Count() > 0)
+            {
+                resultNames.All(name => expectedResultNames.Contains(name)).Should().BeTrue();
+                expectedResultNames.All(name => resultNames.Contains(name)).Should().BeTrue();
+            }
         }
 
-        //[TestCaseSource("TestFilterMatches_Name_CaseData")]
-        //public bool TestFilterMatches_Name(MemberInfo[] memberInfos, String name, bool ignoreCase)
-        //{
-        //    var criteria = new MemberNameCriteria();
-        //    criteria.Names = name;
-        //    criteria.IgnoreCase = ignoreCase;
+        private IEnumerable TestFilterMatches_TestCases
+        {
+            get
+            {
+                String[] criteriaNone = null;
 
-        //    memberInfos.Should().NotBeNull();
-        //    memberInfos.Should().NotBeEmpty();
-        //    memberInfos.Count().Should().Be(1);
-        //    memberInfos[0].Should().NotBeNull();
-        //    var filteredMatches = new MemberTypeCriteria().FilterMatches(memberInfos);
-        //    filteredMatches.Should().NotBeNull();
+                var criteria1Whole = new[] { "Bar" };
+                var criteria1WholeWrongCase = new[] { "bar" };
+                var criteria1StartsWith = new[] { "Ba" };
+                var criteria1StartsWithWrongCase = new[] { "ba" };
+                var criteria1Contains = new[] { "a" };
+                var criteria1ContainsWrongCase = new[] { "A" };
+                var criteria1EndsWith = new[] { "ar" };
+                var criteria1EndsWithWrongCase = new[] { "AR" };
 
-        //    filteredMatches.Count().Should().BeLessOrEqualTo(1);
-        //    if (filteredMatches.Count() == 0) return false;
+                var criteria2Whole = new[] { "Bar", "Foo" };
+                var criteria2WholeWrongCase = new[] { "bar", "foo" };
+                var criteria2StartsWith = new[] { "Ba", "Fo" };
+                var criteria2StartsWithWrongCase = new[] { "ba", "fo" };
+                var criteria2Contains = new[] { "a", "o" };
+                var criteria2ContainsWrongCase = new[] { "A", "O" };
+                var criteria2EndsWith = new[] { "ar", "oo" };
+                var criteria2EndsWithWrongCase = new[] { "AR", "OO" };
 
-        //    // okay, we have it, just for sanity check
-        //    filteredMatches[0].Should().NotBeNull();
-        //    filteredMatches[0].Should().BeSameAs(memberInfos[0]);
-        //    return true;
-        //}
+                var expectedNone = new String[0];
+                var expectedFoo = new[] { "Foo" };
+                var expectedBar = new[] { "Bar" };
+                var expectedBoth = new[] { "Foo", "Bar" };
 
-        //private static IEnumerable TestFilterMatches_Name_CaseData
-        //{
-        //    get
-        //    {
-        //        // default case
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "PublicField", false).Returns(true);
-        //        // wrong name
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "ublicField", false).Returns(false);
-        //        // wrong casing
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "publicField", false).Returns(false);
-        //        // ignore casing- default case
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "PublicField", true).Returns(true);
-        //        // ignore casing- wrong name
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "ublicField", true).Returns(false);
-        //        // ignore casing
-        //        yield return new TestCaseData(new MemberInfo[] { typeof(Mock).GetField("PublicField") }, "publicField", true).Returns(true);
-        //    }
-        //}
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteriaNone, expectedBoth).SetName("EndsWith_0Names");
+
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1Whole, expectedBar).SetName("EndsWith_1Names_Whole");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1WholeWrongCase, expectedNone).SetName("EndsWith_1Names_WholeWrongCase");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1StartsWith, expectedNone).SetName("EndsWith_1Names_StartsWith");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1StartsWithWrongCase, expectedNone).SetName("EndsWith_1Names_StartsWithWrongCase");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1Contains, expectedNone).SetName("EndsWith_1Names_Contains");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1ContainsWrongCase, expectedNone).SetName("EndsWith_1Names_ContainsWrongCase");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1EndsWith, expectedBar).SetName("EndsWith_1Names_EndsWith");
+                yield return new TestCaseData(false, NameHandlingTypeMock.EndsWith, criteria1EndsWithWrongCase, expectedNone).SetName("EndsWith_1Names_EndsWithWrongCase");
+
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2Whole, expectedBoth).SetName("EndsWith_2Names_Whole");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2WholeWrongCase, expectedBoth).SetName("EndsWith_2Names_WholeWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2StartsWith, expectedNone).SetName("EndsWith_2Names_StartsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2StartsWithWrongCase, expectedNone).SetName("EndsWith_2Names_StartsWithWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2Contains, expectedFoo).SetName("EndsWith_2Names_Contains");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2ContainsWrongCase, expectedFoo).SetName("EndsWith_2Names_ContainsWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2EndsWith, expectedBoth).SetName("EndsWith_2Names_EndsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2EndsWithWrongCase, expectedBoth).SetName("EndsWith_2Names_EndsWithWrongCase");
+            }
+        }  
 
         public class Mock
         {
-            public int PublicField;
-            private int PrivateField;
+            public int Foo;
+            public int Bar;
         }
     }
 }
