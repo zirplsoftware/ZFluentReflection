@@ -9,7 +9,7 @@ namespace Zirpl.FluentReflection
         internal NestedTypeQuery(Type type)
             :base(type)
         {
-            _memberTypeCriteria.NestedType = true;
+            _memberTypeFlagsBuilder.NestedType = true;
             _typeCriteria = new TypeCriteria();
             _queryCriteriaList.Add(_typeCriteria);
         }

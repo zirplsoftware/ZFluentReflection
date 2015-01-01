@@ -67,14 +67,14 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberScopeCriteria.cs">
       <Link>Criteria\MemberScopeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberTypeCriteria.cs">
-      <Link>Criteria\MemberTypeCriteria.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MethodReturnTypeCriteria.cs">
       <Link>Criteria\MethodReturnTypeCriteria.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\NameCriteria.cs">
       <Link>Criteria\NameCriteria.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\NameHandlingType.cs">
+      <Link>Criteria\NameHandlingType.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyReadWriteCriteria.cs">
       <Link>Criteria\PropertyReadWriteCriteria.cs</Link>
@@ -216,7 +216,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

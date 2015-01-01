@@ -9,7 +9,7 @@ namespace Zirpl.FluentReflection
         internal ConstructorQuery(Type type)
             :base(type)
         {
-            _memberTypeCriteria.Constructor = true;
+            _memberTypeFlagsBuilder.Constructor = true;
         }
     }
 }

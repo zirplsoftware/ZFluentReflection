@@ -11,7 +11,7 @@ namespace Zirpl.FluentReflection
         internal FieldQuery(Type type)
             :base(type)
         {
-            _memberTypeCriteria.Field = true;
+            _memberTypeFlagsBuilder.Field = true;
             _fieldTypeCriteria = new FieldTypeCriteria();
             _queryCriteriaList.Add(_fieldTypeCriteria);
         }

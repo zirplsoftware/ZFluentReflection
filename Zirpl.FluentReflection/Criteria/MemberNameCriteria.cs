@@ -14,19 +14,16 @@ namespace Zirpl.FluentReflection
             { 
                 // at the moment, member names are ALWAYS handled by the service, so we can ignore things here
                 // UNLESS it is one of these nifty guys
-                return (Name != null || Names != null) && (StartsWith || EndsWith || Contains);
+                return Names != null && NameHandling != NameHandlingType.Whole;
             }
         }
 
         internal IEnumerable<String> GetNamesForDirectLookup()
         {
-            if ((Name != null
-                 || Names != null)
-                && !StartsWith
-                && !EndsWith
-                && !Contains)
+            if (Names != null
+                && NameHandling == NameHandlingType.Whole)
             {
-                return Names ?? new[] {Name};
+                return Names.ToArray();
             }
             return null;
         }

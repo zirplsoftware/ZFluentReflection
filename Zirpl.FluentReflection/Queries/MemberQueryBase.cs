@@ -14,8 +14,7 @@ namespace Zirpl.FluentReflection
         private readonly BindingFlagsBuilder _bindingFlagsBuilder;
         private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
         private readonly MemberScopeCriteria _memberScopeCriteria;
-        private readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
-        protected readonly MemberTypeCriteria _memberTypeCriteria;
+        protected readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
         protected readonly IList<IMemberInfoQueryCriteria> _queryCriteriaList;
         protected readonly MemberNameCriteria _memberNameCriteria;
 
@@ -25,14 +24,12 @@ namespace Zirpl.FluentReflection
             _memberScopeCriteria = new MemberScopeCriteria(type);
             _memberAccessibilityCriteria = new MemberAccessibilityCriteria();
             _memberNameCriteria = new MemberNameCriteria();
-            _memberTypeCriteria = new MemberTypeCriteria();
             _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, _memberNameCriteria);
-            _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder(_memberTypeCriteria);
+            _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder();
             _queryCriteriaList = new List<IMemberInfoQueryCriteria>();
             _queryCriteriaList.Add(_memberNameCriteria);
             _queryCriteriaList.Add(_memberAccessibilityCriteria);
             _queryCriteriaList.Add(_memberScopeCriteria);
-            _queryCriteriaList.Add(_memberTypeCriteria);
         }
 
         protected override string CacheKeyPrefix

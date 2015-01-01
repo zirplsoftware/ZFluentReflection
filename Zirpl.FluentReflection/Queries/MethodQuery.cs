@@ -12,7 +12,7 @@ namespace Zirpl.FluentReflection
             :base(type)
         {
             _returnTypeCriteria = new MethodReturnTypeCriteria();
-            _memberTypeCriteria.Method = true;
+            _memberTypeFlagsBuilder.Method = true;
             _queryCriteriaList.Add(_returnTypeCriteria);
         }
 

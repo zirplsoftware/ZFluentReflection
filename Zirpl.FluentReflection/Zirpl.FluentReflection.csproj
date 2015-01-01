@@ -48,10 +48,10 @@
     <Compile Include="Criteria\IMemberInfoQueryCriteria.cs" />
     <Compile Include="Criteria\MemberInfoQueryCriteriaBase.cs" />
     <Compile Include="Criteria\MemberScopeCriteria.cs" />
-    <Compile Include="Criteria\MemberTypeCriteria.cs" />
     <Compile Include="Criteria\MemberNameCriteria.cs" />
     <Compile Include="Criteria\MethodReturnTypeCriteria.cs" />
     <Compile Include="Criteria\NameCriteria.cs" />
+    <Compile Include="Criteria\NameHandlingType.cs" />
     <Compile Include="Criteria\PropertyReadWriteCriteria.cs" />
     <Compile Include="Criteria\PropertyTypeCriteria.cs" />
     <Compile Include="Criteria\TypeCriteria.cs" />
