@@ -85,9 +85,6 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeCriteria.cs">
       <Link>Criteria\TypeCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeFullNameCriteria.cs">
-      <Link>Criteria\TypeFullNameCriteria.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeNameCriteria.cs">
       <Link>Criteria\TypeNameCriteria.cs</Link>
     </Compile>

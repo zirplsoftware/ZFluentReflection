@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using NUnit.Framework.Constraints;
+using Zirpl.FluentReflection.Tests.Mocks;
 
 namespace Zirpl.FluentReflection.Tests
 {
@@ -183,23 +184,23 @@ namespace Zirpl.FluentReflection.Tests
                 yield return new TestCaseData(false, NameHandlingTypeMock.Whole, criteria2EndsWith, expectedBoth).SetName("Whole_2Names_EndsWith");
                 yield return new TestCaseData(false, NameHandlingTypeMock.Whole, criteria2EndsWithWrongCase, expectedBoth).SetName("Whole_2Names_EndsWithWrongCase");
 
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1Whole, expectedBoth).SetName("Whole_IgnoreCase1Names_Whole");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1WholeWrongCase, expectedBoth).SetName("Whole_IgnoreCase1Names_WholeWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1StartsWith, expectedBoth).SetName("Whole_IgnoreCase1Names_StartsWith");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1StartsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase1Names_StartsWithWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1Contains, expectedBoth).SetName("Whole_IgnoreCase1Names_Contains");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1ContainsWrongCase, expectedBoth).SetName("Whole_IgnoreCase1Names_ContainsWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1EndsWith, expectedBoth).SetName("Whole_IgnoreCase1Names_EndsWith");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1EndsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase1Names_EndsWithWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1Whole, expectedBoth).SetName("Whole_IgnoreCase_1Names_Whole");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1WholeWrongCase, expectedBoth).SetName("Whole_IgnoreCase_1Names_WholeWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1StartsWith, expectedBoth).SetName("Whole_IgnoreCase_1Names_StartsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1StartsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase_1Names_StartsWithWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1Contains, expectedBoth).SetName("Whole_IgnoreCase_1Names_Contains");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1ContainsWrongCase, expectedBoth).SetName("Whole_IgnoreCase_1Names_ContainsWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1EndsWith, expectedBoth).SetName("Whole_IgnoreCase_1Names_EndsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria1EndsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase_1Names_EndsWithWrongCase");
 
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2Whole, expectedBoth).SetName("Whole_IgnoreCase2Names_Whole");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2WholeWrongCase, expectedBoth).SetName("Whole_IgnoreCase2Names_WholeWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2StartsWith, expectedBoth).SetName("Whole_IgnoreCase2Names_StartsWith");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2StartsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase2Names_StartsWithWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2Contains, expectedBoth).SetName("Whole_IgnoreCase2Names_Contains");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2ContainsWrongCase, expectedBoth).SetName("Whole_IgnoreCase2Names_ContainsWrongCase");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2EndsWith, expectedBoth).SetName("Whole_IgnoreCase2Names_EndsWith");
-                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2EndsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase2Names_EndsWithWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2Whole, expectedBoth).SetName("Whole_IgnoreCase_2Names_Whole");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2WholeWrongCase, expectedBoth).SetName("Whole_IgnoreCase_2Names_WholeWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2StartsWith, expectedBoth).SetName("Whole_IgnoreCase_2Names_StartsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2StartsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase_2Names_StartsWithWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2Contains, expectedBoth).SetName("Whole_IgnoreCase_2Names_Contains");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2ContainsWrongCase, expectedBoth).SetName("Whole_IgnoreCase_2Names_ContainsWrongCase");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2EndsWith, expectedBoth).SetName("Whole_IgnoreCase_2Names_EndsWith");
+                yield return new TestCaseData(true, NameHandlingTypeMock.Whole, criteria2EndsWithWrongCase, expectedBoth).SetName("Whole_IgnoreCase_2Names_EndsWithWrongCase");
 
                 yield return new TestCaseData(false, NameHandlingTypeMock.StartsWith, criteriaNone, expectedBoth).SetName("StartsWith_0Names");
 
@@ -315,14 +316,6 @@ namespace Zirpl.FluentReflection.Tests
                 yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2EndsWith, expectedBoth).SetName("EndsWith_IgnoreCase_2Names_EndsWith");
                 yield return new TestCaseData(true, NameHandlingTypeMock.EndsWith, criteria2EndsWithWrongCase, expectedBoth).SetName("EndsWith_IgnoreCase_2Names_EndsWithWrongCase");
             }
-        }
-
-        public enum NameHandlingTypeMock
-        {
-            Whole = 0,
-            StartsWith = 1,
-            Contains = 2,
-            EndsWith = 3
         }
 
         public class Mock

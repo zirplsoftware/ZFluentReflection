@@ -2,8 +2,6 @@
 {
     internal sealed class MemberTypeFlagsBuilder
     {
-        // TOTEST: FilterMatches
-
         internal bool Constructor { get; set; }
         internal bool Event { get; set; }
         internal bool Field { get; set; }

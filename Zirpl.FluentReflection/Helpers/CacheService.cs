@@ -10,34 +10,34 @@ namespace Zirpl.FluentReflection
 {
     internal sealed class CacheService
     {
-        private static IDictionary<String, Object> _map;
+        private static IDictionary<String, Object> _cache;
 
-        private static IDictionary<String, Object> Map
+        private static IDictionary<String, Object> Cache
         {
             get
             {
-                if (_map == null)
+                if (_cache == null)
                 {
-                    System.Threading.Interlocked.CompareExchange(ref _map, new Dictionary<String, Object>(), null);
+                    System.Threading.Interlocked.CompareExchange(ref _cache, new Dictionary<String, Object>(), null);
                 }
-                return _map;
+                return _cache;
             }
         }
 
         internal void Set(String key, Object obj)
         {
-            Map[key] = obj;
+            Cache[key] = obj;
         }        
         internal Object Get(String key)
         {
             Object value = null;
-            Map.TryGetValue(key, out value);
+            Cache.TryGetValue(key, out value);
             return value;
         }
 
         internal void Clear()
         {
-            _map.Clear();
+            Cache.Clear();
         }
     }
 }

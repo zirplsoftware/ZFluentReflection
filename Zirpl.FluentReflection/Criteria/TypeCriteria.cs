@@ -10,7 +10,7 @@ namespace Zirpl.FluentReflection
         // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
 
         internal TypeNameCriteria NameCriteria { get; private set; }
-        internal TypeFullNameCriteria FullNameCriteria { get; private set; }
+        internal TypeNameCriteria FullNameCriteria { get; private set; }
         internal Type AssignableFrom { get; set; }
         internal IEnumerable<Type> AssignableFroms { get; set; }
         internal Type AssignableTo { get; set; }
@@ -20,7 +20,7 @@ namespace Zirpl.FluentReflection
         internal TypeCriteria()
         {
             NameCriteria = new TypeNameCriteria();
-            FullNameCriteria = new TypeFullNameCriteria();
+            FullNameCriteria = new TypeNameCriteria() {UseFullName = true};
             SubFilters.Add(NameCriteria);
             SubFilters.Add(FullNameCriteria);
         }

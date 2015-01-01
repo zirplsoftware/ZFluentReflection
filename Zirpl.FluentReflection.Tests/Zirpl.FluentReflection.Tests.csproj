@@ -53,7 +53,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Criteria\TypeNameCriteriaTests.cs" />
     <Compile Include="Criteria\MemberNameCriteriaTests.cs" />
+    <Compile Include="Helpers\CacheServiceTests.cs" />
+    <Compile Include="Helpers\MemberTypesFlagBuilderTests.cs" />
+    <Compile Include="Mocks\Bar.cs" />
+    <Compile Include="Mocks\Foo.cs" />
+    <Compile Include="Mocks\NameHandlingTypeMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
