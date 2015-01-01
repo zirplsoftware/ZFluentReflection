@@ -19,13 +19,13 @@ namespace Zirpl.FluentReflection
 
         ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFrom(Type type)
         {
-            _typeCriteria.AssignableFrom = type;
+            _typeCriteria.AssignableFroms = new [] {type};
             return this;
         }
 
         ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFrom<T>()
         {
-            _typeCriteria.AssignableFrom = typeof (T);
+            _typeCriteria.AssignableFroms = new[] { typeof(T) };
             return this;
         }
 
@@ -44,13 +44,13 @@ namespace Zirpl.FluentReflection
 
         ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableTo(Type type)
         {
-            _typeCriteria.AssignableTo = type;
+            _typeCriteria.AssignableTos = new[] { type };
             return this;
         }
 
         ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableTo<T>()
         {
-            _typeCriteria.AssignableTo = typeof(T);
+            _typeCriteria.AssignableTos = new[] { typeof(T) };
             return this;
         }
 
@@ -67,14 +67,9 @@ namespace Zirpl.FluentReflection
             return this;
         }
 
-        INameSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.Named()
+        ITypeNameSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.Named()
         {
-            return new NameSubQuery<TResult, TReturnQuery>(_returnQuery, _typeCriteria.NameCriteria);
-        }
-
-        INameSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.FullNamed()
-        {
-            return new NameSubQuery<TResult, TReturnQuery>(_returnQuery, _typeCriteria.FullNameCriteria);
+            return new TypeNameSubQuery<TResult, TReturnQuery>(_returnQuery, _typeCriteria.NameCriteria);
         }
 
         TReturnQuery ITypeSubQuery<TResult, TReturnQuery>.And()

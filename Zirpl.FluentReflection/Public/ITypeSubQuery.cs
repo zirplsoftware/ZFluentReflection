@@ -15,8 +15,7 @@ namespace Zirpl.FluentReflection
         ITypeSubQuery<TResult, TReturnQuery> AssignableTo<T>();
         ITypeSubQuery<TResult, TReturnQuery> AssignableToAll(IEnumerable<Type> types);
         ITypeSubQuery<TResult, TReturnQuery> AssignableToAny(IEnumerable<Type> types);
-        INameSubQuery<TResult, TReturnQuery> Named();
-        INameSubQuery<TResult, TReturnQuery> FullNamed();
+        ITypeNameSubQuery<TResult, TReturnQuery> Named();
         TReturnQuery And();
     }
 }

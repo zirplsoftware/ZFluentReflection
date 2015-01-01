@@ -6,13 +6,13 @@ namespace Zirpl.FluentReflection
     internal sealed class FieldQuery : NamedMemberQueryBase<FieldInfo, IFieldQuery>, 
         IFieldQuery
     {
-        private readonly FieldTypeCriteria _fieldTypeCriteria;
+        private readonly TypeCriteria _fieldTypeCriteria;
 
         internal FieldQuery(Type type)
             :base(type)
         {
             _memberTypeFlagsBuilder.Field = true;
-            _fieldTypeCriteria = new FieldTypeCriteria();
+            _fieldTypeCriteria = new TypeCriteria(TypeSource.FieldType);
             _queryCriteriaList.Add(_fieldTypeCriteria);
         }
 

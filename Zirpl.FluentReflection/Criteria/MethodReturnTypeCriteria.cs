@@ -7,10 +7,10 @@ namespace Zirpl.FluentReflection
     {
         internal bool Void { get; set; }
         internal bool NotVoid { get; set; }
-        
-        protected override Type GetTypeToCheck(MemberInfo memberInfo)
+
+        internal MethodReturnTypeCriteria()
+            :base(TypeSource.MethodReturnType)
         {
-            return ((MethodInfo)memberInfo).ReturnType;
         }
 
         protected override bool IsMatch(Type type)

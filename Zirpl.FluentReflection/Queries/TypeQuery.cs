@@ -15,7 +15,7 @@ namespace Zirpl.FluentReflection
         {
             _assemblyList = new List<Assembly>();
             _assemblyList.Add(assembly);
-            _typeCriteria = new TypeCriteria();
+            _typeCriteria = new TypeCriteria(TypeSource.Self);
         }
 #if !PORTABLE
         internal TypeQuery(AppDomain appDomain)
@@ -24,19 +24,19 @@ namespace Zirpl.FluentReflection
             {
                 _assemblyList.Add(assembly);
             }
-            _typeCriteria = new TypeCriteria();
+            _typeCriteria = new TypeCriteria(TypeSource.Self);
         }
 #endif
 
         ITypeQuery ITypeQuery.AssignableFrom(Type type)
         {
-            _typeCriteria.AssignableFrom = type;
+            _typeCriteria.AssignableFroms = new[] { type };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableFrom<T>()
         {
-            _typeCriteria.AssignableFrom = typeof(T);
+            _typeCriteria.AssignableFroms = new[] { typeof(T) };
             return this;
         }
 
@@ -55,13 +55,13 @@ namespace Zirpl.FluentReflection
 
         ITypeQuery ITypeQuery.AssignableTo(Type type)
         {
-            _typeCriteria.AssignableTo = type;
+            _typeCriteria.AssignableTos = new[] { type };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableTo<T>()
         {
-            _typeCriteria.AssignableTo = typeof(T);
+            _typeCriteria.AssignableTos = new[] { typeof(T) };
             return this;
         }
 
@@ -78,14 +78,9 @@ namespace Zirpl.FluentReflection
             return this;
         }
 
-        INameSubQuery<Type, ITypeQuery> ITypeQuery.Named()
+        ITypeNameSubQuery<Type, ITypeQuery> ITypeQuery.Named()
         {
-            return new NameSubQuery<Type, ITypeQuery>(this, _typeCriteria.NameCriteria);
-        }
-
-        INameSubQuery<Type, ITypeQuery> ITypeQuery.FullNamed()
-        {
-            return new NameSubQuery<Type, ITypeQuery>(this, _typeCriteria.FullNameCriteria);
+            return new TypeNameSubQuery<Type, ITypeQuery>(this, _typeCriteria.NameCriteria);
         }
 
         protected override string CacheKeyPrefix

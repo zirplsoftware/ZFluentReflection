@@ -46,12 +46,6 @@
     <Compile Include="..\Zirpl.FluentReflection\Accessors\PropertyAccessor.cs">
       <Link>Accessors\PropertyAccessor.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\EventHandlerTypeCriteria.cs">
-      <Link>Criteria\EventHandlerTypeCriteria.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\FieldTypeCriteria.cs">
-      <Link>Criteria\FieldTypeCriteria.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\IMemberInfoQueryCriteria.cs">
       <Link>Criteria\IMemberInfoQueryCriteria.cs</Link>
     </Compile>
@@ -79,14 +73,14 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyReadWriteCriteria.cs">
       <Link>Criteria\PropertyReadWriteCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyTypeCriteria.cs">
-      <Link>Criteria\PropertyTypeCriteria.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeCriteria.cs">
       <Link>Criteria\TypeCriteria.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeNameCriteria.cs">
       <Link>Criteria\TypeNameCriteria.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeSource.cs">
+      <Link>Criteria\TypeSource.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Helpers\BindingFlagsBuilder.cs">
       <Link>Helpers\BindingFlagsBuilder.cs</Link>
@@ -148,6 +142,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Public\IQueryResult.cs">
       <Link>Public\IQueryResult.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ITypeNameSubQuery.cs">
+      <Link>Public\ITypeNameSubQuery.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\ITypeQuerry.cs">
       <Link>Public\ITypeQuerry.cs</Link>
     </Compile>
@@ -198,6 +195,9 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\SubQueryBase.cs">
       <Link>Queries\SubQueries\SubQueryBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\TypeNameSubQuery.cs">
+      <Link>Queries\SubQueries\TypeNameSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\SubQueries\TypeSubQuery.cs">
       <Link>Queries\SubQueries\TypeSubQuery.cs</Link>

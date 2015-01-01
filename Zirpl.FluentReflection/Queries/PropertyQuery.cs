@@ -7,13 +7,13 @@ namespace Zirpl.FluentReflection
         IPropertyQuery
     {
         private readonly PropertyReadWriteCriteria _readWriteCriteria;
-        private readonly PropertyTypeCriteria _propertyTypeCriteria;
+        private readonly TypeCriteria _propertyTypeCriteria;
 
         internal PropertyQuery(Type type)
             :base(type)
         {
             _readWriteCriteria = new PropertyReadWriteCriteria();
-            _propertyTypeCriteria = new PropertyTypeCriteria();
+            _propertyTypeCriteria = new TypeCriteria(TypeSource.PropertyType);
             _memberTypeFlagsBuilder.Property = true;
             _queryCriteriaList.Add(_readWriteCriteria);
             _queryCriteriaList.Add(_propertyTypeCriteria);

@@ -43,8 +43,6 @@
     <Compile Include="Accessors\PropertyAccessor.cs" />
     <Compile Include="Accessors\InstanceTypeAccessor.cs" />
     <Compile Include="Criteria\MemberAccessibilityCriteria.cs" />
-    <Compile Include="Criteria\EventHandlerTypeCriteria.cs" />
-    <Compile Include="Criteria\FieldTypeCriteria.cs" />
     <Compile Include="Criteria\IMemberInfoQueryCriteria.cs" />
     <Compile Include="Criteria\MemberInfoQueryCriteriaBase.cs" />
     <Compile Include="Criteria\MemberScopeCriteria.cs" />
@@ -53,9 +51,9 @@
     <Compile Include="Criteria\NameCriteria.cs" />
     <Compile Include="Criteria\NameHandlingType.cs" />
     <Compile Include="Criteria\PropertyReadWriteCriteria.cs" />
-    <Compile Include="Criteria\PropertyTypeCriteria.cs" />
     <Compile Include="Criteria\TypeCriteria.cs" />
     <Compile Include="Criteria\TypeNameCriteria.cs" />
+    <Compile Include="Criteria\TypeSource.cs" />
     <Compile Include="Helpers\BindingFlagsBuilder.cs" />
     <Compile Include="Helpers\CacheService.cs" />
     <Compile Include="Helpers\MemberQueryService.cs" />
@@ -72,6 +70,7 @@
     <Compile Include="Public\IMemberTypeSubQuery.cs" />
     <Compile Include="Public\IMethodQuery.cs" />
     <Compile Include="Public\INamedMemberQuery.cs" />
+    <Compile Include="Public\ITypeNameSubQuery.cs" />
     <Compile Include="Public\INameSubQuery.cs" />
     <Compile Include="Public\INestedTypeQuery.cs" />
     <Compile Include="Public\IPropertyQuery.cs" />
@@ -90,6 +89,7 @@
     <Compile Include="Queries\SubQueries\MemberAccessibilitySubQuery.cs" />
     <Compile Include="Queries\SubQueries\MemberScopeSubQuery.cs" />
     <Compile Include="Queries\SubQueries\MemberTypeSubQuery.cs" />
+    <Compile Include="Queries\SubQueries\TypeNameSubQuery.cs" />
     <Compile Include="Queries\SubQueries\NameSubQuery.cs" />
     <Compile Include="Queries\SubQueries\SubQueryBase.cs" />
     <Compile Include="Queries\SubQueries\TypeSubQuery.cs" />

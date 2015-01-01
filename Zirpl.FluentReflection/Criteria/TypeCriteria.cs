@@ -9,20 +9,17 @@ namespace Zirpl.FluentReflection
     {
         // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
 
+        internal TypeSource TypeSource { get; private set; }
         internal TypeNameCriteria NameCriteria { get; private set; }
-        internal TypeNameCriteria FullNameCriteria { get; private set; }
-        internal Type AssignableFrom { get; set; }
         internal IEnumerable<Type> AssignableFroms { get; set; }
-        internal Type AssignableTo { get; set; }
         internal IEnumerable<Type> AssignableTos { get; set; }
         internal bool Any { get; set; }
 
-        internal TypeCriteria()
+        internal TypeCriteria(TypeSource typeSource)
         {
+            TypeSource = typeSource;
             NameCriteria = new TypeNameCriteria();
-            FullNameCriteria = new TypeNameCriteria() {UseFullName = true};
             SubFilters.Add(NameCriteria);
-            SubFilters.Add(FullNameCriteria);
         }
 
         // TODO: implement all these
@@ -48,16 +45,29 @@ namespace Zirpl.FluentReflection
             return memberInfos.Where(o => IsMatch(GetTypeToCheck(o))).ToArray();
         }
 
-        protected virtual Type GetTypeToCheck(MemberInfo memberInfo)
+        // only internal to be able to check it
+        protected internal Type GetTypeToCheck(MemberInfo memberInfo)
         {
-            return (Type) memberInfo;
+            switch (TypeSource)
+            {
+                case TypeSource.Self:
+                    return (Type)memberInfo;
+                case TypeSource.EventHandlerType:
+                    return ((EventInfo)memberInfo).EventHandlerType;
+                case TypeSource.FieldType:
+                    return ((FieldInfo)memberInfo).FieldType;
+                case TypeSource.MethodReturnType:
+                    return ((MethodInfo)memberInfo).ReturnType;
+                case TypeSource.PropertyType:
+                    return ((PropertyInfo)memberInfo).PropertyType;
+                default:
+                    throw new Exception("Unknown TypeSource: " + TypeSource.ToString());
+            }
         }
 
         protected virtual bool IsMatch(Type type)
         {
             if (type == null) return false;
-            if (AssignableFrom != null && !type.IsAssignableFrom(AssignableFrom)) return false;
-            if (AssignableTo != null && !AssignableTo.IsAssignableFrom(type)) return false;
             if (AssignableFroms != null && !Any && !AssignableFroms.All(type.IsAssignableFrom)) return false;
             if (AssignableTos != null && !Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
             if (AssignableFroms != null && Any && !AssignableFroms.Any(type.IsAssignableFrom)) return false;
@@ -69,9 +79,7 @@ namespace Zirpl.FluentReflection
         {
             get
             {
-                return AssignableFrom != null
-                       || AssignableFroms != null
-                       || AssignableTo != null
+                return AssignableFroms != null
                        || AssignableTos != null;
             }
         }

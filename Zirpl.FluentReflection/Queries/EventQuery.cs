@@ -6,13 +6,13 @@ namespace Zirpl.FluentReflection
     internal sealed class EventQuery : NamedMemberQueryBase<EventInfo, IEventQuery>, 
         IEventQuery
     {
-        private readonly EventHandlerTypeCriteria _eventHandlerTypeCriteria;
+        private readonly TypeCriteria _eventHandlerTypeCriteria;
 
         internal EventQuery(Type type)
             :base(type)
         {
             _memberTypeFlagsBuilder.Event = true;
-            _eventHandlerTypeCriteria = new EventHandlerTypeCriteria();
+            _eventHandlerTypeCriteria = new TypeCriteria(TypeSource.EventHandlerType);
             _queryCriteriaList.Add(_eventHandlerTypeCriteria);
         }
 
