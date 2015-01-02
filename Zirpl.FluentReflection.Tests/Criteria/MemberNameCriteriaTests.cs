@@ -17,7 +17,7 @@ namespace Zirpl.FluentReflection.Tests
     public class MemberNameCriteriaTests
     {
         [Test, Combinatorial]
-        public void TestShouldRunFilter(
+        public void TestShouldRun(
             [Values(0, 1, 2)]int numberOfNames,
             [Values(true, false)]bool ignoreCase,
             [Values(NameHandlingTypeMock.Whole, NameHandlingTypeMock.StartsWith, NameHandlingTypeMock.Contains, NameHandlingTypeMock.EndsWith)]NameHandlingTypeMock nameHandling)
@@ -36,7 +36,7 @@ namespace Zirpl.FluentReflection.Tests
                 }
                 criteria.Names = listOfNames;
             }
-            var result = criteria.ShouldRunFilter;
+            var result = criteria.ShouldRun;
             if (numberOfNames > 0
                 && nameHandling != NameHandlingTypeMock.Whole)
             {

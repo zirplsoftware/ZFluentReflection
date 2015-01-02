@@ -8,7 +8,8 @@ namespace Zirpl.FluentReflection
     {
         public static void ClearCache()
         {
-            new CacheService().Clear();
+            CacheService.ClearCache();
+            InstanceTypeAccessor.ClearCache();
         }
 
         public static PropertyAccessor<T> Property<T>(this Object obj, String name)

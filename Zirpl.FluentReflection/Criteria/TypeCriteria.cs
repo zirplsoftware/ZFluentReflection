@@ -42,7 +42,7 @@ namespace Zirpl.FluentReflection
         {
             TypeSource = typeSource;
             NameCriteria = new TypeNameCriteria();
-            SubFilters.Add(NameCriteria);
+            SubCriterias.Add(NameCriteria);
         }
 
         // TODO: implement all these
@@ -63,7 +63,7 @@ namespace Zirpl.FluentReflection
         //private IEnumerable<Type> _exactAny;
 
 
-        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(o => IsMatch(GetTypeToCheck(o))).ToArray();
         }
@@ -100,7 +100,7 @@ namespace Zirpl.FluentReflection
             return true;
         }
 
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get
             {

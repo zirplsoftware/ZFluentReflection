@@ -8,7 +8,7 @@ namespace Zirpl.FluentReflection
 {
     internal sealed class MemberNameCriteria : NameCriteria	
     {
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get
             { 

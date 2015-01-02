@@ -20,13 +20,13 @@ namespace Zirpl.FluentReflection
             return base.IsMatch(type);
         }
 
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get
             {
                 return Void
                        || NotVoid
-                       || base.ShouldRunFilter;
+                       || base.ShouldRun;
             }
         }
     }

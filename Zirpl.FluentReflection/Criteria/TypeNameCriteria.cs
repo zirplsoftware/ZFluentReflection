@@ -15,7 +15,7 @@ namespace Zirpl.FluentReflection
             return name;
         }
 
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get { return Names != null; }
         }

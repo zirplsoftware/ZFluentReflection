@@ -32,12 +32,12 @@ namespace Zirpl.FluentReflection
         }
 
 
-        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(IsMatch).ToArray();
         }
 
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get
             {

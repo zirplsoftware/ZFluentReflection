@@ -39,6 +39,14 @@ namespace Zirpl.FluentReflection
             return Map[type];
         }
 
+        internal static void ClearCache()
+        {
+            lock (Map)
+            {
+                Map.Clear();
+            }
+        }
+
         private readonly Type _type;
         private readonly IDictionary<String, PropertyInfo> _propertyAccessorMap;
         private readonly IDictionary<String, FieldInfo> _fieldAccessorMap;

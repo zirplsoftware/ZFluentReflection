@@ -17,7 +17,7 @@ namespace Zirpl.FluentReflection.Tests
     public class TypeNameCriteriaTests
     {
         [Test, Combinatorial]
-        public void TestShouldRunFilter(
+        public void TestShouldRun(
             [Values(0, 1, 2)]int numberOfNames,
             [Values(true, false)]bool ignoreCase,
             [Values(true, false)]bool useFullName,
@@ -38,7 +38,7 @@ namespace Zirpl.FluentReflection.Tests
                 }
                 criteria.Names = listOfNames;
             }
-            var result = criteria.ShouldRunFilter;
+            var result = criteria.ShouldRun;
             if (numberOfNames > 0)
             {
                 result.Should().BeTrue();

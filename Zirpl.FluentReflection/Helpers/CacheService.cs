@@ -24,6 +24,11 @@ namespace Zirpl.FluentReflection
             }
         }
 
+        internal static void ClearCache()
+        {
+            Cache.Clear();
+        }
+
         internal void Set(String key, Object obj)
         {
             Cache[key] = obj;
@@ -33,11 +38,6 @@ namespace Zirpl.FluentReflection
             Object value = null;
             Cache.TryGetValue(key, out value);
             return value;
-        }
-
-        internal void Clear()
-        {
-            Cache.Clear();
         }
     }
 }

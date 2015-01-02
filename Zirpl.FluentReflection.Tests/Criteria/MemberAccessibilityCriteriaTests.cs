@@ -15,7 +15,7 @@ namespace Zirpl.FluentReflection.Tests
 
         #region ShouldRunFilter
         [Test, Combinatorial]
-        public void TestShouldRunFilter(
+        public void TestShouldRun(
             [Values(true, false)]bool _public,
             [Values(true, false)]bool _private,
             [Values(true, false)]bool _protected,
@@ -40,11 +40,11 @@ namespace Zirpl.FluentReflection.Tests
                     && _internal
                     && protectedInternal))
             {
-                criteria.ShouldRunFilter.Should().BeTrue();
+                criteria.ShouldRun.Should().BeTrue();
             }
             else
             {
-                criteria.ShouldRunFilter.Should().BeFalse();
+                criteria.ShouldRun.Should().BeFalse();
             }
         }
 
@@ -438,7 +438,7 @@ namespace Zirpl.FluentReflection.Tests
             var result = criteria.GetMatches(memberList.ToArray());
             result.Should().NotBeNull();
 
-            if (criteria.ShouldRunFilter)
+            if (criteria.ShouldRun)
             {
                 result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsPrivate).Should().Be(_private);
                 result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsPublic).Should().Be(_public);
@@ -487,7 +487,7 @@ namespace Zirpl.FluentReflection.Tests
 
             var result = criteria.GetMatches(memberList.ToArray());
             result.Should().NotBeNull();
-            if (criteria.ShouldRunFilter)
+            if (criteria.ShouldRun)
             {
                 switch (namePrefix)
                 {

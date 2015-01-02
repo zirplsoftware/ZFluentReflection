@@ -12,12 +12,12 @@ namespace Zirpl.FluentReflection
         internal bool ProtectedInternal { get; set; }
         internal bool Internal { get; set; }
         
-        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(IsMatch).ToArray();
         }
 
-        protected internal override bool ShouldRunFilter
+        protected internal override bool ShouldRun
         {
             get
             {

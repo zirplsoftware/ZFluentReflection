@@ -9,33 +9,26 @@ namespace Zirpl.FluentReflection
 {
     internal abstract class MemberInfoQueryCriteriaBase : IMemberInfoQueryCriteria
     {
-        protected IList<MemberInfoQueryCriteriaBase> SubFilters { get; private set; }
+        protected IList<MemberInfoQueryCriteriaBase> SubCriterias { get; private set; }
 
         internal MemberInfoQueryCriteriaBase()
         {
-            SubFilters = new List<MemberInfoQueryCriteriaBase>();
+            SubCriterias = new List<MemberInfoQueryCriteriaBase>();
         }
 
         public MemberInfo[] GetMatches(MemberInfo[] memberInfos)
         {
             MemberInfo[] result = memberInfos;
-            if (ShouldRunFilter)
+            if (ShouldRun)
             {
-                result = DoGetMatches(result);
+                result = RunGetMatches(result);
             }
             // run the subfilters too
-            foreach (var subFilter in SubFilters)
-            {
-                if (subFilter.ShouldRunFilter)
-                {
-                    result = subFilter.DoGetMatches(result);
-                }
-            }
-            return result;
+            return SubCriterias.Where(subCriteria => subCriteria.ShouldRun).Aggregate(result, (current, subCriteria) => subCriteria.RunGetMatches(current));
         }
 
-        protected abstract MemberInfo[] DoGetMatches(MemberInfo[] memberInfos);
+        protected abstract MemberInfo[] RunGetMatches(MemberInfo[] memberInfos);
 
-        protected internal abstract bool ShouldRunFilter { get; }
+        protected internal abstract bool ShouldRun { get; }
     }
 }

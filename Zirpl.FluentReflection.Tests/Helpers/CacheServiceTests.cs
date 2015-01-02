@@ -14,7 +14,7 @@ namespace Zirpl.FluentReflection.Tests
         [SetUp]
         public void SetUp()
         {
-            new CacheService().Clear();
+            CacheService.ClearCache();
         }
 
         [Test, Sequential]
@@ -52,7 +52,7 @@ namespace Zirpl.FluentReflection.Tests
         public void TestClear()
         {
             new CacheService().Set("key1", 1);
-            new CacheService().Clear();
+            CacheService.ClearCache();
             new CacheService().Get("key1").Should().BeNull();
         }
     }

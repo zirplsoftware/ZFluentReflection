@@ -29,7 +29,7 @@ namespace Zirpl.FluentReflection
             return IgnoreCase ? memberInfo.Name.ToLowerInvariant() : memberInfo.Name;
         }
 
-        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
         {
             // prep it, so that we can just use the IEnumerable
             var namesList = new List<string>();
