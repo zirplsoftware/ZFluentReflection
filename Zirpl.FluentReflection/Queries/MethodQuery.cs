@@ -12,8 +12,8 @@ namespace Zirpl.FluentReflection
             :base(type)
         {
             _returnTypeCriteria = new MethodReturnTypeCriteria();
-            _memberTypeFlagsBuilder.Method = true;
-            _queryCriteriaList.Add(_returnTypeCriteria);
+            MemberTypeFlagsBuilder.Method = true;
+            QueryCriteriaList.Add(_returnTypeCriteria);
         }
 
         ITypeSubQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()

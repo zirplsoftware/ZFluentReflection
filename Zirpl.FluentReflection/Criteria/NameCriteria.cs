@@ -17,9 +17,8 @@ namespace Zirpl.FluentReflection
             set
             {
                 if (value == null) throw new ArgumentNullException("value");
-                if (!value.Any()) throw new ArgumentException("names must have at least one entry", "value");
-                if (value.Any(String.IsNullOrEmpty)) throw new ArgumentException("An entry in the names provided was null", "value");
-                if (_names != null) throw new InvalidOperationException("Cannot call Names twice.");
+                if (!value.Any()) throw new ArgumentException("Must have at least one entry", "value");
+                if (value.Any(String.IsNullOrEmpty)) throw new ArgumentException("An entry is null", "value");
 
                 _names = value;
             }

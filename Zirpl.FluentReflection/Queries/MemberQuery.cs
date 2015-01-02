@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection
 
         IMemberTypeSubQuery IMemberQuery.OfMemberType()
         {
-            return new MemberTypeSubQuery(this, _memberTypeFlagsBuilder);
+            return new MemberTypeSubQuery(this, MemberTypeFlagsBuilder);
         }
     }
 }

@@ -89,12 +89,6 @@ namespace Zirpl.FluentReflection.Tests
             new Action(() => new MemberNameCriteria().Names = new String[0]).ShouldThrow<ArgumentException>();
             new Action(() => new MemberNameCriteria().Names = new String[] { null }).ShouldThrow<ArgumentException>();
             new Action(() => new MemberNameCriteria().Names = new[] { String.Empty }).ShouldThrow<ArgumentException>();
-            new Action(() =>
-            {
-                var criteria = new MemberNameCriteria();
-                criteria.Names = new[] { "tests" };
-                criteria.Names = criteria.Names;
-            }).ShouldThrow<InvalidOperationException>();
         }
 
         [Test]

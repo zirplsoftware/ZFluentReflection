@@ -11,9 +11,9 @@ namespace Zirpl.FluentReflection
         internal EventQuery(Type type)
             :base(type)
         {
-            _memberTypeFlagsBuilder.Event = true;
+            MemberTypeFlagsBuilder.Event = true;
             _eventHandlerTypeCriteria = new TypeCriteria(TypeSource.EventHandlerType);
-            _queryCriteriaList.Add(_eventHandlerTypeCriteria);
+            QueryCriteriaList.Add(_eventHandlerTypeCriteria);
         }
 
         ITypeSubQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()

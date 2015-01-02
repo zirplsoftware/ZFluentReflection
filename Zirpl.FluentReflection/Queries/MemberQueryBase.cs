@@ -14,43 +14,43 @@ namespace Zirpl.FluentReflection
         private readonly BindingFlagsBuilder _bindingFlagsBuilder;
         private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
         private readonly MemberScopeCriteria _memberScopeCriteria;
-        protected readonly MemberTypeFlagsBuilder _memberTypeFlagsBuilder;
-        protected readonly IList<IMemberInfoQueryCriteria> _queryCriteriaList;
-        protected readonly MemberNameCriteria _memberNameCriteria;
+        protected readonly MemberTypeFlagsBuilder MemberTypeFlagsBuilder;
+        protected readonly IList<IMemberInfoQueryCriteria> QueryCriteriaList;
+        protected readonly MemberNameCriteria MemberNameCriteria;
 
         internal MemberQueryBase(Type type)
         {
             _type = type;
             _memberScopeCriteria = new MemberScopeCriteria(type);
             _memberAccessibilityCriteria = new MemberAccessibilityCriteria();
-            _memberNameCriteria = new MemberNameCriteria();
-            _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, _memberNameCriteria);
-            _memberTypeFlagsBuilder = new MemberTypeFlagsBuilder();
-            _queryCriteriaList = new List<IMemberInfoQueryCriteria>();
-            _queryCriteriaList.Add(_memberNameCriteria);
-            _queryCriteriaList.Add(_memberAccessibilityCriteria);
-            _queryCriteriaList.Add(_memberScopeCriteria);
+            MemberNameCriteria = new MemberNameCriteria();
+            _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, MemberNameCriteria);
+            MemberTypeFlagsBuilder = new MemberTypeFlagsBuilder();
+            QueryCriteriaList = new List<IMemberInfoQueryCriteria>
+            {
+                MemberNameCriteria,
+                _memberAccessibilityCriteria,
+                _memberScopeCriteria
+            };
         }
 
         protected override string CacheKeyPrefix
         {
+            // example: for COnstructors this would return: {typeFullName}|ConstructorQuery
             get { return _type.FullName + "|" + this.GetType().Name; }
         }
 
         protected override IEnumerable<TMemberInfo> ExecuteQuery()
         {
             var memberQueryService = new MemberQueryService(_type);
-            var names = _memberNameCriteria.GetNamesForDirectLookup();
-            var matches = memberQueryService.FindMembers(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
+            var names = MemberNameCriteria.GetNamesForDirectLookup();
+            var matches = memberQueryService.FindMembers(MemberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
             if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
             {
-                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(_memberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
+                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(MemberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
                 matches = matches.Union(privateMatches).ToArray();
             }
-            foreach (var memberInfoQueryCriteria in _queryCriteriaList)
-            {
-                matches = memberInfoQueryCriteria.FilterMatches(matches);
-            }
+            matches = QueryCriteriaList.Aggregate(matches, (current, memberInfoQueryCriteria) => memberInfoQueryCriteria.FilterMatches(current));
             var final = matches.Select(o => (TMemberInfo)o);
             return final;
         }

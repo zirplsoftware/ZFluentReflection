@@ -14,9 +14,9 @@ namespace Zirpl.FluentReflection
         {
             _readWriteCriteria = new PropertyReadWriteCriteria();
             _propertyTypeCriteria = new TypeCriteria(TypeSource.PropertyType);
-            _memberTypeFlagsBuilder.Property = true;
-            _queryCriteriaList.Add(_readWriteCriteria);
-            _queryCriteriaList.Add(_propertyTypeCriteria);
+            MemberTypeFlagsBuilder.Property = true;
+            QueryCriteriaList.Add(_readWriteCriteria);
+            QueryCriteriaList.Add(_propertyTypeCriteria);
         }
 
         ITypeSubQuery<PropertyInfo, IPropertyQuery> IPropertyQuery.OfPropertyType()

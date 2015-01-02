@@ -30,24 +30,32 @@ namespace Zirpl.FluentReflection
 
         ITypeQuery ITypeQuery.AssignableFrom(Type type)
         {
+            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+
             _typeCriteria.AssignableFroms = new[] { type };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableFrom<T>()
         {
+            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+
             _typeCriteria.AssignableFroms = new[] { typeof(T) };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableFromAll(IEnumerable<Type> types)
         {
+            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+
             _typeCriteria.AssignableFroms = types;
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableFromAny(IEnumerable<Type> types)
         {
+            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+
             _typeCriteria.AssignableFroms = types;
             _typeCriteria.Any = true;
             return this;
@@ -55,24 +63,32 @@ namespace Zirpl.FluentReflection
 
         ITypeQuery ITypeQuery.AssignableTo(Type type)
         {
+            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+
             _typeCriteria.AssignableTos = new[] { type };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableTo<T>()
         {
+            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+
             _typeCriteria.AssignableTos = new[] { typeof(T) };
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableToAll(IEnumerable<Type> types)
         {
+            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+
             _typeCriteria.AssignableTos = types;
             return this;
         }
 
         ITypeQuery ITypeQuery.AssignableToAny(IEnumerable<Type> types)
         {
+            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+
             _typeCriteria.AssignableTos = types;
             _typeCriteria.Any = true;
             return this;

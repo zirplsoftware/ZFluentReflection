@@ -8,12 +8,35 @@ namespace Zirpl.FluentReflection
     internal class TypeCriteria : MemberInfoQueryCriteriaBase
     {
         // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
-
+        private IEnumerable<Type> _assignableFroms;
+        private IEnumerable<Type> _assignableTos;
         internal TypeSource TypeSource { get; private set; }
         internal TypeNameCriteria NameCriteria { get; private set; }
-        internal IEnumerable<Type> AssignableFroms { get; set; }
-        internal IEnumerable<Type> AssignableTos { get; set; }
         internal bool Any { get; set; }
+        internal IEnumerable<Type> AssignableFroms
+        {
+            get { return _assignableFroms; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                if (!value.Any()) throw new ArgumentException("Must have at least one entry", "value");
+                if (value.Any(type => type == null)) throw new ArgumentException("An entry is null", "value");
+
+                _assignableFroms = value;
+            }
+        }
+        internal IEnumerable<Type> AssignableTos
+        {
+            get { return _assignableTos; }
+            set
+            {
+                if (value == null) throw new ArgumentNullException("value");
+                if (!value.Any()) throw new ArgumentException("Must have at least one entry", "value");
+                if (value.Any(type => type == null)) throw new ArgumentException("An entry is null", "value");
+
+                _assignableTos = value;
+            }
+        }
 
         internal TypeCriteria(TypeSource typeSource)
         {
