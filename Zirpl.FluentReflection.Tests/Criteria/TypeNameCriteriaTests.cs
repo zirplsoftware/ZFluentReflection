@@ -59,15 +59,15 @@ namespace Zirpl.FluentReflection.Tests
         }
 
         [Test]
-        public void TestFilterMatches_EdgeCases()
+        public void TestGetMatches_EdgeCases()
         {
-            new TypeNameCriteria().FilterMatches(new Type[0]).Should().NotBeNull();
-            new TypeNameCriteria().FilterMatches(new Type[0]).Should().BeEmpty();
-            new TypeNameCriteria().FilterMatches(null).Should().BeNull();
+            new TypeNameCriteria().GetMatches(new Type[0]).Should().NotBeNull();
+            new TypeNameCriteria().GetMatches(new Type[0]).Should().BeEmpty();
+            new TypeNameCriteria().GetMatches(null).Should().BeNull();
         }
 
-        [TestCaseSource("TestFilterMatches_NotFullName_TestCases")]
-        public void TestFilterMatches(bool ignoreCase, bool useFullName, NameHandlingTypeMock nameHandling, String[] names, String[] expectedResultNames)
+        [TestCaseSource("TestGetMatches_NotFullName_TestCases")]
+        public void TestGetMatches(bool ignoreCase, bool useFullName, NameHandlingTypeMock nameHandling, String[] names, String[] expectedResultNames)
         {
             var fields = new MemberInfo[]
             {
@@ -85,7 +85,7 @@ namespace Zirpl.FluentReflection.Tests
             {
                 criteria.Names = names;
             }
-            var result = criteria.FilterMatches(fields);
+            var result = criteria.GetMatches(fields);
             result.Should().NotBeNull();
             var resultNames = result.Select(o => o.Name);
             resultNames.Count().Should().Be(expectedResultNames.Count());
@@ -96,7 +96,7 @@ namespace Zirpl.FluentReflection.Tests
             }
         }
 
-        private IEnumerable TestFilterMatches_NotFullName_TestCases
+        private IEnumerable TestGetMatches_NotFullName_TestCases
         {
             get
             {

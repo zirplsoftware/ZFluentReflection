@@ -12,7 +12,7 @@ namespace Zirpl.FluentReflection
         internal bool ProtectedInternal { get; set; }
         internal bool Internal { get; set; }
         
-        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(IsMatch).ToArray();
         }
@@ -32,9 +32,11 @@ namespace Zirpl.FluentReflection
             }
         }
 
+        // ONLY internal for testing
         private bool IsMatch(MemberInfo memberInfo)
         {
-            // PUBLIC: DON'T bother checking ANYTHING public as that is COMPLETELY handled by the binding flags
+            if (memberInfo == null) return false;
+            
             if (memberInfo is MethodBase)
             {
                 var method = (MethodBase)memberInfo;
@@ -50,13 +52,11 @@ namespace Zirpl.FluentReflection
             else if (memberInfo is FieldInfo)
             {
                 var field = (FieldInfo)memberInfo;
-                // presence here alone is enough to pass a Public
-                if (field.IsPublic) return true;
-
+                if (field.IsPublic && !Public) return false;
                 if (field.IsPrivate && !Private) return false;
                 if (field.IsFamily && !Protected) return false;
-                if (field.IsFamilyAndAssembly && !ProtectedInternal) return false;
                 if (field.IsAssembly && !Internal) return false;
+                if (field.IsFamilyOrAssembly && !ProtectedInternal) return false;
             }
             else if (memberInfo is PropertyInfo)
             {
@@ -69,13 +69,11 @@ namespace Zirpl.FluentReflection
             {
                 // nested types
                 var type = (Type)memberInfo;
-                // presence here alone is enough to pass a Public
-                if (type.IsPublic) return true;
-
+                if (type.IsNestedPublic && !Public) return false;
                 if (type.IsNestedPrivate && !Private) return false;
                 if (type.IsNestedFamily && !Protected) return false;
-                if (type.IsNestedFamANDAssem && !ProtectedInternal) return false;
                 if (type.IsNestedAssembly && !Internal) return false;
+                if (type.IsNestedFamORAssem && !ProtectedInternal) return false;
             }
             else
             {
@@ -87,13 +85,11 @@ namespace Zirpl.FluentReflection
         private bool IsMethodMatch(MethodBase method)
         {
             if (method == null) return false;
-            // presence here alone is enough to pass a Public
-            if (method.IsPublic) return true;
-
+            if (method.IsPublic && !Public) return false;
             if (method.IsPrivate && !Private) return false;
             if (method.IsFamily && !Protected) return false;
-            if (method.IsFamilyAndAssembly && !ProtectedInternal) return false;
             if (method.IsAssembly && !Internal) return false;
+            if (method.IsFamilyOrAssembly && !ProtectedInternal) return false;
             return true;
         }
 

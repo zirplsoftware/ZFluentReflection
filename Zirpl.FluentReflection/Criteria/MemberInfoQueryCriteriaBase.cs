@@ -16,25 +16,25 @@ namespace Zirpl.FluentReflection
             SubFilters = new List<MemberInfoQueryCriteriaBase>();
         }
 
-        public MemberInfo[] FilterMatches(MemberInfo[] memberInfos)
+        public MemberInfo[] GetMatches(MemberInfo[] memberInfos)
         {
             MemberInfo[] result = memberInfos;
             if (ShouldRunFilter)
             {
-                result = DoFilterMatches(result);
+                result = DoGetMatches(result);
             }
             // run the subfilters too
             foreach (var subFilter in SubFilters)
             {
                 if (subFilter.ShouldRunFilter)
                 {
-                    result = subFilter.DoFilterMatches(result);
+                    result = subFilter.DoGetMatches(result);
                 }
             }
             return result;
         }
 
-        protected abstract MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos);
+        protected abstract MemberInfo[] DoGetMatches(MemberInfo[] memberInfos);
 
         protected internal abstract bool ShouldRunFilter { get; }
     }

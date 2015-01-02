@@ -7,7 +7,6 @@ namespace Zirpl.FluentReflection
 {
     internal class TypeCriteria : MemberInfoQueryCriteriaBase
     {
-        // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
         private IEnumerable<Type> _assignableFroms;
         private IEnumerable<Type> _assignableTos;
         internal TypeSource TypeSource { get; private set; }
@@ -63,12 +62,12 @@ namespace Zirpl.FluentReflection
         //private IEnumerable<Type> _exactAny;
 
 
-        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(o => IsMatch(GetTypeToCheck(o))).ToArray();
         }
 
-        // only internal to be able to check it
+        // only internal to be able to test it
         protected internal Type GetTypeToCheck(MemberInfo memberInfo)
         {
             switch (TypeSource)
@@ -90,6 +89,8 @@ namespace Zirpl.FluentReflection
 
         protected virtual bool IsMatch(Type type)
         {
+            // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
+
             if (type == null) return false;
             if (AssignableFroms != null && !Any && !AssignableFroms.All(type.IsAssignableFrom)) return false;
             if (AssignableTos != null && !Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;

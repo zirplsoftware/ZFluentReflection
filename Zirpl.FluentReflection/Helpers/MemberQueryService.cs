@@ -31,7 +31,7 @@ namespace Zirpl.FluentReflection
                 while (type != null
                     && levelsDeeper > 0)
                 {
-                    list.AddRange(accessibilityEvaluator.FilterMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
+                    list.AddRange(accessibilityEvaluator.GetMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
                     type = type.BaseType;
                     levelsDeeper -= 1;
                 }
@@ -41,7 +41,7 @@ namespace Zirpl.FluentReflection
                 var type = _type;
                 while (type != null)
                 {
-                    list.AddRange(accessibilityEvaluator.FilterMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
+                    list.AddRange(accessibilityEvaluator.GetMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
                     type = type.BaseType;
                 }
             }

@@ -32,7 +32,7 @@ namespace Zirpl.FluentReflection
         }
 
 
-        protected override MemberInfo[] DoFilterMatches(MemberInfo[] memberInfos)
+        protected override MemberInfo[] DoGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(IsMatch).ToArray();
         }

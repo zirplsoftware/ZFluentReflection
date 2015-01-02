@@ -109,7 +109,7 @@ namespace Zirpl.FluentReflection
             var matches = (from assembly in _assemblyList.Distinct()
                            from type in assembly.GetTypes()
                            select (MemberInfo)type).ToArray();
-            return _typeCriteria.FilterMatches(matches).Select(o => (Type)o);
+            return _typeCriteria.GetMatches(matches).Select(o => (Type)o);
         }
     }
 }

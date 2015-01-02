@@ -5,6 +5,6 @@ namespace Zirpl.FluentReflection
 {
     internal interface IMemberInfoQueryCriteria
     {
-        MemberInfo[] FilterMatches(MemberInfo[] memberInfos);
+        MemberInfo[] GetMatches(MemberInfo[] memberInfos);
     }
 }
