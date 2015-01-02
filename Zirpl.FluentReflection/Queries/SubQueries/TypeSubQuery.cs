@@ -46,7 +46,7 @@ namespace Zirpl.FluentReflection
             if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
             _typeCriteria.AssignableFroms = types;
-            _typeCriteria.Any = true;
+            _typeCriteria.AssignableFromAny = true;
             return this;
         }
 
@@ -79,7 +79,7 @@ namespace Zirpl.FluentReflection
             if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
             _typeCriteria.AssignableTos = types;
-            _typeCriteria.Any = true;
+            _typeCriteria.AssignableToAny = true;
             return this;
         }
 

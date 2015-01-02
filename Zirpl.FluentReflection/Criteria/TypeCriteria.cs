@@ -11,7 +11,7 @@ namespace Zirpl.FluentReflection
         private IEnumerable<Type> _assignableTos;
         internal TypeSource TypeSource { get; private set; }
         internal TypeNameCriteria NameCriteria { get; private set; }
-        internal bool Any { get; set; }
+        internal bool AssignableFromAny { get; set; }
         internal IEnumerable<Type> AssignableFroms
         {
             get { return _assignableFroms; }
@@ -24,6 +24,7 @@ namespace Zirpl.FluentReflection
                 _assignableFroms = value;
             }
         }
+        internal bool AssignableToAny { get; set; }
         internal IEnumerable<Type> AssignableTos
         {
             get { return _assignableTos; }
@@ -92,10 +93,10 @@ namespace Zirpl.FluentReflection
             // TODO: how can these be used? Type.FindInterfaces, Type.IsIstanceOf, Type.IsSubClassOf
 
             if (type == null) return false;
-            if (AssignableFroms != null && !Any && !AssignableFroms.All(type.IsAssignableFrom)) return false;
-            if (AssignableTos != null && !Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
-            if (AssignableFroms != null && Any && !AssignableFroms.Any(type.IsAssignableFrom)) return false;
-            if (AssignableTos != null && Any && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
+            if (AssignableFroms != null && AssignableFromAny && !AssignableFroms.Any(type.IsAssignableFrom)) return false;
+            if (AssignableFroms != null && !AssignableFromAny && !AssignableFroms.All(type.IsAssignableFrom)) return false;
+            if (AssignableTos != null && AssignableToAny && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
+            if (AssignableTos != null && !AssignableToAny && !AssignableTos.All(o => o.IsAssignableFrom(type))) return false;
             return true;
         }
 
