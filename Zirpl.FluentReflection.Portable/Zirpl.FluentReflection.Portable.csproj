@@ -61,6 +61,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MemberScopeCriteria.cs">
       <Link>Criteria\MemberScopeCriteria.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\MethodCriteria.cs">
+      <Link>Criteria\MethodCriteria.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\MethodReturnTypeCriteria.cs">
       <Link>Criteria\MethodReturnTypeCriteria.cs</Link>
     </Compile>
@@ -70,8 +73,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Criteria\NameHandlingType.cs">
       <Link>Criteria\NameHandlingType.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyReadWriteCriteria.cs">
-      <Link>Criteria\PropertyReadWriteCriteria.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Criteria\PropertyCriteria.cs">
+      <Link>Criteria\PropertyCriteria.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Criteria\TypeCriteria.cs">
       <Link>Criteria\TypeCriteria.cs</Link>

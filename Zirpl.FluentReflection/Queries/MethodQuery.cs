@@ -6,19 +6,19 @@ namespace Zirpl.FluentReflection
     internal sealed class MethodQuery : NamedMemberQueryBase<MethodInfo, IMethodQuery>,
         IMethodQuery
     {
-        private readonly MethodReturnTypeCriteria _returnTypeCriteria;
+        private readonly MethodCriteria _methodCriteria;
 
         internal MethodQuery(Type type)
             :base(type)
         {
-            _returnTypeCriteria = new MethodReturnTypeCriteria();
+            _methodCriteria = new MethodCriteria();
             MemberTypeFlagsBuilder.Method = true;
-            QueryCriteriaList.Add(_returnTypeCriteria);
+            QueryCriteriaList.Add(_methodCriteria);
         }
 
         ITypeSubQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()
         {
-            return new TypeSubQuery<MethodInfo, IMethodQuery>(this, _returnTypeCriteria);
+            return new TypeSubQuery<MethodInfo, IMethodQuery>(this, _methodCriteria.ReturnTypeCriteria);
         }
     }
 }

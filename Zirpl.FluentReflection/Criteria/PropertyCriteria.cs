@@ -3,10 +3,17 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
-    internal sealed class PropertyReadWriteCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class PropertyCriteria : MemberInfoQueryCriteriaBase
     {
+        internal TypeCriteria PropertyTypeCriteria { get; private set; }
         internal bool CanRead { get; set; }
         internal bool CanWrite { get; set; }
+
+        internal PropertyCriteria()
+        {
+            PropertyTypeCriteria = new TypeCriteria(TypeSource.PropertyType);
+            SubCriterias.Add(PropertyTypeCriteria);
+        }
 
         private bool IsMatch(MemberInfo memberInfo)
         {

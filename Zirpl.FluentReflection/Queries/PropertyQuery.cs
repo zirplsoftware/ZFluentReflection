@@ -6,40 +6,37 @@ namespace Zirpl.FluentReflection
     internal sealed class PropertyQuery : NamedMemberQueryBase<PropertyInfo, IPropertyQuery>,
         IPropertyQuery
     {
-        private readonly PropertyReadWriteCriteria _readWriteCriteria;
-        private readonly TypeCriteria _propertyTypeCriteria;
+        private readonly PropertyCriteria _propertyCriteria;
 
         internal PropertyQuery(Type type)
             :base(type)
         {
-            _readWriteCriteria = new PropertyReadWriteCriteria();
-            _propertyTypeCriteria = new TypeCriteria(TypeSource.PropertyType);
+            _propertyCriteria = new PropertyCriteria();
             MemberTypeFlagsBuilder.Property = true;
-            QueryCriteriaList.Add(_readWriteCriteria);
-            QueryCriteriaList.Add(_propertyTypeCriteria);
+            QueryCriteriaList.Add(_propertyCriteria);
         }
 
         ITypeSubQuery<PropertyInfo, IPropertyQuery> IPropertyQuery.OfPropertyType()
         {
-            return new TypeSubQuery<PropertyInfo, IPropertyQuery>(this, _propertyTypeCriteria);
+            return new TypeSubQuery<PropertyInfo, IPropertyQuery>(this, _propertyCriteria.PropertyTypeCriteria);
         }
 
         IPropertyQuery IPropertyQuery.WithGetter()
         {
-            _readWriteCriteria.CanRead = true;
+            _propertyCriteria.CanRead = true;
             return this;
         }
 
         IPropertyQuery IPropertyQuery.WithSetter()
         {
-            _readWriteCriteria.CanWrite = true;
+            _propertyCriteria.CanWrite = true;
             return this;
         }
 
         IPropertyQuery IPropertyQuery.WithGetterAndSetter()
         {
-            _readWriteCriteria.CanRead = true;
-            _readWriteCriteria.CanWrite = true;
+            _propertyCriteria.CanRead = true;
+            _propertyCriteria.CanWrite = true;
             return this;
         }
     }
