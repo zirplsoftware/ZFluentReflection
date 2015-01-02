@@ -342,6 +342,62 @@ namespace Zirpl.FluentReflection.Tests
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(_internal && name != null);
         }
+
+        [Test, Combinatorial]
+        public void TestIsMatch_Constructors(
+            [Values(true, false)] bool _public,
+            [Values(true, false)] bool _private,
+            [Values(true, false)] bool _protected,
+            [Values(true, false)] bool _internal,
+            [Values(true, false)] bool protectedInternal)
+        {
+            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+                BindingFlags.Instance | BindingFlags.NonPublic);
+            // sanity check since a name change won't give a compile error
+            isMatchMethod.Should().NotBeNull();
+
+            // since it's the call to IsMatch that actually handles the logic
+            // this will be a light test, especially because it makes assumptions
+            var criteria = new MemberAccessibilityCriteria()
+            {
+                Public = _public,
+                Protected = _protected,
+                ProtectedInternal = protectedInternal,
+                Private = _private,
+                Internal = _internal
+            };
+
+            var memberList = new List<ConstructorInfo>();
+            memberList.AddRange(typeof(Foo).GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+            // sanity check:
+            memberList.Count.Should().Be(5);
+
+            foreach (var constructorInfo in memberList)
+            {
+                var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { constructorInfo });
+                if (constructorInfo.IsPublic)
+                {
+                    isMatch.Should().Be(_public);
+                }
+                else if (constructorInfo.IsPrivate)
+                {
+                    isMatch.Should().Be(_private);
+                }
+                else if (constructorInfo.IsFamily)
+                {
+                    isMatch.Should().Be(_protected);
+                }
+                else if (constructorInfo.IsAssembly)
+                {
+                    isMatch.Should().Be(_internal);
+                }
+                else
+                {
+                    isMatch.Should().Be(protectedInternal);
+                }
+            }
+        }
+
         #endregion
 
         #region GetMatches
@@ -355,6 +411,48 @@ namespace Zirpl.FluentReflection.Tests
         }
 
         [Test, Combinatorial]
+        public void TestGetMatches_Constructors(
+            [Values(true, false)] bool _public,
+            [Values(true, false)] bool _private,
+            [Values(true, false)] bool _protected,
+            [Values(true, false)] bool _internal,
+            [Values(true, false)] bool protectedInternal)
+        {
+
+            // since it's the call to IsMatch that actually handles the logic
+            // this will be a light test, especially because it makes assumptions
+            var criteria = new MemberAccessibilityCriteria()
+            {
+                Public = _public,
+                Protected = _protected,
+                ProtectedInternal = protectedInternal,
+                Private = _private,
+                Internal = _internal
+            };
+
+            var memberList = new List<ConstructorInfo>();
+            memberList.AddRange(typeof(Foo).GetConstructors(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
+            // sanity check:
+            memberList.Count.Should().Be(5);
+
+            var result = criteria.GetMatches(memberList.ToArray());
+            result.Should().NotBeNull();
+
+            if (criteria.ShouldRunFilter)
+            {
+                result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsPrivate).Should().Be(_private);
+                result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsPublic).Should().Be(_public);
+                result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsFamily).Should().Be(_protected);
+                result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsAssembly).Should().Be(_internal);
+                result.Any(memberInfo => ((ConstructorInfo)memberInfo).IsFamilyOrAssembly).Should().Be(protectedInternal);
+            }
+            else
+            {
+                result.Count().Should().Be(memberList.Count);
+            }
+        }
+
+        [Test, Combinatorial]
         public void TestGetMatches(
             [Values(true, false)]bool _public,
             [Values(true, false)]bool _private,
@@ -364,7 +462,6 @@ namespace Zirpl.FluentReflection.Tests
             [Values("Private", "Public", "Protected", "ProtectedInternal", "Internal")]String namePrefix)
         {
             // since it's the call to IsMatch that actually handles the logic
-            // this will be a light test, especially because it makes assumptions
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
