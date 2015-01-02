@@ -47,7 +47,7 @@ namespace Zirpl.FluentReflection
             var matches = memberQueryService.FindMembers(MemberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
             if (_memberScopeCriteria.DeclaredOnBaseTypes && _memberAccessibilityCriteria.Private)
             {
-                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(MemberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, _memberScopeCriteria.LevelsDeep.GetValueOrDefault(), names);
+                var privateMatches = memberQueryService.FindPrivateMembersOnBaseTypes(MemberTypeFlagsBuilder.MemberTypeFlags, _bindingFlagsBuilder.BindingFlags, names);
                 matches = matches.Union(privateMatches).ToArray();
             }
             matches = QueryCriteriaList.Aggregate(matches, (current, memberInfoQueryCriteria) => memberInfoQueryCriteria.GetMatches(current));

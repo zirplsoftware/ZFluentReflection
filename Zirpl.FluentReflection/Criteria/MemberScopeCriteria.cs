@@ -7,24 +7,11 @@ namespace Zirpl.FluentReflection
     internal sealed class MemberScopeCriteria : MemberInfoQueryCriteriaBase
     {
         private readonly Type _reflectedType;
-        private int? _levelsDeep;
         internal bool Instance { get; set; }
         internal bool Static { get; set; }
         internal bool DeclaredOnThisType { get; set; }
         internal bool DeclaredOnBaseTypes { get; set; }
         // TODO: implement including hiddenBySignature members, and exclude them otherwise
-        internal int? LevelsDeep
-        {
-            get
-            {
-                return _levelsDeep;
-            }
-            set
-            {
-                if (value <= 0) throw new ArgumentOutOfRangeException("value", "Must be greater than 0");
-                _levelsDeep = value;
-            }
-        }
 
         internal MemberScopeCriteria(Type type)
         {
@@ -46,7 +33,7 @@ namespace Zirpl.FluentReflection
                 // 2) BOTH were chosen, but no depth
                 // - STATIC vs INSTANCE is completely handled by the binding flags
                 var canSkip = (!DeclaredOnThisType && !DeclaredOnBaseTypes)
-                            || (DeclaredOnThisType && DeclaredOnBaseTypes && LevelsDeep == null);
+                            || (DeclaredOnThisType && DeclaredOnBaseTypes);
                 return !canSkip;
             }
         }
@@ -95,27 +82,6 @@ namespace Zirpl.FluentReflection
             // no need for this check, since getting here means we need to check
             if (memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnThisType) return false;
             if (!memberInfo.DeclaringType.Equals(_reflectedType) && !DeclaredOnBaseTypes) return false;
-            if (LevelsDeep.HasValue
-                && !memberInfo.DeclaringType.Equals(_reflectedType))
-            {
-                var found = false;
-                var type = _reflectedType.BaseType;
-                int levelsDeeper = LevelsDeep.Value - 1;
-                while (type != null)
-                {
-                    if (memberInfo.DeclaringType.Equals(type))
-                    {
-                        found = true;
-                        type = null;
-                    }
-                    else
-                    {
-                        type = levelsDeeper == 0 ? null : type.BaseType;
-                        levelsDeeper -= 1;
-                    }
-                }
-                return found;
-            }
             // if neither was chosen, then evaluate to true
             return true;
         }

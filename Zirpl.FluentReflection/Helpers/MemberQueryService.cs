@@ -19,31 +19,16 @@ namespace Zirpl.FluentReflection
             return FindMemberOnType(_type, memberTypeFlags, bindingFlags, names);
         }
 
-        internal MemberInfo[] FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, int levelsDeep, IEnumerable<String> names)
+        internal MemberInfo[] FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
         {
             var list = new List<MemberInfo>();
             var accessibilityEvaluator = new MemberAccessibilityCriteria();
             accessibilityEvaluator.Private = true;
-            if (levelsDeep > 0)
+            var type = _type;
+            while (type != null)
             {
-                var type = _type;
-                var levelsDeeper = levelsDeep;
-                while (type != null
-                    && levelsDeeper > 0)
-                {
-                    list.AddRange(accessibilityEvaluator.GetMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
-                    type = type.BaseType;
-                    levelsDeeper -= 1;
-                }
-            }
-            else
-            {
-                var type = _type;
-                while (type != null)
-                {
-                    list.AddRange(accessibilityEvaluator.GetMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
-                    type = type.BaseType;
-                }
+                list.AddRange(accessibilityEvaluator.GetMatches(FindMemberOnType(type, memberTypes, bindingFlags, names)).Where(o => !list.Contains(o)));
+                type = type.BaseType;
             }
             // TODO: check for hidden by signature
             return list.ToArray();

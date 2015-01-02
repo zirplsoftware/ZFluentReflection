@@ -39,25 +39,10 @@ namespace Zirpl.FluentReflection
             return this;
         }
 
-        IMemberScopeSubQuery<TMemberInfo, TReturnQuery> IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.DeclaredOnBaseTypes(int levelsDeep)
-        {
-            _memberScopeCriteria.DeclaredOnBaseTypes = true;
-            _memberScopeCriteria.LevelsDeep = levelsDeep;
-            return this;
-        }
-
         TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.All()
         {
             _memberScopeCriteria.DeclaredOnThisType = true;
             _memberScopeCriteria.DeclaredOnBaseTypes = true;
-            return _returnQuery;
-        }
-
-        TReturnQuery IMemberScopeSubQuery<TMemberInfo, TReturnQuery>.All(int levelsDeep)
-        {
-            _memberScopeCriteria.DeclaredOnThisType = true;
-            _memberScopeCriteria.DeclaredOnBaseTypes = true;
-            _memberScopeCriteria.LevelsDeep = levelsDeep;
             return _returnQuery;
         }
 
