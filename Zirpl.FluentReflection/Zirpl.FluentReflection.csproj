@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Accessors\EventAccessor.cs" />
     <Compile Include="Accessors\FieldAccessor.cs" />
     <Compile Include="Accessors\PropertyAccessor.cs" />
     <Compile Include="Accessors\InstanceTypeAccessor.cs" />

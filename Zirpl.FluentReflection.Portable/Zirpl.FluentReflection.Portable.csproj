@@ -37,6 +37,9 @@
     <!-- A reference to the entire .NET Framework is automatically included -->
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\EventAccessor.cs">
+      <Link>Accessors\EventAccessor.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\FieldAccessor.cs">
       <Link>Accessors\FieldAccessor.cs</Link>
     </Compile>

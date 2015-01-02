@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection
 {
@@ -7,5 +8,6 @@ namespace Zirpl.FluentReflection
         where TMemberQuery : INamedMemberQuery<TMemberInfo, TMemberQuery>
     {
         INameSubQuery<TMemberInfo, INamedMemberQuery<TMemberInfo, TMemberQuery>> Named();
+        TMemberQuery Named(String name);
     }
 }

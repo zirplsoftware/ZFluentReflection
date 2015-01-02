@@ -44,6 +44,23 @@ namespace Zirpl.FluentReflection
             return new FieldAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).Field(name), obj);
         }
 
+        public static EventAccessor<T> Event<T>(this Object obj, String name)
+            where T: EventArgs
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
+
+            return new EventAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).Event(name), obj);
+        }
+
+        public static EventAccessor<EventArgs> Event(this Object obj, String name)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
+
+            return new EventAccessor<EventArgs>(InstanceTypeAccessor.Get(obj.GetType()).Event(name), obj);
+        }
+
         public static ITypeQuery QueryTypes(this Assembly assembly)
         {
             if (assembly == null) throw new ArgumentNullException("assembly");
