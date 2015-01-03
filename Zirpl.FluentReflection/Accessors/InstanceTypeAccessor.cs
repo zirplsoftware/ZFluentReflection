@@ -62,21 +62,18 @@ namespace Zirpl.FluentReflection
 
         internal PropertyInfo Property(String name)
         {
-            if (!_propertyMap.ContainsKey(name))
+            if (!_propertyMap.ContainsKey(name.ToLower()))
             {
                 lock (_propertyMap)
                 {
                     var propertyInfo = _type.QueryProperties()
-                        .Named().ExactlyIgnoreCase(name)
-                        .ResultSingleOrDefault();
-                    if (propertyInfo == null)
-                    {
-                        propertyInfo = _type.QueryProperties()
-                           .OfAccessibility()
-                           .NotPublic()
-                           .Named().ExactlyIgnoreCase(name)
-                           .ResultSingleOrDefault();
-                    }
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault() 
+                        ?? _type.QueryProperties()
+                            .OfAccessibility()
+                            .NotPublic()
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault();
                     if (propertyInfo == null)
                     {
                         var type = _type.BaseType;
@@ -89,29 +86,26 @@ namespace Zirpl.FluentReflection
                                .ResultSingleOrDefault();   
                         }
                     }
-                    _propertyMap.Add(name, propertyInfo);
+                    _propertyMap.Add(name.ToLower(), propertyInfo);
                 }
             }
-            return _propertyMap[name];
+            return _propertyMap[name.ToLower()];
         }
 
         internal FieldInfo Field(String name)
         {
-            if (!_fieldMap.ContainsKey(name))
+            if (!_fieldMap.ContainsKey(name.ToLower()))
             {
                 lock (_fieldMap)
                 {
                     var fieldInfo = _type.QueryFields()
-                        .Named().ExactlyIgnoreCase(name)
-                        .ResultSingleOrDefault();
-                    if (fieldInfo == null)
-                    {
-                        fieldInfo = _type.QueryFields()
-                           .OfAccessibility()
-                           .NotPublic()
-                           .Named().ExactlyIgnoreCase(name)
-                           .ResultSingleOrDefault();
-                    }
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault() 
+                        ?? _type.QueryFields()
+                            .OfAccessibility()
+                            .NotPublic()
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault();
                     if (fieldInfo == null)
                     {
                         var type = _type.BaseType;
@@ -124,29 +118,26 @@ namespace Zirpl.FluentReflection
                                .ResultSingleOrDefault();
                         }
                     }
-                    _fieldMap.Add(name, fieldInfo);
+                    _fieldMap.Add(name.ToLower(), fieldInfo);
                 }
             }
-            return _fieldMap[name];
+            return _fieldMap[name.ToLower()];
         }
 
         internal EventInfo Event(String name)
         {
-            if (!_eventMap.ContainsKey(name))
+            if (!_eventMap.ContainsKey(name.ToLower()))
             {
                 lock (_eventMap)
                 {
                     var eventInfo = _type.QueryEvents()
-                        .Named().ExactlyIgnoreCase(name)
-                        .ResultSingleOrDefault();
-                    if (eventInfo == null)
-                    {
-                        eventInfo = _type.QueryEvents()
-                           .OfAccessibility()
-                           .NotPublic()
-                           .Named().ExactlyIgnoreCase(name)
-                           .ResultSingleOrDefault();
-                    }
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault() 
+                        ?? _type.QueryEvents()
+                            .OfAccessibility()
+                            .NotPublic()
+                            .Named().ExactlyIgnoreCase(name)
+                            .ResultSingleOrDefault();
                     if (eventInfo == null)
                     {
                         var type = _type.BaseType;
@@ -159,10 +150,10 @@ namespace Zirpl.FluentReflection
                                .ResultSingleOrDefault();
                         }
                     }
-                    _eventMap.Add(name, eventInfo);
+                    _eventMap.Add(name.ToLower(), eventInfo);
                 }
             }
-            return _eventMap[name];
+            return _eventMap[name.ToLower()];
         }
     }
 }
