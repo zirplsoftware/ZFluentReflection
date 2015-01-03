@@ -94,6 +94,9 @@
     <Compile Include="..\Zirpl.FluentReflection\Helpers\CacheService.cs">
       <Link>Helpers\CacheService.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberInfoAccessibility.cs">
+      <Link>Helpers\MemberInfoAccessibility.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Helpers\MemberQueryService.cs">
       <Link>Helpers\MemberQueryService.cs</Link>
     </Compile>
@@ -108,6 +111,9 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\IConstructorQuery.cs">
       <Link>Public\IConstructorQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Public\ICSharpMemberAccessibilitySubQuery.cs">
+      <Link>Public\ICSharpMemberAccessibilitySubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Public\IEventQuery.cs">
       <Link>Public\IEventQuery.cs</Link>

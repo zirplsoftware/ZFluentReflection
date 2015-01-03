@@ -8,10 +8,9 @@ namespace Zirpl.FluentReflection
     {
         IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Public();
         IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Private();
-        //IMemberAccessibilityQuery<TMemberInfo, TReturnQuery> PrivateIncludingOnBaseTypes();
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Protected();
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Internal();
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ProtectedInternal();
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Family();
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> Assembly();
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> FamilyOrAssembly();
         TReturnQuery NotPrivate();
         TReturnQuery NotPublic();
         TReturnQuery All();

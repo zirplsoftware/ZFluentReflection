@@ -58,6 +58,7 @@
     <Compile Include="Criteria\TypeSource.cs" />
     <Compile Include="Helpers\BindingFlagsBuilder.cs" />
     <Compile Include="Helpers\CacheService.cs" />
+    <Compile Include="Helpers\MemberInfoAccessibility.cs" />
     <Compile Include="Helpers\MemberQueryService.cs" />
     <Compile Include="Helpers\MemberTypeFlags.cs" />
     <Compile Include="Helpers\MemberTypeFlagsBuilder.cs" />
@@ -65,6 +66,7 @@
     <Compile Include="Public\IConstructorQuery.cs" />
     <Compile Include="Public\IEventQuery.cs" />
     <Compile Include="Public\IFieldQuery.cs" />
+    <Compile Include="Public\ICSharpMemberAccessibilitySubQuery.cs" />
     <Compile Include="Public\IMemberAccessibilitySubQuery.cs" />
     <Compile Include="Public\IMemberQuery.cs" />
     <Compile Include="Public\IMemberQuery_base.cs" />

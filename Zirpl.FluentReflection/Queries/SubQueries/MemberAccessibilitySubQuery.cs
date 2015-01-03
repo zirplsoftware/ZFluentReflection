@@ -4,8 +4,8 @@ using System.Reflection;
 namespace Zirpl.FluentReflection
 {
     internal sealed class MemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> : SubQueryBase<TMemberInfo, TReturnQuery>,
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>
-        where TMemberInfo : MemberInfo
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>,
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> where TMemberInfo : MemberInfo
         where TReturnQuery : IQueryResult<TMemberInfo>
     {
         private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
@@ -14,6 +14,69 @@ namespace Zirpl.FluentReflection
             :base(returnQuery)
         {
             _memberAccessibilityCriteria = memberAccessibilityCriteria;
+        }
+
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Public()
+        {
+            _memberAccessibilityCriteria.Public = true;
+            return this;
+        }
+
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Private()
+        {
+            _memberAccessibilityCriteria.Private = true;
+            return this;
+        }
+
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Protected()
+        {
+            _memberAccessibilityCriteria.Family = true;
+            return this;
+        }
+
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Internal()
+        {
+            _memberAccessibilityCriteria.Assembly = true;
+            return this;
+        }
+
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> ICSharpMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.ProtectedOrInternal()
+        {
+            _memberAccessibilityCriteria.FamilyOrAssembly = true;
+            return this;
+        }
+
+        public TReturnQuery NotPrivate()
+        {
+            _memberAccessibilityCriteria.Public = true;
+            _memberAccessibilityCriteria.Family = true;
+            _memberAccessibilityCriteria.Assembly = true;
+            _memberAccessibilityCriteria.FamilyOrAssembly = true;
+            return _returnQuery;
+        }
+
+        public TReturnQuery NotPublic()
+        {
+            _memberAccessibilityCriteria.Private = true;
+            _memberAccessibilityCriteria.Family = true;
+            _memberAccessibilityCriteria.Assembly = true;
+            _memberAccessibilityCriteria.FamilyOrAssembly = true;
+            return _returnQuery;
+        }
+
+        public TReturnQuery All()
+        {
+            _memberAccessibilityCriteria.Public = true;
+            _memberAccessibilityCriteria.Private = true;
+            _memberAccessibilityCriteria.Family = true;
+            _memberAccessibilityCriteria.Assembly = true;
+            _memberAccessibilityCriteria.FamilyOrAssembly = true;
+            return _returnQuery;
+        }
+
+        public TReturnQuery And()
+        {
+            return _returnQuery;
         }
 
         IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Public()
@@ -28,55 +91,22 @@ namespace Zirpl.FluentReflection
             return this;
         }
 
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Protected()
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Family()
         {
-            _memberAccessibilityCriteria.Protected = true;
+            _memberAccessibilityCriteria.Family = true;
             return this;
         }
 
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Internal()
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.Assembly()
         {
-            _memberAccessibilityCriteria.Internal = true;
+            _memberAccessibilityCriteria.Assembly = true;
             return this;
         }
 
-        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.ProtectedInternal()
+        IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery> IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.FamilyOrAssembly()
         {
-            _memberAccessibilityCriteria.ProtectedInternal = true;
+            _memberAccessibilityCriteria.FamilyOrAssembly = true;
             return this;
-        }
-
-        TReturnQuery IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.NotPrivate()
-        {
-            _memberAccessibilityCriteria.Public = true;
-            _memberAccessibilityCriteria.Protected = true;
-            _memberAccessibilityCriteria.Internal = true;
-            _memberAccessibilityCriteria.ProtectedInternal = true;
-            return _returnQuery;
-        }
-
-        TReturnQuery IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.NotPublic()
-        {
-            _memberAccessibilityCriteria.Private = true;
-            _memberAccessibilityCriteria.Protected = true;
-            _memberAccessibilityCriteria.Internal = true;
-            _memberAccessibilityCriteria.ProtectedInternal = true;
-            return _returnQuery;
-        }
-
-        TReturnQuery IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.All()
-        {
-            _memberAccessibilityCriteria.Public = true;
-            _memberAccessibilityCriteria.Private = true;
-            _memberAccessibilityCriteria.Protected = true;
-            _memberAccessibilityCriteria.Internal = true;
-            _memberAccessibilityCriteria.ProtectedInternal = true;
-            return _returnQuery;
-        }
-
-        TReturnQuery IMemberAccessibilitySubQuery<TMemberInfo, TReturnQuery>.And()
-        {
-            return _returnQuery;
         }
     }
 }

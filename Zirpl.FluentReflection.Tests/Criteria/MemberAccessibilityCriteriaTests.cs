@@ -25,10 +25,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
 
             if ((_private
@@ -100,10 +100,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(_private && name != null);
@@ -158,10 +158,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(_public && name != null);
@@ -216,10 +216,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(_protected && name != null);
@@ -276,10 +276,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(protectedInternal && name != null);
@@ -334,10 +334,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             var isMatch = (bool)isMatchMethod.Invoke(criteria, new Object[] { memberInfo });
             isMatch.Should().Be(_internal && name != null);
@@ -361,10 +361,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
 
             var memberList = new List<ConstructorInfo>();
@@ -424,10 +424,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
 
             var memberList = new List<ConstructorInfo>();
@@ -465,10 +465,10 @@ namespace Zirpl.FluentReflection.Tests
             var criteria = new MemberAccessibilityCriteria()
             {
                 Public = _public,
-                Protected = _protected,
-                ProtectedInternal = protectedInternal,
+                Family = _protected,
+                FamilyOrAssembly = protectedInternal,
                 Private = _private,
-                Internal = _internal
+                Assembly = _internal
             };
             
             var memberList = new List<MemberInfo>();

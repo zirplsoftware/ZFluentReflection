@@ -21,7 +21,7 @@ namespace Zirpl.FluentReflection
             {
                 var bindings = default(BindingFlags);
                 bindings = _memberAccessibilityCriteria.Public ? bindings | BindingFlags.Public : bindings;
-                bindings = _memberAccessibilityCriteria.Private || _memberAccessibilityCriteria.Protected || _memberAccessibilityCriteria.ProtectedInternal || _memberAccessibilityCriteria.Internal
+                bindings = _memberAccessibilityCriteria.Private || _memberAccessibilityCriteria.Family || _memberAccessibilityCriteria.FamilyOrAssembly || _memberAccessibilityCriteria.Assembly
                             ? bindings | BindingFlags.NonPublic : bindings;
                 bindings = _memberScopeCriteria.Instance ? bindings | BindingFlags.Instance : bindings;
                 bindings = _memberScopeCriteria.Static ? bindings | BindingFlags.Static : bindings;

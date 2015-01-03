@@ -8,6 +8,7 @@ namespace Zirpl.FluentReflection
         where TMemberQuery : IMemberQuery<TMemberInfo, TMemberQuery>
     {
         IMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> OfAccessibility();
+        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> OfAccessibilityCSharp();
         IMemberScopeSubQuery<TMemberInfo, TMemberQuery> OfScope();
     }
 }
