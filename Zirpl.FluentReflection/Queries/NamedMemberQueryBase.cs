@@ -17,10 +17,5 @@ namespace Zirpl.FluentReflection
         {
             return new NameSubQuery<TMemberInfo, INamedMemberQuery<TMemberInfo, TMemberQuery>>((TMemberQuery)(Object)this, MemberNameCriteria);
         }
-        TMemberQuery INamedMemberQuery<TMemberInfo, TMemberQuery>.Named(String name)
-        {
-            MemberNameCriteria.Names = new [] {name};
-            return (TMemberQuery)(Object)this;
-        }
     }
 }

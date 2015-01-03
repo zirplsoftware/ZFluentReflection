@@ -18,7 +18,6 @@ namespace Zirpl.FluentReflection
             _reflectedType = type;
         }
 
-
         protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
         {
             return memberInfos.Where(IsMatch).ToArray();

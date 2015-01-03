@@ -67,14 +67,14 @@ namespace Zirpl.FluentReflection
                 lock (_propertyMap)
                 {
                     var propertyInfo = _type.QueryProperties()
-                        .Named(name)
+                        .Named().ExactlyIgnoreCase(name)
                         .ResultSingleOrDefault();
                     if (propertyInfo == null)
                     {
                         propertyInfo = _type.QueryProperties()
                            .OfAccessibility()
                            .NotPublic()
-                           .Named(name)
+                           .Named().ExactlyIgnoreCase(name)
                            .ResultSingleOrDefault();
                     }
                     if (propertyInfo == null)
@@ -85,7 +85,7 @@ namespace Zirpl.FluentReflection
                             propertyInfo = _type.QueryProperties()
                                .OfAccessibility()
                                .Private().And()
-                               .Named(name)
+                               .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();   
                         }
                     }
@@ -102,14 +102,14 @@ namespace Zirpl.FluentReflection
                 lock (_fieldMap)
                 {
                     var fieldInfo = _type.QueryFields()
-                        .Named(name)
+                        .Named().ExactlyIgnoreCase(name)
                         .ResultSingleOrDefault();
                     if (fieldInfo == null)
                     {
                         fieldInfo = _type.QueryFields()
                            .OfAccessibility()
                            .NotPublic()
-                            .Named(name)
+                           .Named().ExactlyIgnoreCase(name)
                            .ResultSingleOrDefault();
                     }
                     if (fieldInfo == null)
@@ -120,7 +120,7 @@ namespace Zirpl.FluentReflection
                             fieldInfo = _type.QueryFields()
                                .OfAccessibility()
                                .Private().And()
-                               .Named(name)
+                               .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
                         }
                     }
@@ -137,14 +137,14 @@ namespace Zirpl.FluentReflection
                 lock (_eventMap)
                 {
                     var eventInfo = _type.QueryEvents()
-                        .Named(name)
+                        .Named().ExactlyIgnoreCase(name)
                         .ResultSingleOrDefault();
                     if (eventInfo == null)
                     {
                         eventInfo = _type.QueryEvents()
                            .OfAccessibility()
                            .NotPublic()
-                           .Named(name)
+                           .Named().ExactlyIgnoreCase(name)
                            .ResultSingleOrDefault();
                     }
                     if (eventInfo == null)
@@ -155,7 +155,7 @@ namespace Zirpl.FluentReflection
                             eventInfo = _type.QueryEvents()
                                .OfAccessibility()
                                .Private().And()
-                               .Named(name)
+                               .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
                         }
                     }

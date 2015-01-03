@@ -8,6 +8,5 @@ namespace Zirpl.FluentReflection
         where TMemberQuery : INamedMemberQuery<TMemberInfo, TMemberQuery>
     {
         INameSubQuery<TMemberInfo, INamedMemberQuery<TMemberInfo, TMemberQuery>> Named();
-        TMemberQuery Named(String name);
     }
 }
