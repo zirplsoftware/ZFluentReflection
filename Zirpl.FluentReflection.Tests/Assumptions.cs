@@ -41,6 +41,15 @@ namespace Zirpl.FluentReflection.Tests
         {
             public abstract void MyMethod();
             private int field1;
+
+            public virtual void SetField(int i)
+            {
+                field1 = i;
+            }
+            private void SetTheField(int i)
+            {
+                field1 = i;
+            }
         }
 
         public class ConcreteClass : AbstractClass
@@ -49,6 +58,16 @@ namespace Zirpl.FluentReflection.Tests
             {
             }
             private int field1;
+
+            public override void SetField(int i)
+            {
+                field1 = i;
+            }
+
+            private void SetTheField(int i)
+            {
+                field1 = i;
+            }
         }
 
         [Test]
@@ -64,7 +83,50 @@ namespace Zirpl.FluentReflection.Tests
             fieldOnBase.SetValue(mock, 2);
             fieldOnBase.GetValue(mock).Should().Be(2);
             field.GetValue(mock).Should().Be(1);
+        }
 
+        [Test]
+        public void TestAssumption_PrivateHiddenByNameAndSignatureMethods()
+        {
+            var fieldOnBase = typeof(AbstractClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            fieldOnBase.Should().NotBeNull();
+            var field = typeof(ConcreteClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            field.Should().NotBeNull();
+
+            var methodOnBase = typeof(AbstractClass).GetMethod("SetTheField", BindingFlags.Instance | BindingFlags.NonPublic);
+            methodOnBase.Should().NotBeNull();
+            var method = typeof(ConcreteClass).GetMethod("SetTheField", BindingFlags.Instance | BindingFlags.NonPublic);
+            method.Should().NotBeNull();
+            var mock = new ConcreteClass();
+            method.Invoke(mock, new Object[] { 1 });
+            field.GetValue(mock).Should().Be(1);
+            fieldOnBase.GetValue(mock).Should().Be(0);
+            // the CONCRETE method will be run, despite the method info reference the abstract class
+            methodOnBase.Invoke(mock, new Object[] { 2 });
+            fieldOnBase.GetValue(mock).Should().Be(2);
+            field.GetValue(mock).Should().Be(1);
+        }
+
+        [Test]
+        public void TestAssumption_PublicHiddenByNameAndSignatureMethods()
+        {
+            var fieldOnBase = typeof(AbstractClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            fieldOnBase.Should().NotBeNull();
+            var field = typeof(ConcreteClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            field.Should().NotBeNull();
+
+            var methodOnBase = typeof(AbstractClass).GetMethod("SetField");
+            methodOnBase.Should().NotBeNull();
+            var method = typeof(ConcreteClass).GetMethod("SetField");
+            method.Should().NotBeNull();
+            var mock = new ConcreteClass();
+            method.Invoke(mock, new Object[] { 1 });
+            field.GetValue(mock).Should().Be(1);
+            fieldOnBase.GetValue(mock).Should().Be(0);
+            // the CONCRETE method will be run, despite the method info reference the abstract class
+            methodOnBase.Invoke(mock, new Object[] { 2 });
+            fieldOnBase.GetValue(mock).Should().Be(0);
+            field.GetValue(mock).Should().Be(2);
         }
 
         [Test]
