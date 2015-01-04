@@ -108,7 +108,7 @@ namespace Zirpl.FluentReflection.Tests
         }
 
         [Test]
-        public void TestAssumption_PublicHiddenByNameAndSignatureMethods()
+        public void TestAssumption_PublicOverriddenMethods()
         {
             var fieldOnBase = typeof(AbstractClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
             fieldOnBase.Should().NotBeNull();
