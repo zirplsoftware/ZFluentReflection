@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection
+namespace Zirpl.FluentReflection.Accessors
 {
     public sealed class EventAccessor<T>
         where T : EventArgs

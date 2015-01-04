@@ -6,7 +6,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection
+namespace Zirpl.FluentReflection.Dynamic
 {
     public class DynamicWrapper<T> : DynamicObject
     {

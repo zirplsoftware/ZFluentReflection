@@ -61,11 +61,11 @@
     <Compile Include="Dynamic\ITest.cs" />
     <Compile Include="Dynamic\StaticTest.cs" />
     <Compile Include="Dynamic\StructTest.cs" />
-    <Compile Include="Queries\Criteria\MemberAccessibilityCriteriaTests.cs" />
-    <Compile Include="Queries\Criteria\TypeNameCriteriaTests.cs" />
-    <Compile Include="Queries\Criteria\MemberNameCriteriaTests.cs" />
-    <Compile Include="Queries\Helpers\CacheServiceTests.cs" />
-    <Compile Include="Queries\Helpers\MemberTypesFlagBuilderTests.cs" />
+    <Compile Include="Queries\Implementation\Criteria\MemberAccessibilityCriteriaTests.cs" />
+    <Compile Include="Queries\Implementation\Criteria\TypeNameCriteriaTests.cs" />
+    <Compile Include="Queries\Implementation\Criteria\MemberNameCriteriaTests.cs" />
+    <Compile Include="Queries\Implementation\Helpers\CacheServiceTests.cs" />
+    <Compile Include="Queries\Implementation\Helpers\MemberTypesFlagBuilderTests.cs" />
     <Compile Include="Mocks\Bar.cs" />
     <Compile Include="Mocks\Foo.cs" />
     <Compile Include="Mocks\NameHandlingTypeMock.cs" />

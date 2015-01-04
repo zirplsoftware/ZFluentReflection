@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection
+namespace Zirpl.FluentReflection.Dynamic
 {
     internal static class TypeExtensions
     {

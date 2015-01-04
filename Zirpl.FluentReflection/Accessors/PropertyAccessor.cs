@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Zirpl.FluentReflection
+namespace Zirpl.FluentReflection.Accessors
 {
     public sealed class PropertyAccessor<T>
     {
