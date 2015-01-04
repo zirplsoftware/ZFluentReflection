@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using Zirpl.FluentReflection.Queries.Helpers;
 
-namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Helpers
 {
     [TestFixture]
     public class CacheServiceTests

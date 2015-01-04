@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using Zirpl.FluentReflection.Queries.Criteria;
 
-namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 {
     [TestFixture]
     public class MemberAccessibilityCriteriaTests

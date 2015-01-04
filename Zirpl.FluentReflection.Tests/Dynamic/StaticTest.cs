@@ -7,7 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests.Dynamic
 {
     internal class StaticTest
     {

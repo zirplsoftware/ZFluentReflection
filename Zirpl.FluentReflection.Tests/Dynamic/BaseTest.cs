@@ -10,7 +10,7 @@
 using System;
 using System.Globalization;
 
-namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests.Dynamic
 {
     internal class BaseTest : ITest
     {

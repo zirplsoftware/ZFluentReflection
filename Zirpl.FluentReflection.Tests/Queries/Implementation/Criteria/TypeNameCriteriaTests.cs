@@ -2,17 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
-using NUnit.Framework.Constraints;
 using Zirpl.FluentReflection.Queries.Criteria;
 using Zirpl.FluentReflection.Tests.Mocks;
 
-namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 {
     [TestFixture]
     public class TypeNameCriteriaTests

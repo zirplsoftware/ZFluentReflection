@@ -66,13 +66,12 @@
     <Compile Include="Queries\Implementation\Criteria\MemberNameCriteriaTests.cs" />
     <Compile Include="Queries\Implementation\Helpers\CacheServiceTests.cs" />
     <Compile Include="Queries\Implementation\Helpers\MemberTypesFlagBuilderTests.cs" />
-    <Compile Include="Mocks\Bar.cs" />
-    <Compile Include="Mocks\Foo.cs" />
+    <Compile Include="Bar.cs" />
+    <Compile Include="Foo.cs" />
     <Compile Include="Mocks\NameHandlingTypeMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
