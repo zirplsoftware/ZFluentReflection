@@ -37,17 +37,52 @@ namespace Zirpl.FluentReflection.Tests
 
         }
 
-        //[Test]
-        //public void TestAssumptions_RuntimeMembers()
-        //{
-        //    foreach (var field in typeof(Mock).GetTypeInfo().GetRuntimeProperty())
-        //    {
-        //        Console.WriteLine(field.Name);
-        //    }
-        //}
+        public abstract class AbstractClass
+        {
+            public abstract void MyMethod();
+            private int field1;
+        }
+
+        public class ConcreteClass : AbstractClass
+        {
+            public override void MyMethod()
+            {
+            }
+            private int field1;
+        }
 
         [Test]
-        public void TestAssumptions()
+        public void TestAssumptions_PrivateHiddenByNameAndSignatureFields()
+        {
+            var fieldOnBase = typeof(AbstractClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            fieldOnBase.Should().NotBeNull();
+            var field = typeof(ConcreteClass).GetField("field1", BindingFlags.Instance | BindingFlags.NonPublic);
+            field.Should().NotBeNull();
+            var mock = new ConcreteClass();
+            field.SetValue(mock, 1);
+            field.GetValue(mock).Should().Be(1);
+            fieldOnBase.SetValue(mock, 2);
+            fieldOnBase.GetValue(mock).Should().Be(2);
+            field.GetValue(mock).Should().Be(1);
+
+        }
+
+        [Test]
+        public void TestAssumptions_AbstractClassesAndMembers()
+        {
+            typeof(AbstractClass).GetMethod("MyMethod").Should().NotBeNull();
+            typeof(AbstractClass).GetMethod("MyMethod").IsAbstract.Should().BeTrue();
+            typeof(AbstractClass).GetRuntimeMethod("MyMethod", new Type[0]).Should().NotBeNull();
+            typeof(AbstractClass).GetRuntimeMethod("MyMethod", new Type[0]).IsAbstract.Should().BeTrue();
+
+            typeof(ConcreteClass).GetMethod("MyMethod").Should().NotBeNull();
+            typeof(ConcreteClass).GetMethod("MyMethod").IsAbstract.Should().BeFalse();
+            typeof(ConcreteClass).GetRuntimeMethod("MyMethod", new Type[0]).Should().NotBeNull();
+            typeof(ConcreteClass).GetRuntimeMethod("MyMethod", new Type[0]).IsAbstract.Should().BeFalse();
+        }
+
+        [Test]
+        public void TestAssumptions_BindingFlagsAndDefaults()
         {
             // instance fields directly on type, no flags
             typeof(Mock).GetField("publicField").Should().NotBeNull();
