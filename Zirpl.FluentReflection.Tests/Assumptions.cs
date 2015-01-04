@@ -189,8 +189,8 @@ namespace Zirpl.FluentReflection.Tests
             var mock = new Mock();
             typeof(Mock).GetField("readonlyInt").SetValue(mock, 1);
             mock.readonlyInt.Should().Be(1);
-            typeof(Mock).GetField("readonlyStaticInt").SetValue(null, 1);
-            Mock.readonlyStaticInt.Should().Be(1);
+            typeof(Mock).GetField("readonlyStaticInt").SetValue(null, 2);
+            Mock.readonlyStaticInt.Should().Be(2);
 
             // now we're testing how derived members are handled so we always use the correct flags
 
