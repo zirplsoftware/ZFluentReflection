@@ -50,19 +50,75 @@ namespace Zirpl.FluentReflection
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Event))
             {
-                found.AddRange(type.GetEvents(bindingFlags));
+                if (namesCount > 0)
+                {
+                    if (namesCount > 1)
+                    {
+                        found.AddRange(theNames.Select(name => type.GetEvent(name, bindingFlags)));
+                    }
+                    else
+                    {
+                        found.Add(type.GetEvent(theNames[0], bindingFlags));
+                    }
+                }
+                else
+                {
+                    found.AddRange(type.GetEvents(bindingFlags));
+                }
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Field))
             {
-                found.AddRange(type.GetFields(bindingFlags));
+                if (namesCount > 0)
+                {
+                    if (namesCount > 1)
+                    {
+                        found.AddRange(theNames.Select(name => type.GetField(name, bindingFlags)));
+                    }
+                    else
+                    {
+                        found.Add(type.GetField(theNames[0], bindingFlags));
+                    }
+                }
+                else
+                {
+                    found.AddRange(type.GetFields(bindingFlags));
+                }
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Method))
             {
-                found.AddRange(type.GetMethods(bindingFlags));
+                if (namesCount > 0)
+                {
+                    if (namesCount > 1)
+                    {
+                        found.AddRange(theNames.Select(name => type.GetMethod(name, bindingFlags)));
+                    }
+                    else
+                    {
+                        found.Add(type.GetMethod(theNames[0], bindingFlags));
+                    }
+                }
+                else
+                {
+                    found.AddRange(type.GetMethods(bindingFlags));
+                }
             }
             if (memberTypes.HasFlag(MemberTypeFlags.NestedType))
             {
-                found.AddRange(type.GetNestedTypes(bindingFlags));
+                if (namesCount > 0)
+                {
+                    if (namesCount > 1)
+                    {
+                        found.AddRange(theNames.Select(name => type.GetNestedType(name, bindingFlags)));
+                    }
+                    else
+                    {
+                        found.Add(type.GetNestedType(theNames[0], bindingFlags));
+                    }
+                }
+                else
+                {
+                    found.AddRange(type.GetNestedTypes(bindingFlags));
+                }
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Property))
             {

@@ -53,6 +53,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assumptions.cs" />
     <Compile Include="Criteria\MemberAccessibilityCriteriaTests.cs" />
     <Compile Include="Criteria\TypeNameCriteriaTests.cs" />
     <Compile Include="Criteria\MemberNameCriteriaTests.cs" />
