@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,17 +55,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assumptions.cs" />
-    <Compile Include="Criteria\MemberAccessibilityCriteriaTests.cs" />
-    <Compile Include="Criteria\TypeNameCriteriaTests.cs" />
-    <Compile Include="Criteria\MemberNameCriteriaTests.cs" />
-    <Compile Include="Helpers\CacheServiceTests.cs" />
-    <Compile Include="Helpers\MemberTypesFlagBuilderTests.cs" />
+    <Compile Include="Dynamic\BaseTest.cs" />
+    <Compile Include="Dynamic\DerivedTest.cs" />
+    <Compile Include="Dynamic\DynamicWrapperTest.cs" />
+    <Compile Include="Dynamic\ITest.cs" />
+    <Compile Include="Dynamic\StaticTest.cs" />
+    <Compile Include="Dynamic\StructTest.cs" />
+    <Compile Include="Queries\Criteria\MemberAccessibilityCriteriaTests.cs" />
+    <Compile Include="Queries\Criteria\TypeNameCriteriaTests.cs" />
+    <Compile Include="Queries\Criteria\MemberNameCriteriaTests.cs" />
+    <Compile Include="Queries\Helpers\CacheServiceTests.cs" />
+    <Compile Include="Queries\Helpers\MemberTypesFlagBuilderTests.cs" />
     <Compile Include="Mocks\Bar.cs" />
     <Compile Include="Mocks\Foo.cs" />
     <Compile Include="Mocks\NameHandlingTypeMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +80,9 @@
       <Project>{d1e3a926-cb6c-4df6-98ac-7a5aa04488e9}</Project>
       <Name>Zirpl.FluentReflection</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
