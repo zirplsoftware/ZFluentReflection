@@ -8,7 +8,7 @@ using Zirpl.FluentReflection.Queries.Helpers;
 
 namespace Zirpl.FluentReflection
 {
-    public static partial class ReflectionUtilities
+    public static class ReflectionUtilities
     {
         public static void ClearCache()
         {
@@ -132,6 +132,21 @@ namespace Zirpl.FluentReflection
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
             return new PropertyAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).Property(name), obj);
+        }
+        public static MethodsAccessor<T> Method<T>(this Object obj, String name)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
+
+            return new MethodsAccessor<T>(name, obj);
+        }
+
+        public static MethodsAccessor Method(this Object obj, String name)
+        {
+            if (obj == null) throw new ArgumentNullException("obj");
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
+
+            return new MethodsAccessor(name, obj);
         }
 
         public static FieldAccessor<T> Field<T>(this Object obj, String name)

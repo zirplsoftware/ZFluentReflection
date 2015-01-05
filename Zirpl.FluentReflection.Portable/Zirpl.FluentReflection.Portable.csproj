@@ -46,6 +46,12 @@
     <Compile Include="..\Zirpl.FluentReflection\Accessors\InstanceTypeAccessor.cs">
       <Link>Accessors\InstanceTypeAccessor.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\MethodsAccessor.cs">
+      <Link>Accessors\MethodsAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\MethodsAccessor.gen.cs">
+      <Link>Accessors\MethodsAccessor.gen.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\PropertyAccessor.cs">
       <Link>Accessors\PropertyAccessor.cs</Link>
     </Compile>
