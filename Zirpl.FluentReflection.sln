@@ -26,6 +26,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{42
 		releasenotes.md = releasenotes.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other Frameworks", "Other Frameworks", "{B96A6FCF-9957-46B9-9A55-A7AA58284766}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87428A41-DEE7-44ED-A18B-8E30CDEFD4F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E15653A7-5969-4650-8EFD-A3DCC9449865} = {87428A41-DEE7-44ED-A18B-8E30CDEFD4F0}
+		{CC70EFA9-4970-4CFD-8356-79AE967574E7} = {B96A6FCF-9957-46B9-9A55-A7AA58284766}
+		{FC46E6E2-FAAF-499D-9754-2ECC9B90A97C} = {87428A41-DEE7-44ED-A18B-8E30CDEFD4F0}
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

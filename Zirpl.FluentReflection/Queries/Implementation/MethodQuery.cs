@@ -22,5 +22,11 @@ namespace Zirpl.FluentReflection.Queries
         {
             return new TypeSubQuery<MethodInfo, IMethodQuery>(this, _methodCriteria.ReturnTypeCriteria);
         }
+
+        IMethodQuery IMethodQuery.WithParameters(Type[] typesOfParameters)
+        {
+            _methodCriteria.ParameterTypes = typesOfParameters;
+            return this;
+        }
     }
 }
