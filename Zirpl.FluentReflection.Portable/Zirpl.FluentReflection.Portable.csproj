@@ -24,6 +24,7 @@
     <DefineConstants>TRACE;DEBUG;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\Zirpl.FluentReflection.Portable.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,6 +33,7 @@
     <DefineConstants>TRACE;PORTABLE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\Zirpl.FluentReflection.Portable.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -66,6 +68,9 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\MemberInfoAccessibility.cs">
       <Link>MemberInfoAccessibility.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\ICacheableQuery.cs">
       <Link>Queries\ICacheableQuery.cs</Link>
@@ -235,12 +240,11 @@
     <Compile Include="..\Zirpl.FluentReflection\ReflectionUtilities.cs">
       <Link>ReflectionUtilities.cs</Link>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" />
+      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

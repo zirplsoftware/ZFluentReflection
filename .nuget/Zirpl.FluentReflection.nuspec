@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Zirpl.FluentReflection</id>
+    <version>$version$</version>
+    <title>Zirpl's FluentReflection</title>
+    <authors>Zirpl Software</authors>
+    <owners>Zirpl Software</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Fluent API for working with types via reflection</description>
+    <language>en-US</language>
+    <copyright>Copyright 2015</copyright>
+    <tags></tags>
+    <projectUrl>https://github.com/zirplsoftware/ZFluentReflection</projectUrl>
+    <licenseUrl>https://github.com/zirplsoftware/ZFluentReflection/blob/master/LICENSE</licenseUrl>
+    <releaseNotes>
+      <![CDATA[
+            For full release notes see https://github.com/zirplsoftware/ZFluentReflection/blob/master/releasenotes.md
+            ]]>
+    </releaseNotes>
+  </metadata>
+  <files>
+    <file src="..\Zirpl.FluentReflection\bin\$configuration$\Zirpl.FluentReflection.dll" target="lib\net451\" />
+    <file src="..\Zirpl.FluentReflection\bin\$configuration$\Zirpl.FluentReflection.XML" target="lib\net451\" />
+    <file src="..\Zirpl.FluentReflection.Portable\bin\$configuration$\Zirpl.FluentReflection.Portable.dll" target="lib\portable-net4+sl5+win8+wpa81+wp8\" />
+    <file src="..\Zirpl.FluentReflection.Portable\bin\$configuration$\Zirpl.FluentReflection.Portable.XML" target="lib\portable-net4+sl5+win8+wpa81+wp8\" />
+  </files>
+</package>
