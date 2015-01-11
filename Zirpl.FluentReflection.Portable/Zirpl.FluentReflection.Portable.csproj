@@ -45,17 +45,41 @@
     <Compile Include="..\Zirpl.FluentReflection\Accessors\FieldAccessor.cs">
       <Link>Accessors\FieldAccessor.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\IFieldAccessor.cs">
+      <Link>Accessors\IFieldAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\IMethodAccessor.cs">
+      <Link>Accessors\IMethodAccessor.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\InstanceTypeAccessor.cs">
       <Link>Accessors\InstanceTypeAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\IPropertyAccessor.cs">
+      <Link>Accessors\IPropertyAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\ITypeFieldAccessor.cs">
+      <Link>Accessors\ITypeFieldAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\ITypeMethodsAccessor.cs">
+      <Link>Accessors\ITypeMethodsAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\ITypePropertyAccessor.cs">
+      <Link>Accessors\ITypePropertyAccessor.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\MethodsAccessor.cs">
       <Link>Accessors\MethodsAccessor.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Accessors\MethodsAccessor.gen.cs">
-      <Link>Accessors\MethodsAccessor.gen.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Accessors\PropertyAccessor.cs">
       <Link>Accessors\PropertyAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\TypeFieldAccessor.cs">
+      <Link>Accessors\TypeFieldAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\TypeMethodsAccessor.cs">
+      <Link>Accessors\TypeMethodsAccessor.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Accessors\TypePropertyAccessor.cs">
+      <Link>Accessors\TypePropertyAccessor.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Dynamic\DynamicWrapper.cs">
       <Link>Dynamic\DynamicWrapper.cs</Link>
@@ -244,7 +268,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
+      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

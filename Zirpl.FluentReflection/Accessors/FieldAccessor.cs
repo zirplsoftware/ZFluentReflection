@@ -3,28 +3,20 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Accessors
 {
-    public sealed class FieldAccessor<T>
+    internal sealed class FieldAccessor<T> : TypeFieldAccessor, IFieldAccessor<T>
     {
-        private readonly FieldInfo _fieldInfo;
         private readonly Object _obj;
 
         internal FieldAccessor(FieldInfo fieldInfo, Object obj)
+            :base(fieldInfo)
         {
-            _fieldInfo = fieldInfo;
             _obj = obj;
-        }
-
-        public bool Exists
-        {
-            get { return _fieldInfo != null; }
         }
 
         public T Value
         {
-            get { return (T)_fieldInfo.GetValue(_obj); }
-            set { _fieldInfo.SetValue(_obj, value); }
+            get { return (T)FieldInfo.GetValue(_obj); }
+            set { FieldInfo.SetValue(_obj, value); }
         }
-
-        public FieldInfo FieldInfo { get { return _fieldInfo; } }
     }
 }

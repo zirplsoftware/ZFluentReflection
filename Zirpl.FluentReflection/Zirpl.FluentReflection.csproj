@@ -42,11 +42,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Accessors\EventAccessor.cs" />
+    <Compile Include="Accessors\IFieldAccessor.cs" />
+    <Compile Include="Accessors\IMethodAccessor.cs" />
+    <Compile Include="Accessors\IPropertyAccessor.cs" />
+    <Compile Include="Accessors\ITypeFieldAccessor.cs" />
+    <Compile Include="Accessors\ITypePropertyAccessor.cs" />
+    <Compile Include="Accessors\ITypeMethodsAccessor.cs" />
+    <Compile Include="Accessors\TypeMethodsAccessor.cs" />
     <Compile Include="Accessors\MethodsAccessor.cs" />
-    <Compile Include="Accessors\MethodsAccessor.gen.cs" />
     <Compile Include="Accessors\FieldAccessor.cs" />
+    <Compile Include="Accessors\TypePropertyAccessor.cs" />
     <Compile Include="Accessors\PropertyAccessor.cs" />
     <Compile Include="Accessors\InstanceTypeAccessor.cs" />
+    <Compile Include="Accessors\TypeFieldAccessor.cs" />
     <Compile Include="Dynamic\DynamicWrapper.cs" />
     <Compile Include="Dynamic\FieldInfoExtensions.cs" />
     <Compile Include="Dynamic\TypeExtensions.cs" />
