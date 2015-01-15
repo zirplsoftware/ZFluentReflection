@@ -1,7 +1,7 @@
 ﻿using System;
 using FluentAssertions;
 using NUnit.Framework;
-using Zirpl.FluentReflection.Queries.Helpers;
+using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Helpers
 {

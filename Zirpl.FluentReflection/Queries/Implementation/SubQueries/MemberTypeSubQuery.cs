@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Zirpl.FluentReflection.Queries.Helpers;
+using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
-namespace Zirpl.FluentReflection.Queries.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
 {
     internal class MemberTypeSubQuery : SubQueryBase<MemberInfo, IMemberQuery>,
         IMemberTypeSubQuery

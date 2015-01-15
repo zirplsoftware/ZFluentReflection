@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
 {
     internal class NameSubQuery<TMemberInfo, TReturnQuery> : SubQueryBase<TMemberInfo, TReturnQuery>,
         INameSubQuery<TMemberInfo, TReturnQuery>

@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Helpers
+namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
 {
     internal sealed class BindingFlagsBuilder
     {

@@ -32,6 +32,7 @@ namespace Zirpl.FluentReflection.Tests.Accessors
         [TestCase(typeof(B), "privatepropertyona", true, TestName = "privatepropertyona-ThroughB")]
         [TestCase(typeof(B), "protectedinternalpropertyona", true, TestName = "protectedinternalpropertyona-ThroughB")]
         [TestCase(typeof(B), "internalpropertyona", true, TestName = "internalpropertyona-ThroughB")]
+        [TestCase(typeof(A), "nada", false, TestName = "NonExistentProperty")]
         public void TestPropertyInfo(Type type, String name, bool expectedToBeFound)
         {
             var accessor = InstanceTypeAccessor.Get(type);
@@ -44,6 +45,14 @@ namespace Zirpl.FluentReflection.Tests.Accessors
             {
                 property.Should().BeNull();
             }
+        }
+
+        [Test]
+        public void TestMethodInfos()
+        {
+            var methodsInfos = InstanceTypeAccessor.Get(typeof(A)).Method("nada").MethodInfos;
+            methodsInfos.Should().NotBeNull();
+            methodsInfos.Count().Should().Be(0);
         }
 
         public class A

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal abstract class NamedMemberQueryBase<TMemberInfo, TMemberQuery> : MemberQueryBase<TMemberInfo, TMemberQuery>,
         INamedMemberQuery<TMemberInfo, TMemberQuery>

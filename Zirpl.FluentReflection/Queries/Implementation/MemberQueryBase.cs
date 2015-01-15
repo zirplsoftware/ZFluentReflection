@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
-using Zirpl.FluentReflection.Queries.Helpers;
-using Zirpl.FluentReflection.Queries.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Helpers;
+using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal abstract class MemberQueryBase<TMemberInfo, TMemberQuery> : CacheableQueryBase<TMemberInfo>,
         IMemberQuery<TMemberInfo, TMemberQuery>

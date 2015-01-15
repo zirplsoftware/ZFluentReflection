@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
-using Zirpl.FluentReflection.Queries.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal sealed class TypeQuery : CacheableQueryBase<Type>, ITypeQuery
     {

@@ -4,7 +4,8 @@ using System.Reflection;
 using Zirpl.FluentReflection.Accessors;
 using Zirpl.FluentReflection.Dynamic;
 using Zirpl.FluentReflection.Queries;
-using Zirpl.FluentReflection.Queries.Helpers;
+using Zirpl.FluentReflection.Queries.Implementation;
+using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
 namespace Zirpl.FluentReflection
 {

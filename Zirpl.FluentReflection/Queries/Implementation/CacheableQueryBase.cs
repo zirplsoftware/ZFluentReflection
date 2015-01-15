@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Helpers;
+using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal abstract class CacheableQueryBase<TMemberInfo> : IQueryResult<TMemberInfo>,
         ICacheableQuery<TMemberInfo>

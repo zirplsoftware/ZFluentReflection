@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Zirpl.FluentReflection.Queries.Criteria
+namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
 {
     internal sealed class MemberNameCriteria : NameCriteria	
     {
@@ -12,7 +12,7 @@ namespace Zirpl.FluentReflection.Queries.Criteria
             { 
                 // at the moment, member names are ALWAYS handled by the service, so we can ignore things here
                 // UNLESS it is one of these nifty guys
-                return Names != null && NameHandling != NameHandlingType.Whole;
+                return Names != null;
             }
         }
 

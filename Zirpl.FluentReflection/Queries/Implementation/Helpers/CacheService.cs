@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Zirpl.FluentReflection.Queries.Helpers
+namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
 {
     internal sealed class CacheService
     {

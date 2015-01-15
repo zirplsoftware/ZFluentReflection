@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Zirpl.FluentReflection.Queries.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
 {
     internal abstract class SubQueryBase<TResult, TReturnQuery> : IQueryResult<TResult>
         where TReturnQuery : IQueryResult<TResult>

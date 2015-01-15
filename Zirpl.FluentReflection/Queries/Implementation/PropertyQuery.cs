@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
-using Zirpl.FluentReflection.Queries.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal sealed class PropertyQuery : NamedMemberQueryBase<PropertyInfo, IPropertyQuery>,
         IPropertyQuery

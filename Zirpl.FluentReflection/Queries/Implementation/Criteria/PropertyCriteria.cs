@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Criteria
+namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
 {
     internal sealed class PropertyCriteria : MemberInfoQueryCriteriaBase
     {

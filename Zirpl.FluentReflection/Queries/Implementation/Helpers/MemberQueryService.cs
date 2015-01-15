@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Helpers
+namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
 {
     internal sealed class MemberQueryService
     {
@@ -87,21 +87,8 @@ namespace Zirpl.FluentReflection.Queries.Helpers
             }
             if (memberTypes.HasFlag(MemberTypeFlags.Method))
             {
-                if (namesCount > 0)
-                {
-                    if (namesCount > 1)
-                    {
-                        found.AddRange(theNames.Select(name => type.GetMethod(name, bindingFlags)));
-                    }
-                    else
-                    {
-                        found.Add(type.GetMethod(theNames[0], bindingFlags));
-                    }
-                }
-                else
-                {
-                    found.AddRange(type.GetMethods(bindingFlags));
-                }
+                // method names can't be handled here
+                found.AddRange(type.GetMethods(bindingFlags));
             }
             if (memberTypes.HasFlag(MemberTypeFlags.NestedType))
             {
@@ -141,7 +128,7 @@ namespace Zirpl.FluentReflection.Queries.Helpers
             }
 
             //found.AddRange(type.FindMembers(memberTypes, bindingFlags, FindMemberMatch, null));
-            return found.ToArray();
+            return found.Where(o => o != null).ToArray();
         }
     }
 }

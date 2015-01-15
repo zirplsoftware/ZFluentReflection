@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
-using Zirpl.FluentReflection.Queries.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
 {
     internal sealed class MemberScopeSubQuery<TMemberInfo, TReturnQuery> : SubQueryBase<TMemberInfo, TReturnQuery>,
         IMemberScopeSubQuery<TMemberInfo, TReturnQuery>

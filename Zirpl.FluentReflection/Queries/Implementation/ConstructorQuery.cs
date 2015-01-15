@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries
+namespace Zirpl.FluentReflection.Queries.Implementation
 {
     internal sealed class ConstructorQuery : MemberQueryBase<ConstructorInfo, IConstructorQuery>, 
         IConstructorQuery

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
-using Zirpl.FluentReflection.Queries.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 {
