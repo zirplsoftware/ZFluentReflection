@@ -123,7 +123,7 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new PropertyAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).Property(name), obj);
+            return new PropertyAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).PropertyInfo(name), obj);
         }
 
         public static IPropertyAccessor<Object> Property(this Object obj, String name)
@@ -131,15 +131,15 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new PropertyAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).Property(name), obj);
+            return new PropertyAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).PropertyInfo(name), obj);
         }
 
-        public static ITypePropertyAccessor PropertyInfo(this Type type, String name)
+        public static PropertyInfo PropertyInfo(this Type type, String name)
         {
             if (type == null) throw new ArgumentNullException("type");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new TypePropertyAccessor(InstanceTypeAccessor.Get(type).Property(name));
+            return InstanceTypeAccessor.Get(type).PropertyInfo(name);
         }
 
         public static IMethodAccessor<T> Method<T>(this Object obj, String name)
@@ -158,12 +158,12 @@ namespace Zirpl.FluentReflection
             return new MethodsAccessor<Object>(name, obj);
         }
 
-        public static ITypeMethodsAccessor MethodInfo(this Type type, String name)
+        public static MethodInfo[] MethodInfos(this Type type, String name)
         {
             if (type == null) throw new ArgumentNullException("type");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new TypeMethodsAccessor(name, type);
+            return new TypeMethodsAccessor(name, type).MethodInfos;
         }
 
         public static IFieldAccessor<T> Field<T>(this Object obj, String name)
@@ -171,7 +171,7 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new FieldAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).Field(name), obj);
+            return new FieldAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).FieldInfo(name), obj);
         }
 
         public static IFieldAccessor<Object> Field(this Object obj, String name)
@@ -179,15 +179,15 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new FieldAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).Field(name), obj);
+            return new FieldAccessor<Object>(InstanceTypeAccessor.Get(obj.GetType()).FieldInfo(name), obj);
         }
 
-        public static ITypeFieldAccessor FieldInfo(this Type type, String name)
+        public static FieldInfo FieldInfo(this Type type, String name)
         {
             if (type == null) throw new ArgumentNullException("type");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new TypeFieldAccessor(InstanceTypeAccessor.Get(type).Field(name));
+            return InstanceTypeAccessor.Get(type).FieldInfo(name);
         }
 
         public static EventAccessor<T> Event<T>(this Object obj, String name)
@@ -196,7 +196,7 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new EventAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).Event(name), obj);
+            return new EventAccessor<T>(InstanceTypeAccessor.Get(obj.GetType()).EventInfo(name), obj);
         }
 
         public static EventAccessor<EventArgs> Event(this Object obj, String name)
@@ -204,7 +204,15 @@ namespace Zirpl.FluentReflection
             if (obj == null) throw new ArgumentNullException("obj");
             if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
 
-            return new EventAccessor<EventArgs>(InstanceTypeAccessor.Get(obj.GetType()).Event(name), obj);
+            return new EventAccessor<EventArgs>(InstanceTypeAccessor.Get(obj.GetType()).EventInfo(name), obj);
+        }
+
+        public static EventInfo EventInfo(this Type type, String name)
+        {
+            if (type == null) throw new ArgumentNullException("type");
+            if (String.IsNullOrEmpty(name)) throw new ArgumentNullException("name");
+
+            return InstanceTypeAccessor.Get(type).EventInfo(name);
         }
 
         public static bool HasDefaultConstructor(this Type type)

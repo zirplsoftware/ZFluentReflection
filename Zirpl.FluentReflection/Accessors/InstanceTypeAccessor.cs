@@ -56,18 +56,18 @@ namespace Zirpl.FluentReflection.Accessors
             _eventMap = new Dictionary<string, EventInfo>();
         }
 
-        internal PropertyInfo Property(String name)
+        internal PropertyInfo PropertyInfo(String name)
         {
             if (!_propertyMap.ContainsKey(name.ToLower()))
             {
                 lock (_propertyMap)
                 {
                     var propertyInfo = _type.QueryProperties()
+                            .OfAccessibility().Public().And()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault() 
                         ?? _type.QueryProperties()
-                            .OfAccessibility()
-                            .NotPublic()
+                            .OfAccessibility().NotPublic()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault();
                     if (propertyInfo == null)
@@ -89,18 +89,18 @@ namespace Zirpl.FluentReflection.Accessors
             return _propertyMap[name.ToLower()];
         }
 
-        internal FieldInfo Field(String name)
+        internal FieldInfo FieldInfo(String name)
         {
             if (!_fieldMap.ContainsKey(name.ToLower()))
             {
                 lock (_fieldMap)
                 {
                     var fieldInfo = _type.QueryFields()
+                            .OfAccessibility().Public().And()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault() 
                         ?? _type.QueryFields()
-                            .OfAccessibility()
-                            .NotPublic()
+                            .OfAccessibility().NotPublic()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault();
                     if (fieldInfo == null)
@@ -109,8 +109,7 @@ namespace Zirpl.FluentReflection.Accessors
                         while (type != null && fieldInfo == null)
                         {
                             fieldInfo = type.QueryFields()
-                               .OfAccessibility()
-                               .Private().And()
+                               .OfAccessibility().Private().And()
                                .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
                             type = type.BaseType;
@@ -122,18 +121,18 @@ namespace Zirpl.FluentReflection.Accessors
             return _fieldMap[name.ToLower()];
         }
 
-        internal EventInfo Event(String name)
+        internal EventInfo EventInfo(String name)
         {
             if (!_eventMap.ContainsKey(name.ToLower()))
             {
                 lock (_eventMap)
                 {
                     var eventInfo = _type.QueryEvents()
+                            .OfAccessibility().Public().And()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault() 
                         ?? _type.QueryEvents()
-                            .OfAccessibility()
-                            .NotPublic()
+                            .OfAccessibility().NotPublic()
                             .Named().ExactlyIgnoreCase(name)
                             .ResultSingleOrDefault();
                     if (eventInfo == null)
@@ -142,8 +141,7 @@ namespace Zirpl.FluentReflection.Accessors
                         while (type != null && eventInfo == null)
                         {
                             eventInfo = type.QueryEvents()
-                               .OfAccessibility()
-                               .Private().And()
+                               .OfAccessibility().Private().And()
                                .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
                             type = type.BaseType;
