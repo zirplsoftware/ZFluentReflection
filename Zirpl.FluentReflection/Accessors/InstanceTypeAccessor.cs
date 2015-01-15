@@ -75,11 +75,12 @@ namespace Zirpl.FluentReflection.Accessors
                         var type = _type.BaseType;
                         while (type != null && propertyInfo == null)
                         {
-                            propertyInfo = _type.QueryProperties()
+                            propertyInfo = type.QueryProperties()
                                .OfAccessibility()
                                .Private().And()
                                .Named().ExactlyIgnoreCase(name)
-                               .ResultSingleOrDefault();   
+                               .ResultSingleOrDefault();
+                            type = type.BaseType;
                         }
                     }
                     _propertyMap.Add(name.ToLower(), propertyInfo);
@@ -107,11 +108,12 @@ namespace Zirpl.FluentReflection.Accessors
                         var type = _type.BaseType;
                         while (type != null && fieldInfo == null)
                         {
-                            fieldInfo = _type.QueryFields()
+                            fieldInfo = type.QueryFields()
                                .OfAccessibility()
                                .Private().And()
                                .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
+                            type = type.BaseType;
                         }
                     }
                     _fieldMap.Add(name.ToLower(), fieldInfo);
@@ -139,11 +141,12 @@ namespace Zirpl.FluentReflection.Accessors
                         var type = _type.BaseType;
                         while (type != null && eventInfo == null)
                         {
-                            eventInfo = _type.QueryEvents()
+                            eventInfo = type.QueryEvents()
                                .OfAccessibility()
                                .Private().And()
                                .Named().ExactlyIgnoreCase(name)
                                .ResultSingleOrDefault();
+                            type = type.BaseType;
                         }
                     }
                     _eventMap.Add(name.ToLower(), eventInfo);
