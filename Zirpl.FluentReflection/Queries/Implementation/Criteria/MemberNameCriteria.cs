@@ -16,7 +16,7 @@ namespace Zirpl.FluentReflection.Queries
             }
         }
 
-        internal IEnumerable<String> GetNamesForDirectLookup()
+        internal String[] GetNamesForDirectLookup()
         {
             if (Names != null
                 && NameHandling == NameHandlingType.Whole)
