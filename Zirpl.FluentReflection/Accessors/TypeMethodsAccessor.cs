@@ -28,9 +28,9 @@ namespace Zirpl.FluentReflection.Accessors
             { 
                 return _type
                 .QueryMethods()
-                .OfAccessibility().All()
-                .OfScope().All()
-                .Named().ExactlyIgnoreCase(_methodName)
+                .OfAccessibility(b => b.All())
+                .OfScope(b => b.All())
+                .Named(b => b.ExactlyIgnoreCase(_methodName))
                 .Result().ToArray(); 
             } 
         }

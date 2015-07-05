@@ -4,6 +4,6 @@ namespace Zirpl.FluentReflection.Queries
 {
     public interface INestedTypeQuery : INamedMemberQuery<Type, INestedTypeQuery>
     {
-        ITypeSubQuery<Type, INestedTypeQuery> OfType();
+        INestedTypeQuery OfType(Action<ITypeCriteriaBuilder> builder);
     }
 }

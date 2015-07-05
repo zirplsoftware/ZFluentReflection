@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -18,9 +18,10 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             QueryCriteriaList.Add(_eventHandlerTypeCriteria);
         }
 
-        ITypeSubQuery<EventInfo, IEventQuery> IEventQuery.OfEventHandlerType()
+        IEventQuery IEventQuery.OfEventHandlerType(Action<ITypeCriteriaBuilder> builder)
         {
-            return new TypeSubQuery<EventInfo, IEventQuery>(this, _eventHandlerTypeCriteria);
+            builder(new TypeCriteriaBuilder(_eventHandlerTypeCriteria));
+            return this;
         }
     }
 }

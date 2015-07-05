@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Zirpl.FluentReflection.Benchmarks
 {
@@ -13,11 +8,11 @@ namespace Zirpl.FluentReflection.Benchmarks
     {
         static void Main(string[] args)
         {
-            var iterations = 100000;
+            const int iterations = 100000;
 
             Console.WriteLine("FluentReflection benchmarks");
 
-            Console.WriteLine(String.Format("1) Setting 10 different properties {0:n0} times without reflection", iterations));
+            Console.WriteLine("1) Setting 10 different properties {0:n0} times without reflection", iterations);
             var action = new Action(() =>
             {
                 var mock = new Mock();
@@ -34,10 +29,10 @@ namespace Zirpl.FluentReflection.Benchmarks
             });
             RunTest(5, iterations, action);
 
-            Console.WriteLine(String.Format("2) Setting a string property {0:n0} times with standard reflection", iterations));
-            action = new Action(() =>
+            Console.WriteLine("2) Setting a string property {0:n0} times with standard reflection", iterations);
+            action = () =>
             {
-                var namesList = new String[]
+                var namesList = new[]
                 {
                     "TestProperty1",
                     "TestProperty2",
@@ -57,13 +52,13 @@ namespace Zirpl.FluentReflection.Benchmarks
                     type.GetProperty(name, BindingFlags.Instance | BindingFlags.Public)
                         .SetValue(mock, Guid.NewGuid().ToString());   
                 }
-            });
+            };
             RunTest(5, iterations, action);
 
-            Console.WriteLine(String.Format("3) Setting a string property {0:n0} times with fluent reflection", iterations));
-            action = new Action(() =>
+            Console.WriteLine("3) Setting a string property {0:n0} times with fluent reflection", iterations);
+            action = () =>
             {
-                var namesList = new String[]
+                var namesList = new[]
                 {
                     "TestProperty1",
                     "TestProperty2",
@@ -79,24 +74,24 @@ namespace Zirpl.FluentReflection.Benchmarks
                 var mock = new Mock();
                 var type = typeof(Mock);
                 var properties = type.QueryProperties()
-                    .OfAccessibility().Public().And()
-                    .OfScope().Instance().And()
-                    .Named().AnyIgnoreCase(namesList)
+                    .OfAccessibility(b => b.Public())
+                    .OfScope(b => b.Instance())
+                    .Named(b => b.AnyIgnoreCase(namesList))
                     .Result();
                 foreach (var propertyInfo in properties)
                 {
                     propertyInfo.SetValue(mock, Guid.NewGuid().ToString());
                 }
-            });
+            };
             RunTest(5, iterations, action);
 
 
 
-            Console.WriteLine(String.Format("4) Setting a string property {0:n0} times with fluent reflection using caching", iterations));
-            typeof (Mock).QueryProperties()
-                .OfAccessibility().Public().And()
-                .OfScope().Instance().And()
-                .Named().AnyIgnoreCase(new String[]
+            Console.WriteLine("4) Setting a string property {0:n0} times with fluent reflection using caching", iterations);
+            typeof(Mock).QueryProperties()
+                    .OfAccessibility(b => b.Public())
+                    .OfScope(b => b.Instance())
+                .Named(b => b.AnyIgnoreCase(new []
                 {
                     "TestProperty1",
                     "TestProperty2",
@@ -108,9 +103,9 @@ namespace Zirpl.FluentReflection.Benchmarks
                     "TestProperty8",
                     "TestProperty9",
                     "TestProperty10"
-                })
+                }))
                 .CacheResultTo("test123");
-            action = new Action(() =>
+            action = () =>
             {
                 
                 var mock = new Mock();
@@ -119,13 +114,13 @@ namespace Zirpl.FluentReflection.Benchmarks
                 {
                     propertyInfo.SetValue(mock, Guid.NewGuid().ToString());
                 }
-            });
+            };
             RunTest(5, iterations, action);
 
-            Console.WriteLine(String.Format("5) Setting a string property {0:n0} times with fluent reflection using the Property extension method", iterations));
-            action = new Action(() =>
+            Console.WriteLine("5) Setting a string property {0:n0} times with fluent reflection using the Property extension method", iterations);
+            action = () =>
             {
-                var namesList = new String[]
+                var namesList = new[]
                 {
                     "TestProperty1",
                     "TestProperty2",
@@ -143,7 +138,7 @@ namespace Zirpl.FluentReflection.Benchmarks
                 {
                     mock.Property<String>(name).Value = Guid.NewGuid().ToString();
                 }
-            });
+            };
             RunTest(5, iterations, action);
 
             Console.WriteLine();
@@ -154,7 +149,7 @@ namespace Zirpl.FluentReflection.Benchmarks
         {
             for (var runIndex = 0; runIndex < runs; runIndex++)
             {
-                Stopwatch stopWatch = new Stopwatch();
+                var stopWatch = new Stopwatch();
                 stopWatch.Start();
                 for (int i = 0; i < iterations; i++)
                 {
@@ -163,13 +158,9 @@ namespace Zirpl.FluentReflection.Benchmarks
 
                 stopWatch.Stop();
                 // Get the elapsed time as a TimeSpan value.
-                TimeSpan ts = stopWatch.Elapsed;
+                var ts = stopWatch.Elapsed;
 
-                Console.WriteLine(String.Format("Run # {3} of {4}: {0:00}:{1:00}.{2:000}",
-                ts.Minutes, ts.Seconds,
-                ts.Milliseconds,
-                runIndex + 1,
-                runs));
+                Console.WriteLine("Run # {3} of {4}: {0:00}:{1:00}.{2:000}", ts.Minutes, ts.Seconds, ts.Milliseconds, runIndex + 1, runs);
             }
         }
     }

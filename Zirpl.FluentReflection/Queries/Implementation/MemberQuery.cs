@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -12,9 +12,10 @@ namespace Zirpl.FluentReflection.Queries.Implementation
         {
         }
 
-        IMemberTypeSubQuery IMemberQuery.OfMemberType()
+        IMemberQuery IMemberQuery.OfMemberType(Action<IMemberTypeCriteriaBuilder> builder)
         {
-            return new MemberTypeSubQuery(this, MemberTypeFlagsBuilder);
+            builder(new MemberTypeCriteriaBuilder(MemberTypeFlagsBuilder));
+            return this;
         }
     }
 }

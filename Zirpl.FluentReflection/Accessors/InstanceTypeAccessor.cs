@@ -63,12 +63,12 @@ namespace Zirpl.FluentReflection.Accessors
                 lock (_propertyMap)
                 {
                     var propertyInfo = _type.QueryProperties()
-                            .OfAccessibility().Public().And()
-                            .Named().ExactlyIgnoreCase(name)
-                            .ResultSingleOrDefault() 
+                            .OfAccessibility(b => b.Public())
+                            .Named(b => b.ExactlyIgnoreCase(name))
+                            .ResultSingleOrDefault()
                         ?? _type.QueryProperties()
-                            .OfAccessibility().NotPublic()
-                            .Named().ExactlyIgnoreCase(name)
+                            .OfAccessibility(b => b.NotPublic())
+                            .Named(b => b.ExactlyIgnoreCase(name))
                             .ResultSingleOrDefault();
                     if (propertyInfo == null)
                     {
@@ -76,9 +76,8 @@ namespace Zirpl.FluentReflection.Accessors
                         while (type != null && propertyInfo == null)
                         {
                             propertyInfo = type.QueryProperties()
-                               .OfAccessibility()
-                               .Private().And()
-                               .Named().ExactlyIgnoreCase(name)
+                                .OfAccessibility(b => b.Private())
+                                .Named(b => b.ExactlyIgnoreCase(name))
                                .ResultSingleOrDefault();
                             type = type.BaseType;
                         }
@@ -96,12 +95,12 @@ namespace Zirpl.FluentReflection.Accessors
                 lock (_fieldMap)
                 {
                     var fieldInfo = _type.QueryFields()
-                            .OfAccessibility().Public().And()
-                            .Named().ExactlyIgnoreCase(name)
-                            .ResultSingleOrDefault() 
+                            .OfAccessibility(b => b.Public())
+                            .Named(b => b.ExactlyIgnoreCase(name))
+                            .ResultSingleOrDefault()
                         ?? _type.QueryFields()
-                            .OfAccessibility().NotPublic()
-                            .Named().ExactlyIgnoreCase(name)
+                            .OfAccessibility(b => b.NotPublic())
+                            .Named(b => b.ExactlyIgnoreCase(name))
                             .ResultSingleOrDefault();
                     if (fieldInfo == null)
                     {
@@ -109,8 +108,8 @@ namespace Zirpl.FluentReflection.Accessors
                         while (type != null && fieldInfo == null)
                         {
                             fieldInfo = type.QueryFields()
-                               .OfAccessibility().Private().And()
-                               .Named().ExactlyIgnoreCase(name)
+                                .OfAccessibility(b => b.Private())
+                               .Named(b => b.ExactlyIgnoreCase(name))
                                .ResultSingleOrDefault();
                             type = type.BaseType;
                         }
@@ -128,12 +127,12 @@ namespace Zirpl.FluentReflection.Accessors
                 lock (_eventMap)
                 {
                     var eventInfo = _type.QueryEvents()
-                            .OfAccessibility().Public().And()
-                            .Named().ExactlyIgnoreCase(name)
-                            .ResultSingleOrDefault() 
+                            .OfAccessibility(b => b.Public())
+                            .Named(b => b.ExactlyIgnoreCase(name))
+                            .ResultSingleOrDefault()
                         ?? _type.QueryEvents()
-                            .OfAccessibility().NotPublic()
-                            .Named().ExactlyIgnoreCase(name)
+                            .OfAccessibility(b => b.NotPublic())
+                            .Named(b => b.ExactlyIgnoreCase(name))
                             .ResultSingleOrDefault();
                     if (eventInfo == null)
                     {
@@ -141,8 +140,8 @@ namespace Zirpl.FluentReflection.Accessors
                         while (type != null && eventInfo == null)
                         {
                             eventInfo = type.QueryEvents()
-                               .OfAccessibility().Private().And()
-                               .Named().ExactlyIgnoreCase(name)
+                               .OfAccessibility(b => b.Private())
+                               .Named(b => b.ExactlyIgnoreCase(name))
                                .ResultSingleOrDefault();
                             type = type.BaseType;
                         }

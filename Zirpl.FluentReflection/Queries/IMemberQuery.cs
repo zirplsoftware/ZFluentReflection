@@ -1,9 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
     public interface IMemberQuery : INamedMemberQuery<MemberInfo, IMemberQuery>
     {
-        IMemberTypeSubQuery OfMemberType();
+        IMemberQuery OfMemberType(Action<IMemberTypeCriteriaBuilder> builder);
     }
 }

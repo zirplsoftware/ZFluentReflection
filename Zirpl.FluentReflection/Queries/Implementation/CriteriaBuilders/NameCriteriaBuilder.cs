@@ -1,169 +1,164 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
 {
-    internal class NameSubQuery<TMemberInfo, TReturnQuery> : SubQueryBase<TMemberInfo, TReturnQuery>,
-        INameSubQuery<TMemberInfo, TReturnQuery>
-        where TMemberInfo : MemberInfo
-        where TReturnQuery : IQueryResult<TMemberInfo>
+    internal class NameCriteriaBuilder : INameCriteriaBuilder
     {
         private readonly NameCriteria _nameCriteria;
 
-        internal NameSubQuery(TReturnQuery returnQuery, NameCriteria nameCriteria)
-            :base(returnQuery)
+        internal NameCriteriaBuilder(NameCriteria nameCriteria)
         {
             _nameCriteria = nameCriteria;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.Exactly(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.Exactly(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
-            _nameCriteria.Names = new [] {name};
-            return _returnQuery;
+            _nameCriteria.Names = new[] { name };
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.Any(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.Any(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.ExactlyIgnoreCase(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.ExactlyIgnoreCase(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.AnyIgnoreCase(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.AnyIgnoreCase(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.StartingWith(string name)
-        {
-            if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
-
-            _nameCriteria.Names = new[] { name };
-            _nameCriteria.NameHandling = NameHandlingType.StartsWith;
-            return _returnQuery;
-        }
-
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.StartingWithAny(IEnumerable<string> names)
-        {
-            if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
-
-            _nameCriteria.Names = names;
-            _nameCriteria.NameHandling = NameHandlingType.StartsWith;
-            return _returnQuery;
-        }
-
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.StartingWithIgnoreCase(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.StartingWith(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.NameHandling = NameHandlingType.StartsWith;
-            _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.StartingWithAnyIgnoreCase(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.StartingWithAny(IEnumerable<string> names)
+        {
+            if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
+
+            _nameCriteria.Names = names;
+            _nameCriteria.NameHandling = NameHandlingType.StartsWith;
+            return this;
+        }
+
+        INameCriteriaBuilder INameCriteriaBuilder.StartingWithIgnoreCase(string name)
+        {
+            if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
+
+            _nameCriteria.Names = new[] { name };
+            _nameCriteria.NameHandling = NameHandlingType.StartsWith;
+            _nameCriteria.IgnoreCase = true;
+            return this;
+        }
+
+        INameCriteriaBuilder INameCriteriaBuilder.StartingWithAnyIgnoreCase(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.NameHandling = NameHandlingType.StartsWith;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.Containing(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.Containing(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.NameHandling = NameHandlingType.Contains;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.ContainingAny(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.ContainingAny(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.NameHandling = NameHandlingType.Contains;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.ContainingIgnoreCase(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.ContainingIgnoreCase(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.NameHandling = NameHandlingType.Contains;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.ContainingAnyIgnoreCase(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.ContainingAnyIgnoreCase(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.NameHandling = NameHandlingType.Contains;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.EndingWith(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.EndingWith(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.NameHandling = NameHandlingType.EndsWith;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.EndingWithAny(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.EndingWithAny(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.NameHandling = NameHandlingType.EndsWith;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.EndingWithIgnoreCase(string name)
+        INameCriteriaBuilder INameCriteriaBuilder.EndingWithIgnoreCase(string name)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = new[] { name };
             _nameCriteria.NameHandling = NameHandlingType.EndsWith;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
 
-        TReturnQuery INameSubQuery<TMemberInfo, TReturnQuery>.EndingWithAnyIgnoreCase(IEnumerable<string> names)
+        INameCriteriaBuilder INameCriteriaBuilder.EndingWithAnyIgnoreCase(IEnumerable<string> names)
         {
             if (_nameCriteria.Names != null) throw new InvalidOperationException("Cannot call more than 1 Name-specification method in the same sub-query");
 
             _nameCriteria.Names = names;
             _nameCriteria.NameHandling = NameHandlingType.EndsWith;
             _nameCriteria.IgnoreCase = true;
-            return _returnQuery;
+            return this;
         }
     }
 }

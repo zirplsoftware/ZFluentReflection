@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 using Zirpl.FluentReflection.Queries.Implementation.Helpers;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -58,19 +58,16 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             return final;
         }
 
-        IMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibility()
+        TMemberQuery IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibility(Action<IAccessibilityCriteriaBuilder> builder)
         {
-            return new MemberAccessibilitySubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberAccessibilityCriteria);
+            builder(new AccessibilityCriteriaBuilder(_memberAccessibilityCriteria));
+            return (TMemberQuery)(Object)this;
         }
 
-        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfAccessibilityCSharp()
+        TMemberQuery IMemberQuery<TMemberInfo, TMemberQuery>.OfScope(Action<IScopeCriteriaBuilder> builder)
         {
-            return new MemberAccessibilitySubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberAccessibilityCriteria);
-        }
-
-        IMemberScopeSubQuery<TMemberInfo, TMemberQuery> IMemberQuery<TMemberInfo, TMemberQuery>.OfScope()
-        {
-            return new MemberScopeSubQuery<TMemberInfo, TMemberQuery>((TMemberQuery)(Object)this, _memberScopeCriteria);
+            builder(new ScopeCriteriaBuilder(_memberScopeCriteria));
+            return (TMemberQuery) (Object) this;
         }
     }
 }

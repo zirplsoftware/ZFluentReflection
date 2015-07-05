@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -18,9 +18,10 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             QueryCriteriaList.Add(_propertyCriteria);
         }
 
-        ITypeSubQuery<PropertyInfo, IPropertyQuery> IPropertyQuery.OfPropertyType()
+        IPropertyQuery IPropertyQuery.OfPropertyType(Action<ITypeCriteriaBuilder> builder)
         {
-            return new TypeSubQuery<PropertyInfo, IPropertyQuery>(this, _propertyCriteria.PropertyTypeCriteria);
+            builder(new TypeCriteriaBuilder(_propertyCriteria.PropertyTypeCriteria));
+            return this;
         }
 
         IPropertyQuery IPropertyQuery.WithGetter()

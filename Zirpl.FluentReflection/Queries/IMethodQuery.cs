@@ -5,7 +5,7 @@ namespace Zirpl.FluentReflection.Queries
 {
     public interface IMethodQuery : INamedMemberQuery<MethodInfo, IMethodQuery>
     {
-        ITypeSubQuery<MethodInfo, IMethodQuery> OfReturnType();
+        IMethodQuery OfReturnType(Action<ITypeCriteriaBuilder> builder);
         IMethodQuery WithParameters(Type[] typesOfParameters);
     }
 }

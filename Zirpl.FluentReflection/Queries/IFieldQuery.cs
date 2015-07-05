@@ -1,9 +1,10 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
     public interface IFieldQuery : INamedMemberQuery<FieldInfo, IFieldQuery>
     {
-        ITypeSubQuery<FieldInfo, IFieldQuery> OfFieldType();
+        IFieldQuery OfFieldType(Action<ITypeCriteriaBuilder> builder);
     }
 }

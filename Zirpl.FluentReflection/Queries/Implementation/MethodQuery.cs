@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -18,14 +18,15 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             QueryCriteriaList.Add(_methodCriteria);
         }
 
-        ITypeSubQuery<MethodInfo, IMethodQuery> IMethodQuery.OfReturnType()
-        {
-            return new TypeSubQuery<MethodInfo, IMethodQuery>(this, _methodCriteria.ReturnTypeCriteria);
-        }
-
         IMethodQuery IMethodQuery.WithParameters(Type[] typesOfParameters)
         {
             _methodCriteria.ParameterTypes = typesOfParameters;
+            return this;
+        }
+
+        IMethodQuery IMethodQuery.OfReturnType(Action<ITypeCriteriaBuilder> builder)
+        {
+            builder(new TypeCriteriaBuilder(_methodCriteria.ReturnTypeCriteria));
             return this;
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
@@ -6,8 +7,7 @@ namespace Zirpl.FluentReflection.Queries
         where TMemberInfo : MemberInfo
         where TMemberQuery : IMemberQuery<TMemberInfo, TMemberQuery>
     {
-        IMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> OfAccessibility();
-        ICSharpMemberAccessibilitySubQuery<TMemberInfo, TMemberQuery> OfAccessibilityCSharp();
-        IMemberScopeSubQuery<TMemberInfo, TMemberQuery> OfScope();
+        TMemberQuery OfAccessibility(Action<IAccessibilityCriteriaBuilder> builder);
+        TMemberQuery OfScope(Action<IScopeCriteriaBuilder> builder);
     }
 }

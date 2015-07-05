@@ -96,14 +96,35 @@
     <Compile Include="..\Zirpl.FluentReflection\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\IAccessibilityCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\IAccessibilityCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\ICSharpAccessibilityCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\ICSharpAccessibilityCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\IMemberTypeCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\IMemberTypeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\INameCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\INameCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\IScopeCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\IScopeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\ITypeCompatibilityCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\ITypeCompatibilityCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\ITypeCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\ITypeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\criteriaBuilders\ITypeNameCriteriaBuilder.cs">
+      <Link>Queries\CriteriaBuilders\ITypeNameCriteriaBuilder.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\ICacheableQuery.cs">
       <Link>Queries\ICacheableQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\IConstructorQuery.cs">
       <Link>Queries\IConstructorQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\ICSharpMemberAccessibilitySubQuery.cs">
-      <Link>Queries\ICSharpMemberAccessibilitySubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\IEventQuery.cs">
       <Link>Queries\IEventQuery.cs</Link>
@@ -111,20 +132,11 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\IFieldQuery.cs">
       <Link>Queries\IFieldQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\IMemberAccessibilitySubQuery.cs">
-      <Link>Queries\IMemberAccessibilitySubQuery.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\IMemberQuery.cs">
       <Link>Queries\IMemberQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\IMemberQuery_base.cs">
       <Link>Queries\IMemberQuery_base.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\IMemberScopeSubQuery.cs">
-      <Link>Queries\IMemberScopeSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\IMemberTypeSubQuery.cs">
-      <Link>Queries\IMemberTypeSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\IMethodQuery.cs">
       <Link>Queries\IMethodQuery.cs</Link>
@@ -134,6 +146,27 @@
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\ConstructorQuery.cs">
       <Link>Queries\Implementation\ConstructorQuery.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\AccessibilityCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\AccessibilityCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\MemberTypeCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\MemberTypeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\NameCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\NameCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\ScopeCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\ScopeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\TypeCompatibilityCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\TypeCompatibilityCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\TypeCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\TypeCriteriaBuilder.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\CriteriaBuilders\TypeNameCriteriaBuilder.cs">
+      <Link>Queries\Implementation\CriteriaBuilders\TypeNameCriteriaBuilder.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\Criteria\IMemberInfoQueryCriteria.cs">
       <Link>Queries\Implementation\Criteria\IMemberInfoQueryCriteria.cs</Link>
@@ -213,35 +246,11 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\PropertyQuery.cs">
       <Link>Queries\Implementation\PropertyQuery.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\MemberAccessibilitySubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\MemberAccessibilitySubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\MemberScopeSubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\MemberScopeSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\MemberTypeSubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\MemberTypeSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\NameSubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\NameSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\SubQueryBase.cs">
-      <Link>Queries\Implementation\SubQueries\SubQueryBase.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\TypeNameSubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\TypeNameSubQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\SubQueries\TypeSubQuery.cs">
-      <Link>Queries\Implementation\SubQueries\TypeSubQuery.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\Implementation\TypeQuery.cs">
       <Link>Queries\Implementation\TypeQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\INamedMemberQuery.cs">
       <Link>Queries\INamedMemberQuery.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\INameSubQuery.cs">
-      <Link>Queries\INameSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\INestedTypeQuery.cs">
       <Link>Queries\INestedTypeQuery.cs</Link>
@@ -252,14 +261,8 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\IQueryResult.cs">
       <Link>Queries\IQueryResult.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\ITypeNameSubQuery.cs">
-      <Link>Queries\ITypeNameSubQuery.cs</Link>
-    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\ITypeQuerry.cs">
       <Link>Queries\ITypeQuerry.cs</Link>
-    </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\ITypeSubQuery.cs">
-      <Link>Queries\ITypeSubQuery.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\ReflectionUtilities.cs">
       <Link>ReflectionUtilities.cs</Link>
@@ -268,7 +271,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" />
+      <UserProperties ProjectLinkReference="d1e3a926-cb6c-4df6-98ac-7a5aa04488e9" ProjectLinkerExcludeFilter="\\?desktop(\\.*)?$;\\?silverlight(\\.*)?$;\.desktop;\.silverlight;\.xaml;^service references(\\.*)?$;\.clientconfig;^web references(\\.*)?$" />
     </VisualStudio>
   </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

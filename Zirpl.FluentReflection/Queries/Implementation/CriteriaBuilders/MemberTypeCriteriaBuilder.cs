@@ -1,56 +1,53 @@
-﻿using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.Helpers;
+﻿using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
 {
-    internal class MemberTypeSubQuery : SubQueryBase<MemberInfo, IMemberQuery>,
-        IMemberTypeSubQuery
+    internal class MemberTypeCriteriaBuilder : IMemberTypeCriteriaBuilder
     {
         private readonly MemberTypeFlagsBuilder _memberTypesFlagsBuilder;
 
-        internal MemberTypeSubQuery(IMemberQuery returnQuery, MemberTypeFlagsBuilder memberTypesFlagsBuilder)
-            :base(returnQuery)
+        internal MemberTypeCriteriaBuilder(MemberTypeFlagsBuilder memberTypesFlagsBuilder)
         {
             _memberTypesFlagsBuilder = memberTypesFlagsBuilder;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.Constructor()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.Constructor()
         {
             _memberTypesFlagsBuilder.Constructor = true;
             return this;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.Event()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.Event()
         {
             _memberTypesFlagsBuilder.Event = true;
             return this;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.Field()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.Field()
         {
             _memberTypesFlagsBuilder.Field = true;
             return this;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.Method()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.Method()
         {
             _memberTypesFlagsBuilder.Method = true;
             return this;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.NestedType()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.NestedType()
         {
             _memberTypesFlagsBuilder.NestedType = true;
             return this;
         }
 
-        IMemberTypeSubQuery IMemberTypeSubQuery.Property()
+        IMemberTypeCriteriaBuilder IMemberTypeCriteriaBuilder.Property()
         {
             _memberTypesFlagsBuilder.Property = true;
             return this;
         }
 
-        IMemberQuery IMemberTypeSubQuery.All()
+        void IMemberTypeCriteriaBuilder.All()
         {
             _memberTypesFlagsBuilder.Constructor = true;
             _memberTypesFlagsBuilder.Event = true;
@@ -58,12 +55,6 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             _memberTypesFlagsBuilder.Method = true;
             _memberTypesFlagsBuilder.NestedType = true;
             _memberTypesFlagsBuilder.Property = true;
-            return _returnQuery;
-        }
-
-        IMemberQuery IMemberTypeSubQuery.And()
-        {
-            return _returnQuery;
         }
     }
 }

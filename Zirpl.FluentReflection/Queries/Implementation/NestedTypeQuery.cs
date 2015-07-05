@@ -1,6 +1,6 @@
 ﻿using System;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -16,9 +16,10 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             QueryCriteriaList.Add(_typeCriteria);
         }
 
-        ITypeSubQuery<Type, INestedTypeQuery> INestedTypeQuery.OfType()
+        INestedTypeQuery INestedTypeQuery.OfType(Action<ITypeCriteriaBuilder> builder)
         {
-            return new TypeSubQuery<Type, INestedTypeQuery>(this, _typeCriteria);
+            builder(new TypeCriteriaBuilder(_typeCriteria));
+            return this;
         }
     }
 }

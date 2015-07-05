@@ -1,32 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
+namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
 {
-    internal sealed class TypeSubQuery<TResult, TReturnQuery> : SubQueryBase<TResult, TReturnQuery>, 
-        ITypeSubQuery<TResult, TReturnQuery>
-        where TResult : MemberInfo
-        where TReturnQuery : IQueryResult<TResult>
+    internal sealed class TypeCompatibilityCriteriaBuilder : ITypeCompatibilityCriteriaBuilder
     {
         private readonly TypeCriteria _typeCriteria;
 
-        internal TypeSubQuery(TReturnQuery returnQuery, TypeCriteria typeCriteria)
-            : base(returnQuery)
+        internal TypeCompatibilityCriteriaBuilder(TypeCriteria typeCriteria)
         {
             _typeCriteria = typeCriteria;
         }
-
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFrom(Type type)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFrom(Type type)
         {
             if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
-            _typeCriteria.AssignableFroms = new [] {type};
+            _typeCriteria.AssignableFroms = new[] { type };
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFrom<T>()
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFrom<T>()
         {
             if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
@@ -34,7 +28,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFromAll(IEnumerable<Type> types)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFromAll(IEnumerable<Type> types)
         {
             if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
@@ -42,7 +36,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableFromAny(IEnumerable<Type> types)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFromAny(IEnumerable<Type> types)
         {
             if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
@@ -51,7 +45,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableTo(Type type)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableTo(Type type)
         {
             if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
@@ -59,7 +53,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableTo<T>()
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableTo<T>()
         {
             if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
@@ -67,7 +61,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableToAll(IEnumerable<Type> types)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableToAll(IEnumerable<Type> types)
         {
             if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
@@ -75,23 +69,13 @@ namespace Zirpl.FluentReflection.Queries.Implementation.SubQueries
             return this;
         }
 
-        ITypeSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.AssignableToAny(IEnumerable<Type> types)
+        ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableToAny(IEnumerable<Type> types)
         {
             if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
             _typeCriteria.AssignableTos = types;
             _typeCriteria.AssignableToAny = true;
             return this;
-        }
-
-        ITypeNameSubQuery<TResult, TReturnQuery> ITypeSubQuery<TResult, TReturnQuery>.Named()
-        {
-            return new TypeNameSubQuery<TResult, TReturnQuery>(_returnQuery, _typeCriteria.NameCriteria);
-        }
-
-        TReturnQuery ITypeSubQuery<TResult, TReturnQuery>.And()
-        {
-            return _returnQuery;
         }
     }
 }

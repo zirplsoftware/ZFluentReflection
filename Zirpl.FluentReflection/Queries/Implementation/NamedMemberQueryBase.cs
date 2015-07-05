@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -10,13 +10,14 @@ namespace Zirpl.FluentReflection.Queries.Implementation
         where TMemberQuery : INamedMemberQuery<TMemberInfo, TMemberQuery>
     {
         internal NamedMemberQueryBase(Type type)
-            :base(type)
+            : base(type)
         {
-            
         }
-        INameSubQuery<TMemberInfo, INamedMemberQuery<TMemberInfo, TMemberQuery>> INamedMemberQuery<TMemberInfo, TMemberQuery>.Named()
+
+        TMemberQuery INamedMemberQuery<TMemberInfo, TMemberQuery>.Named(Action<INameCriteriaBuilder> builder)
         {
-            return new NameSubQuery<TMemberInfo, INamedMemberQuery<TMemberInfo, TMemberQuery>>((TMemberQuery)(Object)this, MemberNameCriteria);
+            builder(new NameCriteriaBuilder(MemberNameCriteria));
+            return (TMemberQuery) (Object) this;
         }
     }
 }

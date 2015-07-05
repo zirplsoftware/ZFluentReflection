@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.SubQueries;
+using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
 namespace Zirpl.FluentReflection.Queries.Implementation
 {
@@ -18,9 +18,10 @@ namespace Zirpl.FluentReflection.Queries.Implementation
             QueryCriteriaList.Add(_fieldTypeCriteria);
         }
 
-        ITypeSubQuery<FieldInfo, IFieldQuery> IFieldQuery.OfFieldType()
+        IFieldQuery IFieldQuery.OfFieldType(Action<ITypeCriteriaBuilder> builder)
         {
-            return new TypeSubQuery<FieldInfo, IFieldQuery>(this, _fieldTypeCriteria);
+            builder(new TypeCriteriaBuilder(_fieldTypeCriteria));
+            return this;
         }
     }
 }
