@@ -59,16 +59,16 @@
     <Compile Include="Dynamic\FieldInfoExtensions.cs" />
     <Compile Include="Dynamic\TypeExtensions.cs" />
     <Compile Include="MemberInfoAccessibility.cs" />
-    <Compile Include="Queries\ICacheableQuery.cs" />
-    <Compile Include="Queries\IConstructorQuery.cs" />
-    <Compile Include="Queries\IEventQuery.cs" />
-    <Compile Include="Queries\IFieldQuery.cs" />
+    <Compile Include="Queries\queries\ICacheableQuery.cs" />
+    <Compile Include="Queries\queries\IConstructorQuery.cs" />
+    <Compile Include="Queries\queries\IEventQuery.cs" />
+    <Compile Include="Queries\queries\IFieldQuery.cs" />
     <Compile Include="Queries\criteriabuilders\ICSharpAccessibilityCriteriaBuilder.cs" />
     <Compile Include="Queries\criteriabuilders\IAccessibilityCriteriaBuilder.cs" />
-    <Compile Include="Queries\IMemberQuery.cs" />
-    <Compile Include="Queries\IMemberQuery_base.cs" />
-    <Compile Include="Queries\implementation\CacheableQueryBase.cs" />
-    <Compile Include="Queries\implementation\ConstructorQuery.cs" />
+    <Compile Include="Queries\queries\IMemberQuery.cs" />
+    <Compile Include="Queries\queries\IMemberQuery_base.cs" />
+    <Compile Include="Queries\implementation\queries\CacheableQueryBase.cs" />
+    <Compile Include="Queries\implementation\queries\ConstructorQuery.cs" />
     <Compile Include="Queries\implementation\criteria\IMemberInfoQueryCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\AccessibilityCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\MemberInfoQueryCriteriaBase.cs" />
@@ -82,10 +82,10 @@
     <Compile Include="Queries\implementation\criteria\TypeCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\TypeNameCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\TypeSource.cs" />
-    <Compile Include="Queries\implementation\EventQuery.cs">
+    <Compile Include="Queries\implementation\queries\EventQuery.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\FieldQuery.cs">
+    <Compile Include="Queries\implementation\queries\FieldQuery.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Queries\implementation\helpers\BindingFlagsBuilder.cs" />
@@ -93,22 +93,22 @@
     <Compile Include="Queries\implementation\helpers\MemberQueryService.cs" />
     <Compile Include="Queries\implementation\helpers\MemberTypeFlags.cs" />
     <Compile Include="Queries\implementation\helpers\MemberTypeFlagsBuilder.cs" />
-    <Compile Include="Queries\implementation\MemberQuery.cs">
+    <Compile Include="Queries\implementation\queries\MemberQuery.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\MemberQueryBase.cs">
+    <Compile Include="Queries\implementation\queries\MemberQueryBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\MethodQuery.cs">
+    <Compile Include="Queries\implementation\queries\MethodQuery.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\NamedMemberQueryBase.cs">
+    <Compile Include="Queries\implementation\queries\NamedMemberQueryBase.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\NestedTypeQuery.cs">
+    <Compile Include="Queries\implementation\queries\NestedTypeQuery.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\PropertyQuery.cs">
+    <Compile Include="Queries\implementation\queries\PropertyQuery.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Queries\implementation\criteriabuilders\AccessibilityCriteriaBuilder.cs">
@@ -130,20 +130,20 @@
     <Compile Include="Queries\implementation\criteriabuilders\TypeCriteriaBuilder.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Queries\implementation\TypeQuery.cs">
+    <Compile Include="Queries\implementation\queries\TypeQuery.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Queries\criteriabuilders\IScopeCriteriaBuilder.cs" />
     <Compile Include="Queries\criteriabuilders\IMemberTypeCriteriaBuilder.cs" />
-    <Compile Include="Queries\IMethodQuery.cs" />
-    <Compile Include="Queries\INamedMemberQuery.cs" />
+    <Compile Include="Queries\queries\IMethodQuery.cs" />
+    <Compile Include="Queries\queries\INamedMemberQuery.cs" />
     <Compile Include="Queries\criteriabuilders\ITypeCompatibilityCriteriaBuilder.cs" />
     <Compile Include="Queries\criteriabuilders\ITypeNameCriteriaBuilder.cs" />
     <Compile Include="Queries\criteriabuilders\INameCriteriaBuilder.cs" />
-    <Compile Include="Queries\INestedTypeQuery.cs" />
-    <Compile Include="Queries\IPropertyQuery.cs" />
-    <Compile Include="Queries\IQueryResult.cs" />
-    <Compile Include="Queries\ITypeQuerry.cs" />
+    <Compile Include="Queries\queries\INestedTypeQuery.cs" />
+    <Compile Include="Queries\queries\IPropertyQuery.cs" />
+    <Compile Include="Queries\queries\IQueryResult.cs" />
+    <Compile Include="Queries\queries\ITypeQuerry.cs" />
     <Compile Include="Queries\criteriabuilders\ITypeCriteriaBuilder.cs" />
     <Compile Include="ReflectionUtilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
