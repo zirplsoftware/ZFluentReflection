@@ -20,7 +20,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool useFullName,
             [Values(NameHandlingTypeMock.Whole, NameHandlingTypeMock.StartsWith, NameHandlingTypeMock.Contains, NameHandlingTypeMock.EndsWith)]NameHandlingTypeMock nameHandling)
         {
-            var criteria = new TypeNameCriteria()
+            var criteria = new TypeNameCriteria(TypeSource.Self)
             {
                 IgnoreCase = ignoreCase,
                 NameHandling = (NameHandlingType)nameHandling,
@@ -49,18 +49,18 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
         [Test]
         public void TestNames_EdgeCases()
         {
-            new Action(() => new TypeNameCriteria().Names = null).ShouldThrow<ArgumentNullException>();
-            new Action(() => new TypeNameCriteria().Names = new String[0]).ShouldThrow<ArgumentException>();
-            new Action(() => new TypeNameCriteria().Names = new String[] { null }).ShouldThrow<ArgumentException>();
-            new Action(() => new TypeNameCriteria().Names = new[] { String.Empty }).ShouldThrow<ArgumentException>();
+            new Action(() => new TypeNameCriteria(TypeSource.Self).Names = null).ShouldThrow<ArgumentNullException>();
+            new Action(() => new TypeNameCriteria(TypeSource.Self).Names = new String[0]).ShouldThrow<ArgumentException>();
+            new Action(() => new TypeNameCriteria(TypeSource.Self).Names = new String[] { null }).ShouldThrow<ArgumentException>();
+            new Action(() => new TypeNameCriteria(TypeSource.Self).Names = new[] { String.Empty }).ShouldThrow<ArgumentException>();
         }
 
         [Test]
         public void TestGetMatches_EdgeCases()
         {
-            new TypeNameCriteria().GetMatches(new Type[0]).Should().NotBeNull();
-            new TypeNameCriteria().GetMatches(new Type[0]).Should().BeEmpty();
-            new TypeNameCriteria().GetMatches(null).Should().BeNull();
+            new TypeNameCriteria(TypeSource.Self).GetMatches(new Type[0]).Should().NotBeNull();
+            new TypeNameCriteria(TypeSource.Self).GetMatches(new Type[0]).Should().BeEmpty();
+            new TypeNameCriteria(TypeSource.Self).GetMatches(null).Should().BeNull();
         }
 
         [TestCaseSource("TestGetMatches_NotFullName_TestCases")]
@@ -71,7 +71,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 typeof (Foo),
                 typeof (Bar)
             };
-            var criteria = new TypeNameCriteria()
+            var criteria = new TypeNameCriteria(TypeSource.Self)
             {
                 IgnoreCase = ignoreCase,
                 NameHandling = (NameHandlingType)nameHandling,

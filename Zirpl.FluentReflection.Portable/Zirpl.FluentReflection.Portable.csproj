@@ -149,8 +149,14 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\ScopeCriteria.cs">
       <Link>Queries\Implementation\Criteria\ScopeCriteria.cs</Link>
     </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\TypeCompatibilityCriteria.cs">
+      <Link>Queries\Implementation\Criteria\TypeCompatibilityCriteria.cs</Link>
+    </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\TypeCriteria.cs">
       <Link>Queries\Implementation\Criteria\TypeCriteria.cs</Link>
+    </Compile>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\TypeExtenstions.cs">
+      <Link>Queries\Implementation\Criteria\TypeExtenstions.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\TypeNameCriteria.cs">
       <Link>Queries\Implementation\Criteria\TypeNameCriteria.cs</Link>

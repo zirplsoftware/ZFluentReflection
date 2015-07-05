@@ -59,6 +59,8 @@
     <Compile Include="Dynamic\FieldInfoExtensions.cs" />
     <Compile Include="Dynamic\TypeExtensions.cs" />
     <Compile Include="MemberInfoAccessibility.cs" />
+    <Compile Include="Queries\implementation\criteria\TypeExtenstions.cs" />
+    <Compile Include="Queries\implementation\criteria\TypeCompatibilityCriteria.cs" />
     <Compile Include="Queries\interfaces\queries\ICacheableQuery.cs" />
     <Compile Include="Queries\interfaces\queries\IConstructorQuery.cs" />
     <Compile Include="Queries\interfaces\queries\IEventQuery.cs" />

@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection.Queries
 
         ITypeCriteriaBuilder ITypeCriteriaBuilder.OfTypeCompatibility(Action<ITypeCompatibilityCriteriaBuilder> builder)
         {
-            builder(new TypeCompatibilityCriteriaBuilder(_typeCriteria));
+            builder(new TypeCompatibilityCriteriaBuilder(_typeCriteria.CompatibilityCriteria));
             return this;
         }
 

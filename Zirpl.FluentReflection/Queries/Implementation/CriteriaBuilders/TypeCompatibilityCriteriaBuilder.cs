@@ -5,75 +5,75 @@ namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class TypeCompatibilityCriteriaBuilder : ITypeCompatibilityCriteriaBuilder
     {
-        private readonly TypeCriteria _typeCriteria;
+        private readonly TypeCompatibilityCriteria _typeCompatibilityCriteria;
 
-        internal TypeCompatibilityCriteriaBuilder(TypeCriteria typeCriteria)
+        internal TypeCompatibilityCriteriaBuilder(TypeCompatibilityCriteria typeCompatibilityCriteria)
         {
-            _typeCriteria = typeCriteria;
+            _typeCompatibilityCriteria = typeCompatibilityCriteria;
         }
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFrom(Type type)
         {
-            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
-            _typeCriteria.AssignableFroms = new[] { type };
+            _typeCompatibilityCriteria.AssignableFroms = new[] { type };
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFrom<T>()
         {
-            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
-            _typeCriteria.AssignableFroms = new[] { typeof(T) };
+            _typeCompatibilityCriteria.AssignableFroms = new[] { typeof(T) };
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFromAll(IEnumerable<Type> types)
         {
-            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
-            _typeCriteria.AssignableFroms = types;
+            _typeCompatibilityCriteria.AssignableFroms = types;
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableFromAny(IEnumerable<Type> types)
         {
-            if (_typeCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableFroms != null) throw new InvalidOperationException("Cannot call more than 1 AssignableFrom-specification method in the same sub-query");
 
-            _typeCriteria.AssignableFroms = types;
-            _typeCriteria.AssignableFromAny = true;
+            _typeCompatibilityCriteria.AssignableFroms = types;
+            _typeCompatibilityCriteria.AssignableFromAny = true;
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableTo(Type type)
         {
-            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
-            _typeCriteria.AssignableTos = new[] { type };
+            _typeCompatibilityCriteria.AssignableTos = new[] { type };
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableTo<T>()
         {
-            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
-            _typeCriteria.AssignableTos = new[] { typeof(T) };
+            _typeCompatibilityCriteria.AssignableTos = new[] { typeof(T) };
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableToAll(IEnumerable<Type> types)
         {
-            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
-            _typeCriteria.AssignableTos = types;
+            _typeCompatibilityCriteria.AssignableTos = types;
             return this;
         }
 
         ITypeCompatibilityCriteriaBuilder ITypeCompatibilityCriteriaBuilder.AssignableToAny(IEnumerable<Type> types)
         {
-            if (_typeCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
+            if (_typeCompatibilityCriteria.AssignableTos != null) throw new InvalidOperationException("Cannot call more than 1 AssignableTo-specification method in the same sub-query");
 
-            _typeCriteria.AssignableTos = types;
-            _typeCriteria.AssignableToAny = true;
+            _typeCompatibilityCriteria.AssignableTos = types;
+            _typeCompatibilityCriteria.AssignableToAny = true;
             return this;
         }
     }

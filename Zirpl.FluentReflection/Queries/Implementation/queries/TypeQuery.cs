@@ -28,7 +28,7 @@ namespace Zirpl.FluentReflection.Queries
 #endif
         ITypeQuery ITypeQuery.OfTypeCompatibility(Action<ITypeCompatibilityCriteriaBuilder> builder)
         {
-            builder(new TypeCompatibilityCriteriaBuilder(_typeCriteria));
+            builder(new TypeCompatibilityCriteriaBuilder(_typeCriteria.CompatibilityCriteria));
             return this;
         }
 

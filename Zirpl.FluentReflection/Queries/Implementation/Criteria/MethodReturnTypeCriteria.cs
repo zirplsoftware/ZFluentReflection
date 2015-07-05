@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
+using Zirpl.FluentReflection.Queries.implementation.criteria;
 
 namespace Zirpl.FluentReflection.Queries
 {
@@ -12,11 +15,16 @@ namespace Zirpl.FluentReflection.Queries
         {
         }
 
-        protected override bool IsMatch(Type type)
+        protected override MemberInfo[] RunGetMatches(MemberInfo[] memberInfos)
+        {
+            return memberInfos.Where(o => IsMatch(o.GetAssociatedType(TypeSource.MethodReturnType))).ToArray();
+        }
+
+        private bool IsMatch(Type type)
         {
             if (type == null && NotVoid) return false;
             if (type != null && Void) return false;
-            return base.IsMatch(type);
+            return true;
         }
 
         protected internal override bool ShouldRun

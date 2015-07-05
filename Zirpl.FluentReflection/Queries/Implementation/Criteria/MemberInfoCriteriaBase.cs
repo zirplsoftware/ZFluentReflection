@@ -11,17 +11,12 @@ namespace Zirpl.FluentReflection.Queries
         internal MemberInfoCriteriaBase()
         {
             SubCriterias = new List<MemberInfoCriteriaBase>();
+            SubCriterias.Add(this);
         }
 
         public MemberInfo[] GetMatches(MemberInfo[] memberInfos)
         {
-            MemberInfo[] result = memberInfos;
-            if (ShouldRun)
-            {
-                result = RunGetMatches(result);
-            }
-            // run the subfilters too
-            return SubCriterias.Where(subCriteria => subCriteria.ShouldRun).Aggregate(result, (current, subCriteria) => subCriteria.RunGetMatches(current));
+            return SubCriterias.Where(subCriteria => subCriteria.ShouldRun).Aggregate(memberInfos, (current, subCriteria) => subCriteria.RunGetMatches(current));
         }
 
         protected abstract MemberInfo[] RunGetMatches(MemberInfo[] memberInfos);
