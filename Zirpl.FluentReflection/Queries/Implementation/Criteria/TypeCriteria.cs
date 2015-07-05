@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
     internal class TypeCriteria : MemberInfoQueryCriteriaBase
     {

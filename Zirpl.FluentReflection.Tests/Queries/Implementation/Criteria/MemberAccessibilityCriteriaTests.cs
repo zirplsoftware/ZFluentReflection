@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries;
 
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 {
@@ -21,7 +21,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool _internal,
             [Values(true, false)]bool protectedInternal)
         {
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -59,7 +59,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool protectedInternal,
             [Values("PrivateField", "PrivateEvent", "PrivateMethod", "PrivateNestedType", "PrivateProperty", null)]String name)
         {
-            var isMatchMethod = typeof (MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof (AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
@@ -96,7 +96,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 memberInfo.Should().NotBeNull();
             }
 
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -117,7 +117,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool protectedInternal,
             [Values("PublicField", "PublicEvent", "PublicMethod", "PublicNestedType", "PublicProperty", null)]String name)
         {
-            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof(AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
@@ -154,7 +154,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 memberInfo.Should().NotBeNull();
             }
 
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -175,7 +175,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool protectedInternal,
             [Values("ProtectedField", "ProtectedEvent", "ProtectedMethod", "ProtectedNestedType", "ProtectedProperty", null)]String name)
         {
-            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof(AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
@@ -212,7 +212,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 memberInfo.Should().NotBeNull();
             }
 
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -235,7 +235,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool protectedInternal,
             [Values("ProtectedInternalField", "ProtectedInternalEvent", "ProtectedInternalMethod", "ProtectedInternalNestedType", "ProtectedInternalProperty", null)]String name)
         {
-            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof(AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
@@ -272,7 +272,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 memberInfo.Should().NotBeNull();
             }
 
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -293,7 +293,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)]bool protectedInternal,
             [Values("InternalField", "InternalEvent", "InternalMethod", "InternalNestedType", "InternalProperty", null)]String name)
         {
-            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof(AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
@@ -330,7 +330,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 memberInfo.Should().NotBeNull();
             }
 
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -350,14 +350,14 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values(true, false)] bool _internal,
             [Values(true, false)] bool protectedInternal)
         {
-            var isMatchMethod = typeof(MemberAccessibilityCriteria).GetMethod("IsMatch",
+            var isMatchMethod = typeof(AccessibilityCriteria).GetMethod("IsMatch",
                 BindingFlags.Instance | BindingFlags.NonPublic);
             // sanity check since a name change won't give a compile error
             isMatchMethod.Should().NotBeNull();
 
             // since it's the call to IsMatch that actually handles the logic
             // this will be a light test, especially because it makes assumptions
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -404,9 +404,9 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
         [Test]
         public void TestGetMatches_EdgeCases()
         {
-            new MemberAccessibilityCriteria().GetMatches(new MemberInfo[0]).Should().NotBeNull();
-            new MemberAccessibilityCriteria().GetMatches(new MemberInfo[0]).Should().BeEmpty();
-            new MemberAccessibilityCriteria().GetMatches(null).Should().BeNull();
+            new AccessibilityCriteria().GetMatches(new MemberInfo[0]).Should().NotBeNull();
+            new AccessibilityCriteria().GetMatches(new MemberInfo[0]).Should().BeEmpty();
+            new AccessibilityCriteria().GetMatches(null).Should().BeNull();
         }
 
         [Test, Combinatorial]
@@ -420,7 +420,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 
             // since it's the call to IsMatch that actually handles the logic
             // this will be a light test, especially because it makes assumptions
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,
@@ -461,7 +461,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             [Values("Private", "Public", "Protected", "ProtectedInternal", "Internal")]String namePrefix)
         {
             // since it's the call to IsMatch that actually handles the logic
-            var criteria = new MemberAccessibilityCriteria()
+            var criteria = new AccessibilityCriteria()
             {
                 Public = _public,
                 Family = _protected,

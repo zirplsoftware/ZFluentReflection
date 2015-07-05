@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
+using Zirpl.FluentReflection.Queries;
 using Zirpl.FluentReflection.Tests.Mocks;
 
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria

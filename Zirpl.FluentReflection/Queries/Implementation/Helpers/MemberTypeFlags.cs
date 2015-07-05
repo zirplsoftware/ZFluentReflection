@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
+namespace Zirpl.FluentReflection.Queries
 {
     [Flags]
     internal enum MemberTypeFlags

@@ -1,14 +1,12 @@
-﻿using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-
-namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
+﻿namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class AccessibilityCriteriaBuilder :
         IAccessibilityCriteriaBuilder,
         ICSharpAccessibilityCriteriaBuilder
     {
-        private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
+        private readonly AccessibilityCriteria _memberAccessibilityCriteria;
 
-        internal AccessibilityCriteriaBuilder(MemberAccessibilityCriteria memberAccessibilityCriteria)
+        internal AccessibilityCriteriaBuilder(AccessibilityCriteria memberAccessibilityCriteria)
         {
             _memberAccessibilityCriteria = memberAccessibilityCriteria;
         }

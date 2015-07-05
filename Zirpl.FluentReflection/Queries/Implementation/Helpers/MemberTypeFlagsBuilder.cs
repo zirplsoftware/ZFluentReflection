@@ -1,4 +1,4 @@
-﻿namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
+﻿namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class MemberTypeFlagsBuilder
     {

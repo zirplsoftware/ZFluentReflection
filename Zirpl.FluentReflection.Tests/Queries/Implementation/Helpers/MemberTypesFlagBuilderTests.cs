@@ -1,6 +1,6 @@
 ﻿using FluentAssertions;
 using NUnit.Framework;
-using Zirpl.FluentReflection.Queries.Implementation.Helpers;
+using Zirpl.FluentReflection.Queries;
 
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Helpers
 {

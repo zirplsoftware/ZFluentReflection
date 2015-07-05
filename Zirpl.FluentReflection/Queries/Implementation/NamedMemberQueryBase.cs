@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
-namespace Zirpl.FluentReflection.Queries.Implementation
+namespace Zirpl.FluentReflection.Queries
 {
     internal abstract class NamedMemberQueryBase<TMemberInfo, TMemberQuery> : MemberQueryBase<TMemberInfo, TMemberQuery>,
         INamedMemberQuery<TMemberInfo, TMemberQuery>

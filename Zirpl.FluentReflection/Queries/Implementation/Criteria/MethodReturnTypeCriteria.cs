@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class MethodReturnTypeCriteria :TypeCriteria
     {

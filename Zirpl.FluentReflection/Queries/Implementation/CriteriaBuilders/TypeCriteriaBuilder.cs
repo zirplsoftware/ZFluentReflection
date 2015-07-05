@@ -1,7 +1,6 @@
 ﻿using System;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class TypeCriteriaBuilder : ITypeCriteriaBuilder
     {

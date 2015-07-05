@@ -1,13 +1,12 @@
 ﻿using System;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class ScopeCriteriaBuilder : IScopeCriteriaBuilder
     {
-        private readonly MemberScopeCriteria _memberScopeCriteria;
+        private readonly ScopeCriteria _memberScopeCriteria;
 
-        internal ScopeCriteriaBuilder(MemberScopeCriteria memberScopeCriteria)
+        internal ScopeCriteriaBuilder(ScopeCriteria memberScopeCriteria)
         {
             _memberScopeCriteria = memberScopeCriteria;
         }

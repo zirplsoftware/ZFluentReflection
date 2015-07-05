@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
-using Zirpl.FluentReflection.Queries.Implementation.Helpers;
 
-namespace Zirpl.FluentReflection.Queries.Implementation
+namespace Zirpl.FluentReflection.Queries
 {
     internal abstract class MemberQueryBase<TMemberInfo, TMemberQuery> : CacheableQueryBase<TMemberInfo>,
         IMemberQuery<TMemberInfo, TMemberQuery>
@@ -15,8 +12,8 @@ namespace Zirpl.FluentReflection.Queries.Implementation
     {
         private readonly Type _type;
         private readonly BindingFlagsBuilder _bindingFlagsBuilder;
-        private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
-        private readonly MemberScopeCriteria _memberScopeCriteria;
+        private readonly AccessibilityCriteria _memberAccessibilityCriteria;
+        private readonly ScopeCriteria _memberScopeCriteria;
         protected readonly MemberTypeFlagsBuilder MemberTypeFlagsBuilder;
         protected readonly IList<IMemberInfoQueryCriteria> QueryCriteriaList;
         protected readonly MemberNameCriteria MemberNameCriteria;
@@ -24,8 +21,8 @@ namespace Zirpl.FluentReflection.Queries.Implementation
         internal MemberQueryBase(Type type)
         {
             _type = type;
-            _memberScopeCriteria = new MemberScopeCriteria(type);
-            _memberAccessibilityCriteria = new MemberAccessibilityCriteria();
+            _memberScopeCriteria = new ScopeCriteria(type);
+            _memberAccessibilityCriteria = new AccessibilityCriteria();
             MemberNameCriteria = new MemberNameCriteria();
             _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, MemberNameCriteria);
             MemberTypeFlagsBuilder = new MemberTypeFlagsBuilder();

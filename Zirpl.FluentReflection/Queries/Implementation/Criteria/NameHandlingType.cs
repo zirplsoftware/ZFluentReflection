@@ -1,4 +1,4 @@
-﻿namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+﻿namespace Zirpl.FluentReflection.Queries
 {
     internal enum NameHandlingType
     {

@@ -1,8 +1,6 @@
 ﻿using System;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
-using Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders;
 
-namespace Zirpl.FluentReflection.Queries.Implementation
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class NestedTypeQuery : NamedMemberQueryBase<Type, INestedTypeQuery>, 
         INestedTypeQuery

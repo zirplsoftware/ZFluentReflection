@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class MemberQueryService
     {
@@ -23,7 +22,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
         internal MemberInfo[] FindPrivateMembersOnBaseTypes(MemberTypeFlags memberTypes, BindingFlags bindingFlags, IEnumerable<String> names)
         {
             var list = new List<MemberInfo>();
-            var accessibilityEvaluator = new MemberAccessibilityCriteria();
+            var accessibilityEvaluator = new AccessibilityCriteria();
             accessibilityEvaluator.Private = true;
             var type = _type;
             while (type != null)

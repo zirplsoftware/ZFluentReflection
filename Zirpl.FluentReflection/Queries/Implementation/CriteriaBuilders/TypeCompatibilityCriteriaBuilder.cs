@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class TypeCompatibilityCriteriaBuilder : ITypeCompatibilityCriteriaBuilder
     {

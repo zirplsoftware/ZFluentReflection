@@ -1,9 +1,9 @@
 ﻿using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class MemberAccessibilityCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class AccessibilityCriteria : MemberInfoQueryCriteriaBase
     {
         internal bool Public { get; set; }
         internal bool Private { get; set; }

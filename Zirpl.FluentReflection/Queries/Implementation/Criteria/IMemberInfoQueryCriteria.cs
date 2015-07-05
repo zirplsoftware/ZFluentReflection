@@ -1,6 +1,6 @@
 ﻿using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
     internal interface IMemberInfoQueryCriteria
     {

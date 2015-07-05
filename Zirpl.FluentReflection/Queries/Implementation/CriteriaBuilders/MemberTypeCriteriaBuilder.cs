@@ -1,6 +1,4 @@
-﻿using Zirpl.FluentReflection.Queries.Implementation.Helpers;
-
-namespace Zirpl.FluentReflection.Queries.Implementation.CriteriaBuilders
+﻿namespace Zirpl.FluentReflection.Queries
 {
     internal class MemberTypeCriteriaBuilder : IMemberTypeCriteriaBuilder
     {

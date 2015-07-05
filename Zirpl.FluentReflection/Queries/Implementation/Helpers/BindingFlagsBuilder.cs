@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
-using Zirpl.FluentReflection.Queries.Implementation.Criteria;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Helpers
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class BindingFlagsBuilder
     {
-        private readonly MemberScopeCriteria _memberScopeCriteria;
-        private readonly MemberAccessibilityCriteria _memberAccessibilityCriteria;
+        private readonly ScopeCriteria _memberScopeCriteria;
+        private readonly AccessibilityCriteria _memberAccessibilityCriteria;
         private readonly MemberNameCriteria _memberNameEvalulator;
 
-        internal BindingFlagsBuilder(MemberAccessibilityCriteria memberAccessibilityCriteria, MemberScopeCriteria memberScopeCriteria, MemberNameCriteria memberNameEvalulator)
+        internal BindingFlagsBuilder(AccessibilityCriteria memberAccessibilityCriteria, ScopeCriteria memberScopeCriteria, MemberNameCriteria memberNameEvalulator)
         {
             _memberScopeCriteria = memberScopeCriteria;
             _memberAccessibilityCriteria = memberAccessibilityCriteria;

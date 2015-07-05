@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
     internal sealed class TypeNameCriteria : NameCriteria
     {

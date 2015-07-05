@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class MemberScopeCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class ScopeCriteria : MemberInfoQueryCriteriaBase
     {
         private readonly Type _reflectedType;
         internal bool Instance { get; set; }
@@ -13,7 +13,7 @@ namespace Zirpl.FluentReflection.Queries.Implementation.Criteria
         internal bool DeclaredOnBaseTypes { get; set; }
         // TODO: implement including hiddenBySignature members, and exclude them otherwise
 
-        internal MemberScopeCriteria(Type type)
+        internal ScopeCriteria(Type type)
         {
             _reflectedType = type;
         }
