@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class AccessibilityCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class AccessibilityCriteria : MemberInfoCriteriaBase
     {
         internal bool Public { get; set; }
         internal bool Private { get; set; }

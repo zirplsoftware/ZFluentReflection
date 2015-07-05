@@ -122,11 +122,11 @@
     <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\AccessibilityCriteria.cs">
       <Link>Queries\Implementation\Criteria\AccessibilityCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\IMemberInfoQueryCriteria.cs">
-      <Link>Queries\Implementation\Criteria\IMemberInfoQueryCriteria.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\IMemberInfoCriteria.cs">
+      <Link>Queries\Implementation\Criteria\IMemberInfoCriteria.cs</Link>
     </Compile>
-    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\MemberInfoQueryCriteriaBase.cs">
-      <Link>Queries\Implementation\Criteria\MemberInfoQueryCriteriaBase.cs</Link>
+    <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\MemberInfoCriteriaBase.cs">
+      <Link>Queries\Implementation\Criteria\MemberInfoCriteriaBase.cs</Link>
     </Compile>
     <Compile Include="..\Zirpl.FluentReflection\Queries\implementation\criteria\MemberNameCriteria.cs">
       <Link>Queries\Implementation\Criteria\MemberNameCriteria.cs</Link>

@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class ScopeCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class ScopeCriteria : MemberInfoCriteriaBase
     {
         private readonly Type _reflectedType;
         internal bool Instance { get; set; }

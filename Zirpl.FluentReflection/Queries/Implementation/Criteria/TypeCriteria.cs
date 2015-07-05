@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal class TypeCriteria : MemberInfoQueryCriteriaBase
+    internal class TypeCriteria : MemberInfoCriteriaBase
     {
         private IEnumerable<Type> _assignableFroms;
         private IEnumerable<Type> _assignableTos;

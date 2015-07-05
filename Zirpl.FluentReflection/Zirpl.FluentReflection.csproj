@@ -69,9 +69,9 @@
     <Compile Include="Queries\interfaces\queries\IMemberQuery_base.cs" />
     <Compile Include="Queries\implementation\queries\CacheableQueryBase.cs" />
     <Compile Include="Queries\implementation\queries\ConstructorQuery.cs" />
-    <Compile Include="Queries\implementation\criteria\IMemberInfoQueryCriteria.cs" />
+    <Compile Include="Queries\implementation\criteria\IMemberInfoCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\AccessibilityCriteria.cs" />
-    <Compile Include="Queries\implementation\criteria\MemberInfoQueryCriteriaBase.cs" />
+    <Compile Include="Queries\implementation\criteria\MemberInfoCriteriaBase.cs" />
     <Compile Include="Queries\implementation\criteria\MemberNameCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\ScopeCriteria.cs" />
     <Compile Include="Queries\implementation\criteria\MethodCriteria.cs" />

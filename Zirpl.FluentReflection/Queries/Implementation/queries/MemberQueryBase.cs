@@ -15,7 +15,7 @@ namespace Zirpl.FluentReflection.Queries
         private readonly AccessibilityCriteria _memberAccessibilityCriteria;
         private readonly ScopeCriteria _memberScopeCriteria;
         protected readonly MemberTypeFlagsBuilder MemberTypeFlagsBuilder;
-        protected readonly IList<IMemberInfoQueryCriteria> QueryCriteriaList;
+        protected readonly IList<IMemberInfoCriteria> QueryCriteriaList;
         protected readonly MemberNameCriteria MemberNameCriteria;
 
         internal MemberQueryBase(Type type)
@@ -26,7 +26,7 @@ namespace Zirpl.FluentReflection.Queries
             MemberNameCriteria = new MemberNameCriteria();
             _bindingFlagsBuilder = new BindingFlagsBuilder(_memberAccessibilityCriteria, _memberScopeCriteria, MemberNameCriteria);
             MemberTypeFlagsBuilder = new MemberTypeFlagsBuilder();
-            QueryCriteriaList = new List<IMemberInfoQueryCriteria>
+            QueryCriteriaList = new List<IMemberInfoCriteria>
             {
                 MemberNameCriteria,
                 _memberAccessibilityCriteria,

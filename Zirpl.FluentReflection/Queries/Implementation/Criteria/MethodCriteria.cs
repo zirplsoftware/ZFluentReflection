@@ -4,7 +4,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class MethodCriteria: MemberInfoQueryCriteriaBase
+    internal sealed class MethodCriteria: MemberInfoCriteriaBase
     {
         internal MethodReturnTypeCriteria ReturnTypeCriteria { get; private set; }
         internal Type[] ParameterTypes { get; set; }

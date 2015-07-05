@@ -4,13 +4,13 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal abstract class MemberInfoQueryCriteriaBase : IMemberInfoQueryCriteria
+    internal abstract class MemberInfoCriteriaBase : IMemberInfoCriteria
     {
-        protected IList<MemberInfoQueryCriteriaBase> SubCriterias { get; private set; }
+        protected IList<MemberInfoCriteriaBase> SubCriterias { get; private set; }
 
-        internal MemberInfoQueryCriteriaBase()
+        internal MemberInfoCriteriaBase()
         {
-            SubCriterias = new List<MemberInfoQueryCriteriaBase>();
+            SubCriterias = new List<MemberInfoCriteriaBase>();
         }
 
         public MemberInfo[] GetMatches(MemberInfo[] memberInfos)

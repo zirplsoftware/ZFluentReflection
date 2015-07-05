@@ -2,7 +2,7 @@
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal interface IMemberInfoQueryCriteria
+    internal interface IMemberInfoCriteria
     {
         MemberInfo[] GetMatches(MemberInfo[] memberInfos);
     }

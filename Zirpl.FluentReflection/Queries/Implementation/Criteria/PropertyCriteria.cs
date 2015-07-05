@@ -3,7 +3,7 @@ using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {
-    internal sealed class PropertyCriteria : MemberInfoQueryCriteriaBase
+    internal sealed class PropertyCriteria : MemberInfoCriteriaBase
     {
         internal TypeCriteria PropertyTypeCriteria { get; private set; }
         internal bool CanRead { get; set; }
