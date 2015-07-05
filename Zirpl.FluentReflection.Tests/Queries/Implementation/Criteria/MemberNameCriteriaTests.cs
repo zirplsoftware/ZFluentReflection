@@ -14,6 +14,49 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
     public class MemberNameCriteriaTests
     {
         [Test, Combinatorial]
+        public void TestGetNamesForDirectLookup(
+            [Values(0, 1, 2)]int numberOfNames,
+            [Values(true, false)]bool ignoreCase,
+            [Values(NameHandlingTypeMock.Whole, NameHandlingTypeMock.StartsWith, NameHandlingTypeMock.Contains, NameHandlingTypeMock.EndsWith)]NameHandlingTypeMock nameHandling)
+        {
+            var criteria = new MemberNameCriteria()
+            {
+                IgnoreCase = ignoreCase,
+                NameHandling = (NameHandlingType)nameHandling
+            };
+            if (numberOfNames > 0)
+            {
+                var listOfNames = new List<String>();
+                for (int i = 0; i < numberOfNames; i++)
+                {
+                    listOfNames.Add(Guid.NewGuid().ToString());
+                }
+                criteria.Names = listOfNames;
+            }
+            var result = criteria.GetNamesForDirectLookup().ToArray();
+            if (numberOfNames == 0
+                || nameHandling != NameHandlingTypeMock.Whole)
+            {
+                result.Should().BeNull();
+            }
+            else
+            {
+                result.Should().NotBeNull();
+                result.Should().NotBeEmpty();
+                result.All(o => criteria.Names.Contains(o)).Should().BeTrue();
+            }
+        }
+
+        [Test]
+        public void TestNames_EdgeCases()
+        {
+            new Action(() => new MemberNameCriteria().Names = null).ShouldThrow<ArgumentNullException>();
+            new Action(() => new MemberNameCriteria().Names = new String[0]).ShouldThrow<ArgumentException>();
+            new Action(() => new MemberNameCriteria().Names = new String[] { null }).ShouldThrow<ArgumentException>();
+            new Action(() => new MemberNameCriteria().Names = new[] { String.Empty }).ShouldThrow<ArgumentException>();
+        }
+
+        [Test, Combinatorial]
         public void TestShouldRun(
             [Values(0, 1, 2)]int numberOfNames,
             [Values(true, false)]bool ignoreCase,
@@ -44,49 +87,6 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             }
         }
 
-        [Test, Combinatorial]
-        public void TestGetNamesForDirectLookup(
-            [Values(0, 1, 2)]int numberOfNames,
-            [Values(true, false)]bool ignoreCase,
-            [Values(NameHandlingTypeMock.Whole, NameHandlingTypeMock.StartsWith, NameHandlingTypeMock.Contains, NameHandlingTypeMock.EndsWith)]NameHandlingTypeMock nameHandling)
-        {
-            var criteria = new MemberNameCriteria()
-            {
-                IgnoreCase = ignoreCase,
-                NameHandling = (NameHandlingType)nameHandling
-            };
-            if (numberOfNames > 0)
-            {
-                var listOfNames = new List<String>();
-                for (int i = 0; i < numberOfNames; i++)
-                {
-                    listOfNames.Add(Guid.NewGuid().ToString());
-                }
-                criteria.Names = listOfNames;
-            }
-            var result = criteria.GetNamesForDirectLookup();
-            if (numberOfNames == 0
-                || nameHandling != NameHandlingTypeMock.Whole)
-            {
-                result.Should().BeNull();
-            }
-            else
-            {
-                result.Should().NotBeNull();
-                result.Should().NotBeEmpty();
-                result.All(o => criteria.Names.Contains(o)).Should().BeTrue();
-            }
-        }
-
-        [Test]
-        public void TestNames_EdgeCases()
-        {
-            new Action(() => new MemberNameCriteria().Names = null).ShouldThrow<ArgumentNullException>();
-            new Action(() => new MemberNameCriteria().Names = new String[0]).ShouldThrow<ArgumentException>();
-            new Action(() => new MemberNameCriteria().Names = new String[] { null }).ShouldThrow<ArgumentException>();
-            new Action(() => new MemberNameCriteria().Names = new[] { String.Empty }).ShouldThrow<ArgumentException>();
-        }
-
         [Test]
         public void TestGetMatches_EdgeCases()
         {
@@ -115,12 +115,12 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             }
             var result = criteria.GetMatches(fields);
             result.Should().NotBeNull();
-            var resultNames = result.Select(o => o.Name);
+            var resultNames = result.Select(o => o.Name).ToArray();
             resultNames.Count().Should().Be(expectedResultNames.Count());
-            if (expectedResultNames.Count() > 0)
+            if (expectedResultNames.Any())
             {
-                resultNames.All(name => expectedResultNames.Contains(name)).Should().BeTrue();
-                expectedResultNames.All(name => resultNames.Contains(name)).Should().BeTrue();
+                resultNames.All(expectedResultNames.Contains).Should().BeTrue();
+                expectedResultNames.All(resultNames.Contains).Should().BeTrue();
             }
         }
 
@@ -128,7 +128,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
         {
             get
             {
-                String[] criteriaNone = null;
+                const String[] criteriaNone = null;
 
                 var criteria1Whole = new[] { "Bar" };
                 var criteria1WholeWrongCase = new[] { "bar" };

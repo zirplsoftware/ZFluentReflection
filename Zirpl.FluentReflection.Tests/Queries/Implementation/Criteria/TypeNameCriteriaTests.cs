@@ -84,12 +84,12 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             }
             var result = criteria.GetMatches(fields);
             result.Should().NotBeNull();
-            var resultNames = result.Select(o => o.Name);
+            var resultNames = result.Select(o => o.Name).ToArray();
             resultNames.Count().Should().Be(expectedResultNames.Count());
-            if (expectedResultNames.Count() > 0)
+            if (expectedResultNames.Any())
             {
-                resultNames.All(name => expectedResultNames.Contains(name)).Should().BeTrue();
-                expectedResultNames.All(name => resultNames.Contains(name)).Should().BeTrue();
+                resultNames.All(expectedResultNames.Contains).Should().BeTrue();
+                expectedResultNames.All(resultNames.Contains).Should().BeTrue();
             }
         }
 

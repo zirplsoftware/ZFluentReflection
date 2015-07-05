@@ -9,7 +9,7 @@ using Zirpl.FluentReflection.Queries;
 namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
 {
     [TestFixture]
-    public class MemberAccessibilityCriteriaTests
+    public class AccessibilityCriteriaTests
     {
 
         #region ShouldRunFilter
@@ -482,7 +482,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
             memberList.Add(typeof (Foo).GetProperty(namePrefix + "Property",
                 BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic));
             // sanity check:
-            memberList.Count.Should().Be(5);
+            memberList.Count(o => o != null).Should().Be(5);
 
             var result = criteria.GetMatches(memberList.ToArray());
             result.Should().NotBeNull();
