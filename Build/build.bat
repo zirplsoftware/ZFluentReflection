@@ -19,8 +19,8 @@ packages\NUnit.Runners.2.6.4\tools\nunit-console.exe /config:%config% /framework
 if not "%errorlevel%"=="0" goto failure
 
 echo Package
-mkdir Output
-call %nuget% pack ".nuget\Zirpl.FluentReflection.nuspec" -symbols -o Output -p Configuration=%config% %version%
+mkdir .nuget\bin\%config%\
+call %nuget% pack ".nuget\Zirpl.FluentReflection.nuspec" -symbols -o .nuget\bin\%config%\ -p Configuration=%config% %version%
 if not "%errorlevel%"=="0" goto failure
 
 :success
