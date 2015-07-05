@@ -66,6 +66,7 @@
     <Compile Include="Dynamic\StructTest.cs" />
     <Compile Include="Queries\Implementation\Criteria\AccessibilityCriteriaTests.cs" />
     <Compile Include="Queries\Implementation\Criteria\ScopeCriteriaTests.cs" />
+    <Compile Include="Queries\Implementation\Criteria\TypeExtensionsTests.cs" />
     <Compile Include="Queries\Implementation\Criteria\TypeNameCriteriaTests.cs" />
     <Compile Include="Queries\Implementation\Criteria\MemberNameCriteriaTests.cs" />
     <Compile Include="Queries\Implementation\Helpers\CacheServiceTests.cs" />
