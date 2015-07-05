@@ -33,7 +33,7 @@ namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
                 }
                 criteria.Names = listOfNames;
             }
-            var result = criteria.GetNamesForDirectLookup().ToArray();
+            var result = criteria.GetNamesForDirectLookup();
             if (numberOfNames == 0
                 || nameHandling != NameHandlingTypeMock.Whole)
             {
