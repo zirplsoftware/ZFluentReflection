@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Reflection;
 
-namespace Zirpl.FluentReflection.Queries.implementation.criteria
+namespace Zirpl.FluentReflection.Queries
 {
     internal static class TypeExtenstions
     {

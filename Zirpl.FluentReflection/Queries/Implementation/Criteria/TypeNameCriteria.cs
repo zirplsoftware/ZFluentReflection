@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Zirpl.FluentReflection.Queries.implementation.criteria;
+﻿using System.Reflection;
 
 namespace Zirpl.FluentReflection.Queries
 {

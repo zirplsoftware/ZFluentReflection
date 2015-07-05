@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Zirpl.FluentReflection.Queries.implementation.criteria;
 
 namespace Zirpl.FluentReflection.Queries
 {
