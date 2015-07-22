@@ -228,14 +228,15 @@ namespace Zirpl.FluentReflection
         {
             if (memberInfo == null) throw new ArgumentNullException("memberInfo");
 
-            if (memberInfo is MethodBase)
+            var methodBase = memberInfo as MethodBase;
+            if (methodBase != null)
             {
-                var method = (MethodBase)memberInfo;
-                return GetMethodAccessibility(method);
+                return GetMethodAccessibility(methodBase);
             }
-            else if (memberInfo is EventInfo)
+
+            var eventInfo = memberInfo as EventInfo;
+            if (eventInfo != null)
             {
-                var eventInfo = (EventInfo)memberInfo;
                 var addMethod = eventInfo.GetAddMethod(true);
                 var removeMethod = eventInfo.GetRemoveMethod(true);
                 var addAccessibility = addMethod != null
@@ -246,21 +247,23 @@ namespace Zirpl.FluentReflection
                     : MemberInfoAccessibility.Private;
                 return (MemberInfoAccessibility)Math.Min((int)addAccessibility, (int)removeAccessibility);
             }
-            else if (memberInfo is FieldInfo)
+
+            var fieldInfo = memberInfo as FieldInfo;
+            if (fieldInfo != null)
             {
-                var field = (FieldInfo)memberInfo;
-                if (field.IsPublic) return MemberInfoAccessibility.Public;
-                if (field.IsPrivate) return MemberInfoAccessibility.Private;
-                if (field.IsFamily) return MemberInfoAccessibility.Family;
-                if (field.IsAssembly) return MemberInfoAccessibility.Assembly;
-                if (field.IsFamilyOrAssembly) return MemberInfoAccessibility.FamilyOrAssembly;
-                throw new ArgumentException("Unexpected case- no accessibility found: " + field);
+                if (fieldInfo.IsPublic) return MemberInfoAccessibility.Public;
+                if (fieldInfo.IsPrivate) return MemberInfoAccessibility.Private;
+                if (fieldInfo.IsFamily) return MemberInfoAccessibility.Family;
+                if (fieldInfo.IsAssembly) return MemberInfoAccessibility.Assembly;
+                if (fieldInfo.IsFamilyOrAssembly) return MemberInfoAccessibility.FamilyOrAssembly;
+                throw new ArgumentException("Unexpected case- no accessibility found: " + fieldInfo);
             }
-            else if (memberInfo is PropertyInfo)
+
+            var propertyInfo = memberInfo as PropertyInfo;
+            if (propertyInfo != null)
             {
-                var propertyinfo = (PropertyInfo)memberInfo;
-                var getMethod = propertyinfo.GetGetMethod(true);
-                var setMethod = propertyinfo.GetSetMethod(true);
+                var getMethod = propertyInfo.GetGetMethod(true);
+                var setMethod = propertyInfo.GetSetMethod(true);
                 var getAccessibility = getMethod != null
                     ? GetMethodAccessibility(getMethod)
                     : MemberInfoAccessibility.Private;
@@ -269,10 +272,11 @@ namespace Zirpl.FluentReflection
                     : MemberInfoAccessibility.Private;
                 return (MemberInfoAccessibility)Math.Min((int)getAccessibility, (int)setAccessibility);
             }
-            else if (memberInfo is Type)
+
+            var type = memberInfo as Type;
+            if (type != null)
             {
                 // nested types
-                var type = (Type)memberInfo;
                 if (type.IsNested)
                 {
                     if (type.IsNestedPublic) return MemberInfoAccessibility.Public;
@@ -282,17 +286,13 @@ namespace Zirpl.FluentReflection
                     if (type.IsNestedFamORAssem) return MemberInfoAccessibility.FamilyOrAssembly;
                     throw new ArgumentException("Unexpected case- no accessibility found: " + type);
                 }
-                else
-                {
-                    if (type.IsPublic) return MemberInfoAccessibility.Public;
-                    return MemberInfoAccessibility.Public;
-                    //if (!type.IsPublic) return MemberInfoAccessibility.Family;
-                }
+
+                if (type.IsPublic) return MemberInfoAccessibility.Public;
+                return MemberInfoAccessibility.Public;
+                //if (!type.IsPublic) return MemberInfoAccessibility.Family;
             }
-            else
-            {
-                throw new Exception("Unexpected MemberInfo type: " + memberInfo.GetType().ToString());
-            }
+
+            throw new Exception("Unexpected MemberInfo type: " + memberInfo.GetType().ToString());
         }
 
         private static MemberInfoAccessibility GetMethodAccessibility(MethodBase method)

@@ -30,11 +30,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other Frameworks", "Other F
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87428A41-DEE7-44ED-A18B-8E30CDEFD4F0}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{FA506340-C6A3-4B27-87E0-4DC87D48317E}"
-	ProjectSection(SolutionItems) = preProject
-		Build\build.bat = Build\build.bat
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
