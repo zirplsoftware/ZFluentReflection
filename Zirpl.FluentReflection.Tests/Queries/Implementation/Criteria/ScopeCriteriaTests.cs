@@ -4,10 +4,9 @@ using System.Linq;
 using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
-using Telerik.JustMock.Helpers;
 using Zirpl.FluentReflection.Queries;
 
-namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Tests.Queries
 {
     [TestFixture]
     public class ScopeCriteriaTests

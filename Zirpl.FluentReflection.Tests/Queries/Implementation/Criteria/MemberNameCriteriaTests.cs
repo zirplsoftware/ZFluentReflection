@@ -6,9 +6,8 @@ using System.Reflection;
 using FluentAssertions;
 using NUnit.Framework;
 using Zirpl.FluentReflection.Queries;
-using Zirpl.FluentReflection.Tests.Mocks;
 
-namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Criteria
+namespace Zirpl.FluentReflection.Tests.Queries
 {
     [TestFixture]
     public class MemberNameCriteriaTests

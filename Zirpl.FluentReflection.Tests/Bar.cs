@@ -1,4 +1,4 @@
-﻿namespace Zirpl.FluentReflection.Tests
+namespace Zirpl.FluentReflection.Tests
 {
     public class Bar
     {

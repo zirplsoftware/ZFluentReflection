@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Zirpl.FluentReflection.Queries;
 
-namespace Zirpl.FluentReflection.Tests.Queries.Implementation.Helpers
+namespace Zirpl.FluentReflection.Tests.Queries
 {
     [TestFixture]
     public class MemberTypesFlagBuilderTests
